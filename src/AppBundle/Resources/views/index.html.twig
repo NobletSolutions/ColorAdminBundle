@@ -1,4 +1,17 @@
 {% extends '::layout.html.twig' %}
-{% block body %}
-Hello, world!
+{% block content %}
+    {{ beginPanel('My Panel Label',
+        {'style':'default', 'background':'white', 'text':'default', 'sortable':'ui-sortable-1'},
+        [
+            { 'title':'Test Link', 'icon':'link', 'style':'danger', 'uri':'http://www.google.com', 'link_new_window': true },
+            { 'title':'Collapse/Expand', 'icon':'minus', 'style':'warning', 'click':'panel-collapse' },
+            { 'title':'Maximize', 'icon':'plus', 'style':'danger', 'click':'panel-expand' }
+        ])
+    }}
+    <p>This the panel content.</p>
+    {{ endPanel() }}
+
+    {{ beginPanel('My Panel Label') }}
+    <p>This is the panel content.</p>
+    {{ endPanel() }}
 {% endblock %}

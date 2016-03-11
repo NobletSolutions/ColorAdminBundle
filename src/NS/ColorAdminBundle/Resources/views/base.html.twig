@@ -104,7 +104,10 @@
                 {{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}
             {% endblock %}
             {% block page_header %}
-            <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
+                <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
+            {% endblock %}
+            {% block content %}
+
             {% endblock %}
         </div>
         {% block to_top %}

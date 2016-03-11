@@ -1,0 +1,6 @@
+<div class="panel panel-{{ options.style }}" {% if options.sortable %} data-sortable-id="{{ options.sortable }}" {% endif %}>
+    <div class="panel-heading">
+        {{ panelActions(actions) }}
+        <h4 class="panel-title">{{ title|raw }}</h4>
+    </div>
+    <div class="panel-body bg-{{ options.background }} text-{{ options.text }}">
