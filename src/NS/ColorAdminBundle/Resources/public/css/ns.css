@@ -1,0 +1,35 @@
+.navbar-brand {
+    width: auto;
+}
+
+.sidebar .nav > li > a .badge {
+    font-weight: inherit;
+}
+
+.sidebar .nav > li > a .badge-default {
+    background: #b6c2c9;
+}
+
+.sidebar .nav > li > a .badge-danger {
+    background: #ff5b57;
+}
+
+.sidebar .nav > li > a .badge-warning {
+    background: #f59c1a;
+}
+
+.sidebar .nav > li > a .badge-success {
+    background: #00acac;
+}
+
+.sidebar .nav > li > a .badge-info {
+    background: #49b6d6;
+}
+
+.sidebar .nav > li > a .badge-primary {
+    background: #b6c2c9;
+}
+
+.sidebar .nav > li > a .badge-inverse {
+    background: #2d353c;
+}

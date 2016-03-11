@@ -1,0 +1,8 @@
+#ns_color_admin:
+#    resource: "@NSColorAdminBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
