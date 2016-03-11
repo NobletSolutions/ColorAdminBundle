@@ -41,6 +41,7 @@
             <div id="page-loader" class="fade in"><span class="spinner"></span></div>
         {% endif %}
     {% endblock %}
+
     <div id="page-container" class="fade {{ not use_pace ? 'in' : '' }} {{ fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ fixed_header ? 'page-header-fixed' : '' }} {{ gradient_sidebar ? 'gradient-enabled' : '' }}">
 
         {% block header %}
@@ -96,6 +97,18 @@
                 </div>
             </div>
             <div class="sidebar-bg"></div>
+        {% endblock %}
+
+        <div id="content" class="content">
+            {% block breadcrumbs %}
+                {{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}
+            {% endblock %}
+            {% block page_header %}
+            <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
+            {% endblock %}
+        </div>
+        {% block to_top %}
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
         {% endblock %}
     </div>
 {% block javascripts %}
