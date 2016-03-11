@@ -1,0 +1,11 @@
+{% if items is not empty %}
+    <ul class="dropdown-menu pull-right">
+        {% for label, href in items %}
+            {% if not href %}
+                <li class="divider"></li>
+            {% else %}
+                <li><a href="{{ href }}">{{ label }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}

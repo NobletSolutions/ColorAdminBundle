@@ -1,0 +1,9 @@
+<div class="btn-group {{ group_class }}">
+    <a href="{{ default }}" class="btn {{ default_class }}">{{ text }}</a>
+    {% if items is not empty %}
+        <a class="btn {{ default_class }} dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+            <span class="caret"></span>
+        </a>
+        {{ buttonDropdownItems(items) }}
+    {% endif %}
+</div>

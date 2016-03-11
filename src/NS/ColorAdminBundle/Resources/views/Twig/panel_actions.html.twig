@@ -1,4 +1,5 @@
 {% if actions is not empty %}
+    {% if actions is iterable %}
     <div class="panel-heading-btn">
         {% for button in actions %}
             <a class="btn btn-xs btn-circle btn-{{ button.style is defined ? button.style : 'default' }}"
@@ -11,4 +12,7 @@
             </a>
         {% endfor %}
     </div>
+    {% else %}
+        {{ actions|raw }}
+    {% endif %}
 {% endif %}

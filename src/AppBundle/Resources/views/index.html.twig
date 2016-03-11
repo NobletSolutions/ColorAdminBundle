@@ -14,4 +14,7 @@
     {{ beginPanel('My Panel Label') }}
     <p>This is the panel content.</p>
     {{ endPanel() }}
+
+    {{ button('Button', 'http://www.google.com', 'btn-primary') }}
+    {{ buttonDropdown('Dropdown', 'http://www.google.com', {'Item 1':'http://www.google.com', 'Item 2':'#', 'divider':false, 'Item 3':'#'}) }}
 {% endblock %}
