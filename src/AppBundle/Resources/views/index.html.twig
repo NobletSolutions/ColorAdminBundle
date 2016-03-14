@@ -2,11 +2,21 @@
 {% block content %}
     {{ beginPanel('My Panel Label',
         {'style':'default', 'background':'white', 'text':'default', 'sortable':'ui-sortable-1'},
-        [
-            { 'title':'Test Link', 'icon':'link', 'style':'danger', 'uri':'http://www.google.com', 'link_new_window': true },
-            { 'title':'Collapse/Expand', 'icon':'minus', 'style':'warning', 'click':'panel-collapse' },
-            { 'title':'Maximize', 'icon':'plus', 'style':'danger', 'click':'panel-expand' }
-        ])
+    '<div class="panel-heading-btn">
+<a class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" href="javascript:;">
+<i class="fa fa-expand"></i>
+</a>
+<a class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" href="javascript:;">
+<i class="fa fa-repeat"></i>
+</a>
+<a class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" href="javascript:;" data-original-title="" title="">
+<i class="fa fa-minus"></i>
+</a>
+<a class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove" href="javascript:;" data-original-title="" title="">
+<i class="fa fa-times"></i>
+</a>
+</div>'
+    )
     }}
     <p>This the panel content.</p>
     {{ endPanel() }}
@@ -16,5 +26,9 @@
     {{ endPanel() }}
 
     {{ button('Button', 'http://www.google.com', 'btn-primary') }}
-    {{ buttonDropdown('Dropdown', 'http://www.google.com', {'Item 1':'http://www.google.com', 'Item 2':'#', 'divider':false, 'Item 3':'#'}) }}
+    {{ buttonDropdown('Dropdown', 'http://www.google.com', {'Item 1':'http://www.google.com', 'Item 2':'#', 'Divider 1':false, 'Item 3':'#'}) }}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

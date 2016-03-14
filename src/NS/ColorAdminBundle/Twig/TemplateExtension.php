@@ -21,7 +21,8 @@ class TemplateExtension extends \Twig_Extension
             'scrolling_sidebar' => $this->template_config['sidebar']['scrolling'],
             'grid_sidebar'      => $this->template_config['sidebar']['grid'],
             'gradient_sidebar'  => $this->template_config['sidebar']['gradient'],
-            'use_pace'          => $this->template_config['use_pace']
+            'use_pace'          => $this->template_config['use_pace'],
+            'pagination'        => $this->template_config['pagination']
         );
     }
 
@@ -29,12 +30,6 @@ class TemplateExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('beginPanel', array($this, 'beginPanel'), array(
-                    'pre_escape' => 'html',
-                    'is_safe' => array('html'),
-                    'needs_environment' => true
-                )
-            ),
-            new \Twig_SimpleFunction('panelActions', array($this, 'panelActions'), array(
                     'pre_escape' => 'html',
                     'is_safe' => array('html'),
                     'needs_environment' => true
@@ -71,10 +66,10 @@ class TemplateExtension extends \Twig_Extension
      * @param \Twig_Environment $twig
      * @param $title
      * @param array $options
-     * @param string || array $actions {{'title':string, 'icon':[repeat|minus|times|etc], 'click':javascript, 'uri':uri, 'style':[default|primary|warning|etc], 'link_new_window':false}, {'title':...}}
+     * @param string
      * @return string
      */
-    public function beginPanel(\Twig_Environment $twig, $title, $options = array(), $actions = false)
+    public function beginPanel(\Twig_Environment $twig, $title, $options = array(), $actions = '')
     {
         $default_options = array(
             'style'=>'inverse',//default, inverse, success, primary, warning, info, danger,
@@ -84,17 +79,7 @@ class TemplateExtension extends \Twig_Extension
         );
 
         $options = array_merge($default_options, $options);
-        return $twig->render('NSColorAdminBundle::Twig/begin_panel.html.twig', array('title'=>$title, 'options'=>$options, 'actions'=>$actions));
-    }
-
-    /**
-     * @param \Twig_Environment $twig
-     * @param string || array $actions {{'title':string, 'icon':[repeat|minus|times|etc], 'click':javascript, 'uri':uri, 'style':[default|primary|warning|etc]}, {'title':...}}
-     * @return string
-     */
-    public function panelActions(\Twig_Environment $twig, $actions = false)
-    {
-        return $twig->render('NSColorAdminBundle::Twig/panel_actions.html.twig', array('actions'=>$actions));
+        return $twig->render('NSColorAdminBundle:Twig:begin_panel.html.twig', array('title'=>$title, 'options'=>$options, 'actions'=>$actions));
     }
 
     /**
@@ -103,7 +88,7 @@ class TemplateExtension extends \Twig_Extension
      */
     public function endPanel(\Twig_Environment $twig)
     {
-        return $twig->render('NSColorAdminBundle::Twig/end_panel.html.twig');
+        return $twig->render('NSColorAdminBundle:Twig:end_panel.html.twig');
     }
 
     /**
@@ -115,7 +100,7 @@ class TemplateExtension extends \Twig_Extension
      */
     public function button(\Twig_Environment $twig, $text, $href, $class = 'btn-default')
     {
-        return $twig->render('NSColorAdminBundle::Twig/button.html.twig', array('text'=>$text, 'href'=>$href, 'class'=>$class));
+        return $twig->render('NSColorAdminBundle:Twig:button.html.twig', array('text'=>$text, 'href'=>$href, 'class'=>$class));
     }
 
     /**
@@ -127,9 +112,9 @@ class TemplateExtension extends \Twig_Extension
      * @param string $size
      * @return string
      */
-    public function buttonDropdown(\Twig_Environment $twig, $text, $default, $items = array(), $group_class = '', $default_class = 'btn-success')
+    public function buttonDropdown(\Twig_Environment $twig, $text, $default, $items = array(), $group_class = '', $default_class = 'btn-primary')
     {
-        return $twig->render('NSColorAdminBundle::Twig/button_dropdown.html.twig', array('text'=>$text, 'default'=>$default, 'items'=>$items, 'group_class'=>$group_class, 'default_class'=>$default_class));
+        return $twig->render('NSColorAdminBundle:Twig:button_dropdown.html.twig', array('text'=>$text, 'default'=>$default, 'items'=>$items, 'group_class'=>$group_class, 'default_class'=>$default_class));
     }
 
     /**
@@ -139,7 +124,7 @@ class TemplateExtension extends \Twig_Extension
      */
     public function buttonDropdownItems(\Twig_Environment $twig, $items = array())
     {
-        return $twig->render('NSColorAdminBundle::Twig/button_dropdown_items.html.twig', array('items'=>$items));
+        return $twig->render('NSColorAdminBundle:Twig:button_dropdown_items.html.twig', array('items'=>$items));
     }
 
     public function getName()
