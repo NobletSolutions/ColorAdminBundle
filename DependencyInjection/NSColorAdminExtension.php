@@ -39,7 +39,7 @@ class NSColorAdminExtension extends Extension implements PrependExtensionInterfa
 
         $container->setParameter('ns_color_admin.templates',$config['templates']);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
 }
