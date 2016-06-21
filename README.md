@@ -85,3 +85,18 @@ Parameters:
 ```twig
 {{ buttonDropdownItems({'Item 1':'http://www.google.com', 'Item 2':'http://www.yahoo.com', 'Separator 1':false, 'Item 3':'http://www.microsoft.com'}) }}
 ```
+
+### Main navigation configuration
+#### MenuBuilder
+
+See sample MenuBuilder in ColorAdminBundle/Menu/MenuBuilder.php
+
+#### Services config
+```yaml
+    ns_color_admin.menu.sidebar:
+        class: NS\ColorAdminBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: sidebar } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }
+```

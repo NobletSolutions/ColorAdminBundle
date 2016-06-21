@@ -3,15 +3,15 @@ services:
 #        class: NS\ColorAdminBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
 
+#    ns_color_admin.menu.sidebar:
+#        class: NS\ColorAdminBundle\Menu\MenuBuilder
+#        arguments: ["@knp_menu.factory"]
+#        tags:
+#            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: sidebar } # The alias is what is used to retrieve the menu
+#            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }
+
     ns_color_admin.template_extension:
         class: NS\ColorAdminBundle\Twig\TemplateExtension
         arguments: [%ns_color_admin.templates%]
         tags:
             - { name: twig.extension }
-
-    ns_color_admin.menu.sidebar:
-        class: NS\ColorAdminBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
-        tags:
-            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: sidebar } # The alias is what is used to retrieve the menu
-            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }

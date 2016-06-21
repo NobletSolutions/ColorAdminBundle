@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ block('html_lang') }}">
 <head>
-    <title>{% block pagetitle %}Color Admin | Dashboard v2{% endblock %}</title>
+    {% set page_subtitle = block('page_subtitle') %}
+    <title>
+        {% block pagetitle %}{% block sitename %}Color Admin{% endblock %}{% endblock %}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}
+    </title>
     {% block metas %}
         <meta content="{% block meta_viewport %}width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no{% endblock %}" name="viewport" />
         <meta content="{% block meta_description %}{% endblock %}" name="description" />
@@ -33,8 +36,28 @@
             <script src="{{ asset('bundles/nscoloradmin/js/plugins/pace.min.js') }}"></script>
         {% endif %}
     {% endblock %}
+    {% block javascripts %}
+    {% block base_javascripts %}
+        <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.4.0.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.7/jquery.slimscroll.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
+    {% endblock %}
+        {% block page_javascripts %}
+        {% endblock %}
+    {% block init_javascript %}
+        <script>
+            $(document).ready(function() {
+                App.init();
+            });
+        </script>
+    {% endblock %}
+    {% endblock %}
 </head>
-<body>
+<body class="color-admin">
     {% block page_loader %}
         {# Disabled by default because, while it looks nice, 500 errors show nothing but a loading bar #}
         {% if use_pace %}
@@ -48,7 +71,7 @@
         <div id="header" class="header navbar {{ inverse_header ? 'navbar-inverse':'navbar-default' }} {{ fixed_header ? 'navbar-fixed-top' : ''}}">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% endblock %}</a>
+                    <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}{% endblock %}</a>
                     {% block mobile_navbar_toggle %}
                     <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                         <span class="icon-bar"></span>
@@ -75,9 +98,13 @@
                             </div>
                             <div class="info">
                                 {% block sidebar_title %}
-                                    Color Admin
-                                    <small>Website admin panel</small>
+                                    {{ block('sitename') }}
                                 {% endblock %}
+                                <small>
+                                {% block sidebar_subtitle %}
+                                    Website admin panel
+                                {% endblock %}
+                                </small>
                             </div>
                         </li>
                     </ul>
@@ -90,23 +117,29 @@
                             {% block sidebar_navigation_menu %}
                                 {{ knp_menu_render('sidebar', {'template': 'NSColorAdminBundle:Menu:knp_menu.html.twig'}) }}
                             {% endblock %}
-                            {% block sidebar_navigation_minimize %}
-                                <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-                            {% endblock %}
+                        </ul>
+                    {% endblock %}
+                    {% block additional_navigation %}
+                    {# additional menus for the main nav would go here #}
+                    {% endblock %}
+                    {% block sidebar_navigation_minimize %}
+                        <ul class="nav">
+                            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                        </ul>
                     {% endblock %}
                 </div>
             </div>
             <div class="sidebar-bg"></div>
         {% endblock %}
 
-        <div id="content" class="content">
+        <div id="content" class="{% block content_class %}content{% endblock %}">
             {% block breadcrumbs %}
                 {{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}
             {% endblock %}
             {% block page_header %}
                 <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
             {% endblock %}
-            {% block content %}
+            {% block body %}
 
             {% endblock %}
         </div>
@@ -114,25 +147,6 @@
             <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
         {% endblock %}
     </div>
-{% block javascripts %}
-    {% block base_javascripts %}
-        <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.4.0.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.7/jquery.slimscroll.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-        <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
-    {% endblock %}
-    {% block page_javascripts %}
-    {% endblock %}
-    {% block init_javascript %}
-        <script>
-            $(document).ready(function() {
-                App.init();
-            });
-        </script>
-    {% endblock %}
-{% endblock %}
+
 </body>
 </html>

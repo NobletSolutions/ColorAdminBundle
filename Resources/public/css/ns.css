@@ -33,3 +33,25 @@
 .sidebar .nav > li > a .badge-inverse {
     background: #2d353c;
 }
+
+.content.nomenu {
+    margin-left: auto;
+}
+
+.content.nopadding {
+    padding: 0;
+}
+
+.box {
+    border-radius: 0;
+    border: none;
+    position: static;
+    background: inherit;
+    box-shadow: none;
+    width: auto;
+}
+
+.color-admin .input-group-addon {
+    background:  #e2e7eb;
+    border-radius: 0 4px 4px 0;
+}

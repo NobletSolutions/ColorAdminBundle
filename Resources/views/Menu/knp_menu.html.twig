@@ -57,7 +57,7 @@
         {%- endif %}
         {# displaying the item #}
         {% import _self as knp_menu %}
-        <li {% if attributes is not empty and attributes.class is not empty %}class="{{ attributes.class }}"{% endif %}>
+        <li {% if attributes is not empty and attributes.class is defined %}class="{{ attributes.class }}"{% endif %}>
             {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
                 {{ block('linkElement') }}
             {%- else %}
