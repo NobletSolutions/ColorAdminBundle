@@ -2,7 +2,7 @@
 
 namespace NS\ColorAdminBundle\Twig;
 
-class TemplateExtension extends \Twig_Extension
+class TemplateExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     protected $template_config;
 

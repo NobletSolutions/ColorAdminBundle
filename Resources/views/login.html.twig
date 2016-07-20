@@ -37,11 +37,13 @@
                     <div class="form-group m-b-20">
                         <input type="password" class="form-control input-lg" placeholder="Password" name="_password" />
                     </div>
+                    {% block rememberMe %}
                     <div class="checkbox m-b-20">
                         <label>
-                            <input type="checkbox" /> Remember Me
+                            <input type="checkbox" name="_remember"/> Remember Me
                         </label>
                     </div>
+                    {% endblock %}
                     <div class="login-buttons">
                         <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
                     </div>
