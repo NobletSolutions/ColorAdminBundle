@@ -28,6 +28,20 @@ class NSColorAdminExtension extends Extension implements PrependExtensionInterfa
 
             $container->prependExtensionConfig('knp_paginator', $config);
         }
+
+        $container->prependExtensionConfig('liip_imagine', array(
+            'filter_sets' => array(
+                'admin_thumbnail' => array(
+                    'quality' => 50,
+                    'filters' => array(
+                        'thumbnail' => array(
+                            'size' => array(150, 150),
+                            'mode' => 'inset'
+                        )
+                    )
+                ),
+            )
+        ));
     }
     /**
      * {@inheritdoc}
