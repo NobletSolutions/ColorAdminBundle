@@ -100,3 +100,9 @@ See sample MenuBuilder in ColorAdminBundle/Menu/MenuBuilder.php
             - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: sidebar } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }
 ```
+
+#### Other config
+```yaml
+    knp_paginator:
+        template: NS\ColorAdminBundle\Resources\Paginator\paginator.html.twig #optional
+```
