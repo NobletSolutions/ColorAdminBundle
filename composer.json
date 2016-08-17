@@ -1,0 +1,26 @@
+{
+    "name": "ns/color-admin-bundle",
+    "description": "Template bundle for Color Admin",
+    "keywords": ["template"],
+    "homepage": "https://github.com/NobletSolutions/ColorAdminBundle",
+    "authors": [
+        {
+            "name": "Mark Woynarski",
+            "email": "mark.woynarski@nobletdesign.com"
+        },
+	{
+	    "name": "Nathanael David Noblet",
+	    "email": "nathanael@noblet.ca"
+	}
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/symfony": "3.0.*",
+        "knplabs/knp-menu-bundle": "~2.1",
+        "knplabs/knp-paginator-bundle": "^2.5"
+    },
+    "autoload": {
+        "psr-4": { "NS\\ColorAdminBundle\\": "" }
+    }
+}
+
