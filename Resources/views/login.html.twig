@@ -11,43 +11,49 @@
         <div class="login bg-black">
             <!-- begin brand -->
             <div class="login-header">
-                <div class="brand">
-                    <span class="logo"></span> {% block login_sitename%}Color Admin{% endblock %}
-                    <small>{% block login_subtitle %}responsive bootstrap 3 admin template{% endblock %}</small>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-sign-in"></i>
-                </div>
+                {% block login_header %}
+                    <div class="brand">
+                        <span class="logo"></span> {% block login_sitename%}Color Admin{% endblock %}
+                        <small>{% block login_subtitle %}responsive bootstrap 3 admin template{% endblock %}</small>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sign-in"></i>
+                    </div>
+                {% endblock %}
             </div>
             <!-- end brand -->
             <div class="login-content">
-                {% block errors %}
-                    {% if error %}
-                        <div class="alert alert-danger fade in m-b-15">
-                            <strong>Error!</strong>
-                            {{ error.message }}
-                            <span class="close" data-dismiss="alert">×</span>
-                        </div>
-                    {% endif %}
-                {% endblock %}
-                <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="POST" class="margin-bottom-0">
-                    <div class="form-group m-b-20">
-                        <input type="text" class="form-control input-lg" value="{{ last_username }}" placeholder="Email Address" name="_username" />
-                    </div>
-                    <div class="form-group m-b-20">
-                        <input type="password" class="form-control input-lg" placeholder="Password" name="_password" />
-                    </div>
-                    {% block rememberMe %}
-                    <div class="checkbox m-b-20">
-                        <label>
-                            <input type="checkbox" name="_remember"/> Remember Me
-                        </label>
-                    </div>
+                {% block login_content %}
+                    {% block errors %}
+                        {% if error is defined and error %}
+                            <div class="alert alert-danger fade in m-b-15">
+                                <strong>Error!</strong>
+                                {{ error.message }}
+                                <span class="close" data-dismiss="alert">×</span>
+                            </div>
+                        {% endif %}
                     {% endblock %}
-                    <div class="login-buttons">
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
-                    </div>
-                </form>
+                    {% block login_form %}
+                        <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="POST" class="margin-bottom-0">
+                            <div class="form-group m-b-20">
+                                <input type="text" class="form-control input-lg" value="{{ last_username }}" placeholder="Email Address" name="_username" />
+                            </div>
+                            <div class="form-group m-b-20">
+                                <input type="password" class="form-control input-lg" placeholder="Password" name="_password" />
+                            </div>
+                            {% block rememberMe %}
+                            <div class="checkbox m-b-20">
+                                <label>
+                                    <input type="checkbox" name="_remember"/> Remember Me
+                                </label>
+                            </div>
+                            {% endblock %}
+                            <div class="login-buttons">
+                                <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                            </div>
+                        </form>
+                    {% endblock %}
+                {% endblock %}
             </div>
         </div>
         <!-- end login -->
