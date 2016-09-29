@@ -1,5 +1,6 @@
 {% extends 'NSColorAdminBundle::base.html.twig' %}
 
+{% block sitename %}{{ sitename }}{% endblock %}
 {% block sidebar %}{% endblock %}
 {% block header %}{% endblock %}
 {% block breadcrumbs %}{% endblock %}
@@ -24,14 +25,8 @@
             <!-- end brand -->
             <div class="login-content">
                 {% block login_content %}
-                    {% block errors %}
-                        {% if error is defined and error %}
-                            <div class="alert alert-danger fade in m-b-15">
-                                <strong>Error!</strong>
-                                {{ error.message }}
-                                <span class="close" data-dismiss="alert">×</span>
-                            </div>
-                        {% endif %}
+                    {% block login_messages %}
+                        {{ include('NSColorAdminBundle:blocks:_flash_messages.html.twig') }}
                     {% endblock %}
                     {% block login_form %}
                         <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="POST" class="margin-bottom-0">
@@ -42,11 +37,11 @@
                                 <input type="password" class="form-control input-lg" placeholder="Password" name="_password" />
                             </div>
                             {% block rememberMe %}
-                            <div class="checkbox m-b-20">
-                                <label>
-                                    <input type="checkbox" name="_remember"/> Remember Me
-                                </label>
-                            </div>
+                                <div class="checkbox m-b-20">
+                                    <label>
+                                        <input type="checkbox" name="_remember"/> Remember Me
+                                    </label>
+                                </div>
                             {% endblock %}
                             <div class="login-buttons">
                                 <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
