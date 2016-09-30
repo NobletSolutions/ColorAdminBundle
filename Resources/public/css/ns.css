@@ -34,6 +34,12 @@
     background: #2d353c;
 }
 
+.sidebar .nav > li > hr {
+    width: 80%;
+    margin: 10px auto;
+    border-color: #a8acb1;
+}
+
 .content.nomenu {
     margin-left: auto;
 }

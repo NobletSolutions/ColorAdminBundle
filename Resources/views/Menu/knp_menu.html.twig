@@ -13,11 +13,11 @@
         {% import _self as knp_menu %}
         {% if item.name != 'root' %}
             {% set listAttributes = listAttributes|merge({'class':'sub-menu'}) %}
-        <ul{{ knp_menu.attributes(listAttributes) }}>
+            <ul{{ knp_menu.attributes(listAttributes) }}>
         {% endif %}
-            {{ block('children') }}
+        {{ block('children') }}
         {% if item.name != 'root' %}
-        </ul>
+            </ul>
         {% endif %}
     {% endif %}
 {% endblock %}
@@ -58,16 +58,20 @@
         {# displaying the item #}
         {% import _self as knp_menu %}
         <li {% if attributes is not empty and attributes.class is defined %}class="{{ attributes.class }}"{% endif %}>
-            {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
-                {{ block('linkElement') }}
-            {%- else %}
-                {{ block('spanElement') }}
-            {%- endif %}
-            {# render the list of children#}
-            {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
-            {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
-            {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
-            {{ block('list') }}
+            {% if item.attribute('divider') %}
+                <hr />
+            {% else %}
+                {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
+                    {{ block('linkElement') }}
+                {%- else %}
+                    {{ block('spanElement') }}
+                {%- endif %}
+                {# render the list of children#}
+                {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+                {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
+                {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+                {{ block('list') }}
+            {% endif %}
         </li>
     {% endif %}
 {% endblock %}
@@ -107,8 +111,8 @@
     {% else %}
         {{ item.label }}
     {% endif %}
-    {% if item.attribute('label') is not empty %}
-        <span class="label {{ item.attribute('label-style') is not empty ? 'label-'~item.attribute('label-style') : '' }} m-l-5">{{ item.attribute('label') }}</span>
-    {% endif %}
+        {% if item.attribute('label') is not empty %}
+            <span class="label {{ item.attribute('label-style') is not empty ? 'label-'~item.attribute('label-style') : '' }} m-l-5">{{ item.attribute('label') }}</span>
+        {% endif %}
     </span>
 {% endblock %}

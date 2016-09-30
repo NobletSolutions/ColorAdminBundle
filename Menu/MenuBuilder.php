@@ -31,6 +31,8 @@ class MenuBuilder
             ->setAttribute('label', 'NEW')
             ->setAttribute('label-style', 'warning');
         $item->addChild('Sub Menu', array('uri'=>'http://www.google.com'));
+        $menu->addChild('divider')
+            ->setAttribute('divider', true);
         $item->addChild('Sub Menu 2', array('uri'=>'http://www.google.com'));
         $item->addChild('Sub Menu 3', array('uri'=>'http://www.google.com'));
 
