@@ -34,6 +34,10 @@
     background: #2d353c;
 }
 
+.sidebar .nav > li.active > a > i.fa {
+    color: #ffffff !important;
+}
+
 .sidebar .nav > li > hr {
     width: 80%;
     margin: 10px auto;
