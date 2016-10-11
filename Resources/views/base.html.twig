@@ -19,6 +19,7 @@
             <link href="{{ asset('bundles/nscoloradmin/css/animate.min.css') }}" rel="stylesheet" />
             <link href="{{ asset('bundles/nscoloradmin/css/style.min.css') }}" rel="stylesheet" />
             <link href="{{ asset('bundles/nscoloradmin/css/style-responsive.min.css') }}" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
             {% block theme_stylesheets %}
                 <link href="{{ asset('bundles/nscoloradmin/css/theme/'~theme~'.css') }}" rel="stylesheet" id="theme" />
             {% endblock %}
@@ -46,6 +47,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
         <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
         <script src="{{ asset('bundles/nscoloradmin/js/plugins/masked-input.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
     {% endblock %}
         <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
         {% block page_javascripts %}
@@ -60,26 +62,26 @@
     {% endblock %}
 </head>
 <body class="color-admin">
-    {% block page_loader %}
-        {# Disabled by default because, while it looks nice, 500 errors show nothing but a loading bar #}
-        {% if use_pace %}
-            <div id="page-loader" class="fade in"><span class="spinner"></span></div>
-        {% endif %}
-    {% endblock %}
+{% block page_loader %}
+    {# Disabled by default because, while it looks nice, 500 errors show nothing but a loading bar #}
+    {% if use_pace %}
+        <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    {% endif %}
+{% endblock %}
 
-    <div id="page-container" class="fade {{ not use_pace ? 'in' : '' }} {{ fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ fixed_header ? 'page-header-fixed' : '' }} {{ gradient_sidebar ? 'gradient-enabled' : '' }}">
+<div id="page-container" class="fade {{ not use_pace ? 'in' : '' }} {{ fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ fixed_header ? 'page-header-fixed' : '' }} {{ gradient_sidebar ? 'gradient-enabled' : '' }}">
 
-        {% block header %}
+    {% block header %}
         <div id="header" class="header navbar {{ inverse_header ? 'navbar-inverse':'navbar-default' }} {{ fixed_header ? 'navbar-fixed-top' : ''}}">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a href="{% block admin_logo_url %}{{ url('admin_dashboard') }}{% endblock %}" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}{% endblock %}</a>
                     {% block mobile_navbar_toggle %}
-                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                     {% endblock %}
                 </div>
                 {% block header_navigation %}
@@ -87,71 +89,71 @@
                 {% endblock %}
             </div>
         </div>
-        {% endblock %}
+    {% endblock %}
 
-        {% block sidebar %}
-            <div id="sidebar" class="sidebar {{ grid_sidebar ? 'sidebar-grid' : '' }}">
-                <div data-scrollbar="true" data-height="100%">
-                    {% block sidebar_header %}
+    {% block sidebar %}
+        <div id="sidebar" class="sidebar {{ grid_sidebar ? 'sidebar-grid' : '' }}">
+            <div data-scrollbar="true" data-height="100%">
+                {% block sidebar_header %}
                     <ul class="nav">
                         <li class="nav-profile">
                             <div class="image">
-                               {% block sidebar_icon %}<i class="fa fa-cog fa-3x white"></i>{% endblock %}
+                                {% block sidebar_icon %}<i class="fa fa-cog fa-3x white"></i>{% endblock %}
                             </div>
                             <div class="info">
                                 {% block sidebar_title %}
                                     {{ block('sitename') }}
                                 {% endblock %}
                                 <small>
-                                {% block sidebar_subtitle %}
-                                    Website admin panel
-                                {% endblock %}
+                                    {% block sidebar_subtitle %}
+                                        Website admin panel
+                                    {% endblock %}
                                 </small>
                             </div>
                         </li>
                     </ul>
-                    {% endblock %}
-                    {% block sidebar_navigation %}
-                        <ul class="nav">
-                            {% block sidebar_navigation_header %}
-                                <li class="nav-header">{% block sidebar_navigation_header_title %}Navigation{% endblock %}</li>
-                            {% endblock %}
-                            {% block sidebar_navigation_menu %}
-                                {{ knp_menu_render('sidebar', {'template': 'NSColorAdminBundle:Menu:knp_menu.html.twig'}) }}
-                            {% endblock %}
-                        </ul>
-                    {% endblock %}
-                    {% block additional_navigation %}
+                {% endblock %}
+                {% block sidebar_navigation %}
+                    <ul class="nav">
+                        {% block sidebar_navigation_header %}
+                            <li class="nav-header">{% block sidebar_navigation_header_title %}Navigation{% endblock %}</li>
+                        {% endblock %}
+                        {% block sidebar_navigation_menu %}
+                            {{ knp_menu_render('sidebar', {'template': 'NSColorAdminBundle:Menu:knp_menu.html.twig'}) }}
+                        {% endblock %}
+                    </ul>
+                {% endblock %}
+                {% block additional_navigation %}
                     {# additional menus for the main nav would go here #}
-                    {% endblock %}
-                    {% block sidebar_navigation_minimize %}
-                        <ul class="nav">
-                            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-                        </ul>
-                    {% endblock %}
-                </div>
+                {% endblock %}
+                {% block sidebar_navigation_minimize %}
+                    <ul class="nav">
+                        <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                    </ul>
+                {% endblock %}
             </div>
-            <div class="sidebar-bg"></div>
-        {% endblock %}
-
-        <div id="content" class="{% block content_class %}content{% endblock %}">
-            {% block breadcrumbs %}
-                {{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}
-            {% endblock %}
-            {% block page_header %}
-                <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
-            {% endblock %}
-            {% block messages %}
-                {{ include('NSColorAdminBundle:blocks:_flash_messages.html.twig') }}
-            {% endblock %}
-            {% block body %}
-
-            {% endblock %}
         </div>
-        {% block to_top %}
-            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <div class="sidebar-bg"></div>
+    {% endblock %}
+
+    <div id="content" class="{% block content_class %}content{% endblock %}">
+        {% block breadcrumbs %}
+            {{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}
+        {% endblock %}
+        {% block page_header %}
+            <h1 class="page-header">{% block page_header_title %}Dashboard{% endblock %} <small>{% block page_header_text %}header small text goes here...{% endblock %}</small></h1>
+        {% endblock %}
+        {% block messages %}
+            {{ include('NSColorAdminBundle:blocks:_flash_messages.html.twig') }}
+        {% endblock %}
+        {% block body %}
+
         {% endblock %}
     </div>
+    {% block to_top %}
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    {% endblock %}
+</div>
 
 </body>
 </html>
