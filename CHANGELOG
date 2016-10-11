@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.1 - Initial release
+      11/10/2016 14:57  0.1.11  non-required form fields now get the rest of their css classes
       11/10/2016 14:32  0.1.10  Added bootstrap select picker
       30/09/2016 15:19  0.1.9  Invert icon color on active menu
       30/09/2016 13:22  0.1.8  Added divider support to menu
