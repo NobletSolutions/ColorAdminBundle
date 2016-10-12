@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.1 - Initial release
+      12/10/2016 11:51  0.1.15  Fixed form attribute issue
       12/10/2016 11:36  0.1.14  Form improvements
       12/10/2016 10:48  0.1.13  Added additional form options
       12/10/2016 10:21  0.1.12  Added datepicker form pe
