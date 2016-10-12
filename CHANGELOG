@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.1 - Initial release
+      12/10/2016 10:48  0.1.13  Added additional form options
       12/10/2016 10:21  0.1.12  Added datepicker form pe
       11/10/2016 14:57  0.1.11  non-required form fields now get the rest of their css classes
       11/10/2016 14:32  0.1.10  Added bootstrap select picker
