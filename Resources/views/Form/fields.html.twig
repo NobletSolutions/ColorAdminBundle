@@ -22,10 +22,10 @@
 {% endblock %}
 
 {% block form_row %}
-    <div class="form-group">
+    <div class="form-group {{ errors|length > 0 ? 'has-error has-feedback' }}">
         {{ form_label(form) }}
         <div class="{{  wrapper_class|default('col-sm-9') }}">
-            {{ form_widget(form) }}
+            {{ form_widget(form, {'attr':{'class':'form-control'}}) }}
             {{ note ? ('<p>'~note~'</p>')|raw : '' }}
             {{ form_errors(form) }}
         </div>
