@@ -20,6 +20,7 @@
             <link href="{{ asset('bundles/nscoloradmin/css/style.min.css') }}" rel="stylesheet" />
             <link href="{{ asset('bundles/nscoloradmin/css/style-responsive.min.css') }}" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" integrity="sha256-5ad0JyXou2Iz0pLxE+pMd3k/PliXbkc65CO5mavx8s8=" crossorigin="anonymous" />
             {% block theme_stylesheets %}
                 <link href="{{ asset('bundles/nscoloradmin/css/theme/'~theme~'.css') }}" rel="stylesheet" id="theme" />
             {% endblock %}
@@ -48,6 +49,7 @@
         <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
         <script src="{{ asset('bundles/nscoloradmin/js/plugins/masked-input.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" integrity="sha256-urCxMaTtyuE8UK5XeVYuQbm/MhnXflqZ/B9AOkyTguo=" crossorigin="anonymous"></script>
     {% endblock %}
         <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
         {% block page_javascripts %}
