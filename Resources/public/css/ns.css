@@ -65,3 +65,24 @@
     background:  #e2e7eb;
     border-radius: 0 4px 4px 0;
 }
+
+.errors-list.filled {
+    opacity: 1;
+}
+.errors-list {
+    font-size: 0.9em;
+    line-height: 0.9em;
+    list-style-type: none;
+    margin: 2px 0 3px;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.3s ease-in 0s;
+}
+.errors-list {
+    color: #e5603b;
+    font-size: 12px !important;
+    line-height: inherit !important;
+    list-style-type: none !important;
+    margin: 5px 0 0 !important;
+    padding: 0 !important;
+}
