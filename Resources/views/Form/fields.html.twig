@@ -25,7 +25,8 @@
     <div class="form-group {{ errors|length > 0 ? 'has-error has-feedback' }}">
         {{ form_label(form) }}
         <div class="{{ wrapper_class|default('col-sm-9') }}">
-            {% set attr = attr|merge({'attr':{'class':'form-control'}}) %}
+            {% set class = attr['class']|default('form-control') %}
+            {% set attr = attr|merge({'attr':{'class':class}}) %}
             {{ form_widget(form, attr) }}
             {{ note ? ('<p>'~note~'</p>')|raw : '' }}
             {{ form_errors(form) }}
