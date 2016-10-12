@@ -23,9 +23,11 @@
 
 {% block form_row %}
     <div class="form-group">
-        {% set class = attr.class|default('col-sm-9') %}
         {{ form_label(form) }}
-        {{ form_widget(form, {'class':class}) }}
-        {{ form_errors(form) }}
+        <div class="{{  wrapper_class|default('col-sm-9') }}">
+            {{ form_widget(form) }}
+            {{ note ? ('<p>'~note~'</p>')|raw : '' }}
+            {{ form_errors(form) }}
+        </div>
     </div>
 {% endblock %}
