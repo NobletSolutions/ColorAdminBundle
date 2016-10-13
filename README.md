@@ -106,3 +106,7 @@ See sample MenuBuilder in ColorAdminBundle/Menu/MenuBuilder.php
     knp_paginator:
         template: NS\ColorAdminBundle\Resources\Paginator\paginator.html.twig #optional
 ```
+
+### Error Templates
+
+There are error templates located in views/Exception;  Copy/extend these in app/Resources/TwigBundle/views/Exception to use the custom error page templates.
