@@ -86,3 +86,8 @@
     margin: 5px 0 0 !important;
     padding: 0 !important;
 }
+
+.form-inline .bootstrap-select.btn-group {
+    display: inline-block;
+    width: auto;
+}
