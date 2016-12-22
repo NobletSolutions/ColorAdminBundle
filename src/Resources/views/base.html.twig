@@ -77,7 +77,7 @@
         <div id="header" class="header navbar {{ inverse_header ? 'navbar-inverse':'navbar-default' }} {{ fixed_header ? 'navbar-fixed-top' : ''}}">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="{% block admin_logo_url %}{{ url('admin_dashboard') }}{% endblock %}" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}{% endblock %}</a>
+                    <a href="{% block admin_logo_url %}#{% endblock %}" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}{% endblock %}</a>
                     {% block mobile_navbar_toggle %}
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span>

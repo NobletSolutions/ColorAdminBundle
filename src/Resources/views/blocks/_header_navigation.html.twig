@@ -1,7 +1,7 @@
 <ul class="nav navbar-nav navbar-right">
     {% block header_navigation_homepage_link %}
     <li>
-        <a href="{{ path('homepage') }}" target="_blank">
+        <a href="#{{ path('homepage') }}" target="_blank">
             <i class="fa fa-home fa-lg text-success"></i> Homepage
         </a>
     </li>
@@ -9,8 +9,8 @@
     {% block header_navigation_user_nav %}
     <li class="dropdown navbar-user">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-            {% block header_navigation_user_image %}<img src="assets/img/user-13.jpg" alt="" />{% endblock %}
-            <span class="hidden-xs">{% block header_navigation_username %}{{ app.user.username }}{% endblock %}</span> <b class="caret"></b>
+            {% block header_navigation_user_image %}{#<img src="assets/img/user-13.jpg" alt="" />#}{% endblock %}
+            <span class="hidden-xs">{% block header_navigation_username %}{{ app.user }}{% endblock %}</span> <b class="caret"></b>
         </a>
         {% block header_navigation_user_menu %}
         <ul class="dropdown-menu animated fadeInLeft">
@@ -20,7 +20,7 @@
             {#<li><a href="javascript:;">Calendar</a></li>#}
             {#<li><a href="javascript:;">Setting</a></li>#}
             {#<li class="divider"></li>#}
-            <li><a href="{{ path('logout') }}">Log Out</a></li>
+            <li><a href="#">Log Out</a></li>
         </ul>
         {% endblock %}
     </li>
