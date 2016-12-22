@@ -2,6 +2,9 @@
 VERSION 0  INITIAL RELEASE
 ==========================
 
+   Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      22/12/2016 12:11  0.2.0  initial release
+
    Version 0.1 - Initial release
       21/12/2016 15:34  0.1.21  Quote parameters
       20/12/2016 17:16  0.1.20  Auto configuration of twig form themes
