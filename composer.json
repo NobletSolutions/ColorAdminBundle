@@ -8,18 +8,18 @@
             "name": "Mark Woynarski",
             "email": "mark.woynarski@nobletdesign.com"
         },
-	{
-	    "name": "Nathanael David Noblet",
-	    "email": "nathanael@noblet.ca"
-	}
+        {
+            "name": "Nathanael David Noblet",
+            "email": "nathanael@noblet.ca"
+        }
     ],
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "^2.8|~3.0",
-        "knplabs/knp-menu-bundle": "~2.1"
+        "symfony/symfony": "^2.8|~3.0"
     },
-    "suggest": {	
-        "knplabs/knp-paginator-bundle": "^2.5"
+    "suggest": {
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "knplabs/knp-menu-bundle": "~2.1"
     },
     "autoload": {
         "psr-4": { "NS\\ColorAdminBundle\\": "src" }

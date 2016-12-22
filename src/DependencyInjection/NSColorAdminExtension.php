@@ -43,6 +43,7 @@ class NSColorAdminExtension extends Extension implements PrependExtensionInterfa
             )
         ));
     }
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +53,7 @@ class NSColorAdminExtension extends Extension implements PrependExtensionInterfa
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('ns_color_admin.templates',$config['templates']);
-
+        $container->setParameter('ns_color_admin.use_knp_menu',$config['use_knp_menu']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }

@@ -4,6 +4,7 @@
 
 ```yaml
     ns_color_admin:
+        use_knp_menu: false #if set to true and KnpMenuBundle is installed, we'll set the template to our knp_menu.html.twig template 
         templates:
             theme: default|red|blue|purple|orange|black # template theme; Default: 'default'
             pagination:
