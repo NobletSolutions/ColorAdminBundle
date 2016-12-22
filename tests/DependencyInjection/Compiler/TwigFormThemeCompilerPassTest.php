@@ -10,8 +10,9 @@ namespace Tests\NS\ColorAdminBundle\DependencyInjection\Compiler;
 
 use NS\ColorAdminBundle\DependencyInjection\Compiler\TwigFormThemeCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Tests\NS\ColorAdminBundle\BaseTestCase;
 
-class TwigFormThemeCompilerPassTest extends \PHPUnit_Framework_TestCase
+class TwigFormThemeCompilerPassTest extends BaseTestCase
 {
     public function test_has_no_setting()
     {

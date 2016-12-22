@@ -10,8 +10,9 @@ namespace Tests\NS\ColorAdminBundle\DependencyInjection\Compiler;
 
 use NS\ColorAdminBundle\DependencyInjection\Compiler\KnpMenuCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Tests\NS\ColorAdminBundle\BaseTestCase;
 
-class KnpMenuCompilerPassTest extends \PHPUnit_Framework_TestCase
+class KnpMenuCompilerPassTest extends BaseTestCase
 {
     public function test_dont_use_knp_menu()
     {

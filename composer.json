@@ -28,6 +28,6 @@
         "psr-4": { "Tests\\NS\\ColorAdminBundle\\": "tests" }
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.0"
+        "phpunit/phpunit": "^4.8||^5.0"
     }
 }
