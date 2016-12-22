@@ -3,9 +3,9 @@
 namespace NS\ColorAdminBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use \Symfony\Component\Form\AbstractType;
-use \Symfony\Component\Form\FormView;
-use \Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -15,8 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class EntitySelectPickerType extends AbstractType
 {
-    private $defaults;
-
     /**
      * {@inheritdoc}
      */

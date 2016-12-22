@@ -2,11 +2,11 @@
 
 namespace NS\ColorAdminBundle\Form;
 
-use \NS\ColorAdminBundle\Service\DateFormatConverter;
-use \Symfony\Component\Form\AbstractType;
+use NS\ColorAdminBundle\Service\DateFormatConverter;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use \Symfony\Component\Form\FormInterface;
-use \Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -35,13 +35,13 @@ class DatePickerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget'   => 'single_text',
             'compound' => false,
             'inline' => false,
             'autoclose' => true,
             'format'   => $this->converter->getFormat(true),
-        ));
+        ]);
     }
 
     /**

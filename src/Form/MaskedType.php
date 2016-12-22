@@ -2,9 +2,9 @@
 
 namespace NS\ColorAdminBundle\Form;
 
-use \Symfony\Component\Form\AbstractType;
-use \Symfony\Component\Form\FormView;
-use \Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -21,7 +21,7 @@ class MaskedType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $this->defaults = array(
+        $this->defaults = [
             'mask'            => false,//ex: "99/99/9999", "(999) 999-9999", "99-999-9999-99"; ? = optional, ex: "(999) 999-9999? x999" for optional phone extension
             'placeholder'     => '_', //Placeholder to use for masked characters
             'definitions'     => false, //Custom mask definitions. Array.
@@ -31,12 +31,12 @@ class MaskedType extends AbstractType
              *      '~' => '[+-]' //"~" char represents a plus or minus sign: Temp: "~99" = +15, -22
              * )
              */
-        );
+        ];
 
         $resolver->setDefaults(
             array_merge(
                 $this->defaults,
-                array('attr' => array('class' => 'nsMasked'))
+                ['attr' => ['class' => 'nsMasked']]
             )
         );
     }

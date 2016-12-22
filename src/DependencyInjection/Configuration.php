@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
                 ->addDefaultsIfNotSet()
                 ->children()
                     ->enumNode('theme')
-                        ->values(array('default', 'red', 'blue', 'purple', 'orange', 'black'))
+                        ->values(['default', 'red', 'blue', 'purple', 'orange', 'black'])
                         ->defaultValue('default')
                         ->end()
                     ->arrayNode('pagination')

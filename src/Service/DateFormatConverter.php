@@ -1,4 +1,5 @@
 <?php
+
 namespace NS\ColorAdminBundle\Service;
 
 use \IntlDateFormatter;
