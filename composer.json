@@ -22,7 +22,12 @@
         "knplabs/knp-paginator-bundle": "^2.5"
     },
     "autoload": {
-        "psr-4": { "NS\\ColorAdminBundle\\": "" }
+        "psr-4": { "NS\\ColorAdminBundle\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\NS\\ColorAdminBundle\\": "Tests" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
     }
 }
-
