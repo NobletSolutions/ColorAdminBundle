@@ -2,6 +2,7 @@
 
 namespace NS\ColorAdminBundle;
 
+use NS\ColorAdminBundle\DependencyInjection\Compiler\FlashBundleTemplateCompilerPass;
 use NS\ColorAdminBundle\DependencyInjection\Compiler\KnpMenuCompilerPass;
 use NS\ColorAdminBundle\DependencyInjection\Compiler\TwigFormThemeCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,5 +15,6 @@ class NSColorAdminBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new TwigFormThemeCompilerPass());
         $container->addCompilerPass(new KnpMenuCompilerPass());
+        $container->addCompilerPass(new FlashBundleTemplateCompilerPass());
     }
 }
