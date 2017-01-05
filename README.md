@@ -38,7 +38,7 @@ Parameters:
 - parameters: additional configuration parameters:
     - style: default|inverse|primary|info|success|warning|danger; default: inverse
     - background: white|black|blue|green|orange|red|aqua; default: white
-    - text: white|black; default: white
+    - text: white|black; default: black
     - sortable: the sortable-id when using the sortables
 - headerContent: an html string containg any additional header markup (controls, buttons, etc).  Appears before the widget title. (so use pull-left, etc)
 
