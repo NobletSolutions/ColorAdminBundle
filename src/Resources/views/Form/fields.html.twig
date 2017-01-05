@@ -49,7 +49,7 @@
     <div class="checkbox">
         <label>
             <input {{ block('widget_attributes') }} type="checkbox" {% if checked %}checked{%endif%}{% if value is defined %} value="{{ value }}"{% endif %} />
-            {% if label is not sameas(false) -%}
+            {% if label is not same as(false) -%}
                 {% if label is empty -%}
                     {%- if label_format is not empty -%}
                         {% set label = label_format|replace({'%name%': name,'%id%': id,}) %}
