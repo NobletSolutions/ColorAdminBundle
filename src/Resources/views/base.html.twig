@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ block('html_lang') }}">
+<html lang="{% block html_lang %}en{% endblock %}">
 <head>
-    {% set page_subtitle = block('page_subtitle') %}
     <title>
-        {% block pagetitle %}{% block sitename %}Color Admin{% endblock %}{% endblock %}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}
+        {% block pagetitle %}{% block sitename %}Color Admin{% endblock %}{% endblock %}{% if block('page_subtitle') is defined %} | {{ block('page_subtitle') }}{% endif %}
     </title>
     {% block metas %}
         <meta content="{% block meta_viewport %}width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no{% endblock %}" name="viewport" />
@@ -77,7 +76,7 @@
         <div id="header" class="header navbar {{ inverse_header ? 'navbar-inverse':'navbar-default' }} {{ fixed_header ? 'navbar-fixed-top' : ''}}">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="{% block admin_logo_url %}#{% endblock %}" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if page_subtitle is not empty %} | {{ page_subtitle }}{% endif %}{% endblock %}</a>
+                    <a href="{% block admin_logo_url %}#{% endblock %}" class="navbar-brand"><span class="navbar-logo"></span> {% block header_title %}{{ block('pagetitle') }}{% if block('page_subtitle') is defined %} | {{ block('page_subtitle') }}{% endif %}{% endblock %}</a>
                     {% block mobile_navbar_toggle %}
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span>
