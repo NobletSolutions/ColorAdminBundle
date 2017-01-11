@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode->children()
-            ->scalarNode('use_knp_menu')->defaultFalse()->end()
+            ->scalarNode('use_knp_menu')->defaultTrue()->end()
             ->arrayNode('templates')
                 ->addDefaultsIfNotSet()
                 ->children()
