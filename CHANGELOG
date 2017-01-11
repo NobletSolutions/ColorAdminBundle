@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      10/01/2017 22:18  0.2.4  Minor Bundle Improvements
       05/01/2017 15:28  0.2.3  Fixed twig form function
       05/01/2017 14:15  0.2.2  Additional steps to make the templates configuration free and support twig 2.0
       22/12/2016 12:50  0.2.1  Minor code cleanups
