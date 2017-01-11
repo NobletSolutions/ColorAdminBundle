@@ -62,3 +62,14 @@
         </label>
     </div>
 {% endblock %}
+
+{% block file_row %}
+    <div class="form-group {{ errors|length > 0 ? 'has-error has-feedback' }}">
+        {{ form_label(form) }}
+        <div class="{{ wrapper_class|default('col-sm-9') }}">
+            {{ form_widget(form, attr) }}
+            {% if form.vars.file %}Existing File: {{ form.vars.file.filename }}{% else %}No previous file{% endif %}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
