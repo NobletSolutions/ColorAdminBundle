@@ -86,7 +86,34 @@
                     {% endblock %}
                 </div>
                 {% block header_navigation %}
-                    {% include 'NSColorAdminBundle::blocks/_header_navigation.html.twig' %}
+                    <ul class="nav navbar-nav navbar-right">
+                        {% block header_navigation_homepage_link %}
+                            <li>
+                                <a href="{{ path('homepage') }}">
+                                    <i class="fa fa-home fa-lg text-success"></i> Homepage
+                                </a>
+                            </li>
+                        {% endblock %}
+                        {% block header_navigation_user_nav %}
+                            <li class="dropdown navbar-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                    {% block header_navigation_user_image %}{#<img src="assets/img/user-13.jpg" alt="" />#}{% endblock %}
+                                    <span class="hidden-xs">{% block header_navigation_username %}{{ app.user }}{% endblock %}</span> <b class="caret"></b>
+                                </a>
+                                {% block header_navigation_user_menu %}
+                                    <ul class="dropdown-menu animated fadeInLeft">
+                                        <li class="arrow"></li>
+                                        {#<li><a href="javascript:;">Edit Profile</a></li>#}
+                                        {#<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>#}
+                                        {#<li><a href="javascript:;">Calendar</a></li>#}
+                                        {#<li><a href="javascript:;">Setting</a></li>#}
+                                        {#<li class="divider"></li>#}
+                                        <li><a href="#">Log Out</a></li>
+                                    </ul>
+                                {% endblock %}
+                            </li>
+                        {% endblock %}
+                    </ul>
                 {% endblock %}
             </div>
         </div>
@@ -145,7 +172,30 @@
             <h1 class="page-header">{% block page_header_title %}{#Dashboard#}{% endblock %} <small>{% block page_header_text %}{#header small text goes here...#}{% endblock %}</small></h1>
         {% endblock %}
         {% block messages %}
-            {{ include('NSColorAdminBundle:blocks:_flash_messages.html.twig') }}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger m-b-15">
+                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                    <strong>{{flashMessage.title|trans}}</strong> {{flashMessage.message|trans}}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="alert alert-warning m-b-15">
+                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                    <strong>{{flashMessage.title|trans}}</strong> {{flashMessage.message|trans}}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('message') %}
+                <div class="alert alert-info m-b-15">
+                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                    <strong>{{flashMessage.title|trans}}</strong> {{flashMessage.message|trans}}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success m-b-15">
+                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                    <strong>{{flashMessage.title|trans}}</strong> {{flashMessage.message|trans}}
+                </div>
+            {% endfor %}
         {% endblock %}
         {% block body %}
         {% endblock %}
