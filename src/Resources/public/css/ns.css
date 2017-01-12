@@ -91,3 +91,52 @@
     display: inline-block;
     width: auto;
 }
+
+input[type=checkbox].checkbox {
+    display: none;
+}
+
+input[type=checkbox].checkbox+label:before {
+    font-family:FontAwesome;
+    content: "";
+    width: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type=checkbox].checkbox:checked+label:before {
+    content: "";
+}
+
+input[type=checkbox].checkbox.solid+label:before {
+    content: "";
+}
+
+input[type=checkbox].checkbox.solid:checked+label:before {
+    content: "";
+}
+
+input[type=checkbox].checkbox
+{
+    display: none;
+}
+
+input[type=checkbox].checkbox+label:before {
+    font-family:FontAwesome;
+    content: "";
+    width: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type=checkbox].checkbox:checked+label:before {
+    content: "";
+}
+
+input[type=checkbox].checkbox.solid+label:before {
+    content: "";
+}
+
+input[type=checkbox].checkbox.solid:checked+label:before {
+    content: "";
+}

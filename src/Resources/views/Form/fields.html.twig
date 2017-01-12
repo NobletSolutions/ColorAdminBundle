@@ -34,32 +34,35 @@
     </div>
 {% endblock %}
 
+{% block checkbox_widget %}
+    {% set attr = attr|merge({'class': attr.class|default('checkbox')|trim}) %}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endblock %}
+
+{% block checkbox_label %}
+    {% if label is not same as(false) %}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' required')|trim}) %}
+        {%  endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endblock %}
+
 {% block checkbox_row %}
     <div class="form-group {{ errors|length > 0 ? 'has-error has-feedback' }}">
-        {{ form_label(form) }}
+        <div class="col-sm-3"></div>
         <div class="{{ wrapper_class|default('col-sm-9') }}">
             {{ form_widget(form) }}
+            {{ form_label(form) }}
             {{ note ? ('<p>'~note~'</p>')|raw : '' }}
             {{ form_errors(form) }}
         </div>
-    </div>
-{% endblock %}
-
-{% block checkbox_widget %}
-    <div class="checkbox">
-        <label>
-            <input {{ block('widget_attributes') }} type="checkbox" {% if checked %}checked{%endif%}{% if value is defined %} value="{{ value }}"{% endif %} />
-            {% if label is not same as(false) -%}
-                {% if label is empty -%}
-                    {%- if label_format is not empty -%}
-                        {% set label = label_format|replace({'%name%': name,'%id%': id,}) %}
-                    {%- else -%}
-                        {% set label = name|humanize %}
-                    {%- endif -%}
-                {%- endif -%}
-                {{ label|trans({}, translation_domain) }}
-            {%- endif -%}
-        </label>
     </div>
 {% endblock %}
 
