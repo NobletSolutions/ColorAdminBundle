@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      12/01/2017 15:26  0.2.9  New checkbox styling
       11/01/2017 17:28  0.2.8  Twig template inheritance fix
       11/01/2017 17:25  0.2.7  Removed a stray #
       11/01/2017 11:13  0.2.6  Added file form markup
