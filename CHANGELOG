@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      13/01/2017 16:52  0.2.12  Pagination configuration
       12/01/2017 22:34  0.2.11  config ns_flash messages
       12/01/2017 15:42  0.2.10  Fixed missing class
       12/01/2017 15:26  0.2.9  New checkbox styling
