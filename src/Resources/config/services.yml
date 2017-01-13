@@ -1,4 +1,9 @@
 services:
+  ns_color.twig.bundle_existence:
+    class: NS\ColorAdminBundle\Twig\BundleExistence
+    arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
+    tags:
+      - { name: twig.extension }
 
   ns_color_admin.template_extension:
     class: NS\ColorAdminBundle\Twig\TemplateExtension

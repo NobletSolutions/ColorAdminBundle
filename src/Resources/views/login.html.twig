@@ -26,7 +26,9 @@
             <div class="login-content">
                 {% block login_content %}
                     {% block login_messages %}
-                        {{ include('NSColorAdminBundle:blocks:_flash_messages.html.twig') }}
+                        {% if bundleExists('NSFlashBundle') %}
+                            {{ flash_messages() }}
+                        {% endif %}
                     {% endblock %}
                     {% block login_form %}
                         <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="POST" class="margin-bottom-0">
