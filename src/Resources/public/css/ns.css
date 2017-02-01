@@ -140,3 +140,12 @@ input[type=checkbox].checkbox.solid+label:before {
 input[type=checkbox].checkbox.solid:checked+label:before {
     content: "";
 }
+
+div.readmore {
+    overflow-y: hidden;
+    padding-bottom: 20px;
+}
+
+a.readmore-expander {
+    cursor: default;
+}
