@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      01/02/2017 11:00  0.2.13  Added generic readmore expander
       13/01/2017 16:52  0.2.12  Pagination configuration
       12/01/2017 22:34  0.2.11  config ns_flash messages
       12/01/2017 15:42  0.2.10  Fixed missing class
