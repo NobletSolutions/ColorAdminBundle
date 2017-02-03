@@ -148,4 +148,7 @@ div.readmore {
 
 a.readmore-expander {
     cursor: default;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
