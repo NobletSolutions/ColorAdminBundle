@@ -17,8 +17,11 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
     public function test_has_no_setting()
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
+        $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg){
+            return $arg == 'ns_color_admin.auto_form_theme';
+        }));
+
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(false);
-        $containerBuilder->expects($this->never())->method('getParameter')->with('twig.form.resources')->willReturn(false);
         $containerBuilder->expects($this->never())->method('setParameter');
 
         $compiler = new TwigFormThemeCompilerPass();
@@ -32,9 +35,14 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
             'SonataCoreBundle:Form:datepicker.html.twig',
             'NSColorAdminBundle:Form:fields.html.twig'
         ];
+
         $containerBuilder = $this->createMock(ContainerBuilder::class);
+        $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
+            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'twig.form.resources') { return $resources; }
+        }));
+
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
-        $containerBuilder->expects($this->once())->method('getParameter')->with('twig.form.resources')->willReturn($resources);
         $containerBuilder->expects($this->never())->method('setParameter');
 
         $compiler = new TwigFormThemeCompilerPass();
@@ -48,11 +56,51 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
             'SonataCoreBundle:Form:datepicker.html.twig',
         ];
         $containerBuilder = $this->createMock(ContainerBuilder::class);
+        $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
+            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'twig.form.resources') { return $resources; }
+        }));
+
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
-        $containerBuilder->expects($this->once())->method('getParameter')->with('twig.form.resources')->willReturn($resources);
         $containerBuilder->expects($this->once())->method('setParameter')->with('twig.form.resources',array_merge($resources,['NSColorAdminBundle:Form:fields.html.twig']));
 
         $compiler = new TwigFormThemeCompilerPass();
         $compiler->process($containerBuilder);
     }
+
+    public function test_configured_to_not_auto_configure()
+    {
+        $containerBuilder = $this->createMock(ContainerBuilder::class);
+        $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) {
+            if($arg == 'ns_color_admin.auto_form_theme') { return false; }
+        }));
+
+        $containerBuilder->expects($this->never())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
+        $containerBuilder->expects($this->never())->method('setParameter');
+
+        $compiler = new TwigFormThemeCompilerPass();
+        $compiler->process($containerBuilder);
+    }
+
+    public function test_does_not_get_added_when_ace_bundle_included()
+    {
+        $resources = [
+            'form_div_layout.html.twig',
+            'SonataCoreBundle:Form:datepicker.html.twig',
+            'NSAceBundle:Form:fields.html.twig',
+        ];
+
+        $containerBuilder = $this->createMock(ContainerBuilder::class);
+        $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
+            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'twig.form.resources') { return $resources; }
+        }));
+
+        $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
+        $containerBuilder->expects($this->never())->method('setParameter');
+
+        $compiler = new TwigFormThemeCompilerPass();
+        $compiler->process($containerBuilder);
+    }
+
 }

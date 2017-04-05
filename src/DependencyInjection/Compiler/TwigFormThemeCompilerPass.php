@@ -18,9 +18,9 @@ class TwigFormThemeCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if ($container->hasParameter('twig.form.resources')) {
+        if ($container->getParameter('ns_color_admin.auto_form_theme') && $container->hasParameter('twig.form.resources')) {
             $resources = $container->getParameter('twig.form.resources');
-            if (!in_array('NSColorAdminBundle:Form:fields.html.twig', $resources)) {
+            if (!in_array('NSAceBundle:Form:fields.html.twig', $resources) && !in_array('NSColorAdminBundle:Form:fields.html.twig', $resources)) {
                 $resources[] = 'NSColorAdminBundle:Form:fields.html.twig';
 
                 $container->setParameter('twig.form.resources', $resources);

@@ -25,7 +25,8 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode->children()
-            ->scalarNode('use_knp_menu')->defaultTrue()->end()
+            ->booleanNode('use_knp_menu')->defaultTrue()->end()
+            ->booleanNode('auto_form_theme')->defaultTrue()->end()
             ->arrayNode('templates')
                 ->addDefaultsIfNotSet()
                 ->children()
