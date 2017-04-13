@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.2 - Added autoconfiguration of related services and moved directories for psr-4
+      13/04/2017 14:01  0.2.17  Fix pagination button/text alignment
       05/04/2017 13:10  0.2.16  Various layout fixes and auto configuration of form field theme
       15/03/2017 14:40  0.2.15  Added initial one page parallax
       03/02/2017 11:01  0.2.14  Added readmore.a CSS alignment
