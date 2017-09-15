@@ -26,12 +26,36 @@
         {% endblock %}
     {% endblock %}
 
-    {% block pace %}
-        {#Disabled by default because, while it looks nice, 500 errors show nothing but a loading bar#}
-        {% if use_pace %}
-            <script src="{{ asset('bundles/nscoloradmin/js/plugins/pace.min.js') }}"></script>
-        {% endif %}
+    <!-- ================== BEGIN BASE JS ================== -->
+    {% block javascripts %}
+    {% block base_javascripts %}
+        <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
+        {#<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>#}
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+        <script src="{{ asset('bundles/nscoloradmin/js/parallax-apps.min.js') }}"></script>
+        <script src="{{ asset('bundles/nscoloradmin/js/plugins/jquery.cookie.js') }}"></script>
+        <script src="{{ asset('bundles/nscoloradmin/js/plugins/scrollMonitor.js') }}"></script>
     {% endblock %}
+
+        <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
+
+        {% block page_javascripts %}
+        {% endblock %}
+
+    {% block init_javascript %}
+        <script>
+            $(document).ready(function() {
+                App.init();
+            });
+        </script>
+    {% endblock %}
+    {% endblock %}
+    <!-- ================== END BASE JS ================== -->
+
+    {#Enabled by default because parallax-apps.min.js requires it and it causes JS errors if not included, while it looks nice, 500 errors show nothing but a loading bar#}
+    <script src="{{ asset('bundles/nscoloradmin/js/plugins/pace.min.js') }}"></script>
 </head>
 <body data-spy="scroll" data-target="#header-navbar" data-offset="51">
 <!-- begin #page-container -->
@@ -897,34 +921,5 @@
 
 </div>
 <!-- end #page-container -->
-
-<!-- ================== BEGIN BASE JS ================== -->
-{% block javascripts %}
-    {% block base_javascripts %}
-        <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
-        {#<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>#}
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-        <script src="{{ asset('bundles/nscoloradmin/js/parallax-apps.min.js') }}"></script>
-        <script src="{{ asset('bundles/nscoloradmin/js/plugins/jquery.cookie.js') }}"></script>
-        <script src="{{ asset('bundles/nscoloradmin/js/plugins/scrollMonitor.js') }}"></script>
-    {% endblock %}
-
-    <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
-
-    {% block page_javascripts %}
-    {% endblock %}
-
-    {% block init_javascript %}
-        <script>
-            $(document).ready(function() {
-                App.init();
-            });
-        </script>
-    {% endblock %}
-{% endblock %}
-<!-- ================== END BASE JS ================== -->
-
 </body>
 </html>
