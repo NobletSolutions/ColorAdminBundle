@@ -916,7 +916,50 @@
     {% endblock %}
     <!-- end #footer -->
     {% block modal_messages %}
-
+        {# this assumes we have installed ns_flash #}
+        {% if app.session and app.session.flashbag and app.session.flashbag.all|length > 0 %}
+            <div class="modal modal-message fade" id="modal-message-flash">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"></div>
+                        <div class="modal-body">
+                            {% for flashMessage in app.session.flashbag.get('error') %}
+                                <div class="alert alert-danger m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('warning') %}
+                                <div class="alert alert-warning m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('message') %}
+                                <div class="alert alert-info m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('success') %}
+                                <div class="alert alert-success m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#modal-message-flash').modal();
+                });
+            </script>
+        {% endif %}
     {% endblock %}
 
 </div>
