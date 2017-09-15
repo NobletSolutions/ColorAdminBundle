@@ -917,7 +917,7 @@
     <!-- end #footer -->
     {% block modal_messages %}
         {# this assumes we have installed ns_flash #}
-        {% if app.session and app.session.flashbag and app.session.flashbag.all|length > 0 %}
+        {% if app.session and app.session.flashbag and app.session.flashbag.peekAll|length > 0 %}
             <div class="modal modal-message fade" id="modal-message-flash">
                 <div class="modal-dialog">
                     <div class="modal-content">
