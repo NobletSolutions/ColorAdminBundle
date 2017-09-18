@@ -111,3 +111,70 @@ See sample MenuBuilder in ColorAdminBundle/Menu/MenuBuilder.php
 ### Error Templates
 
 There are error templates located in views/Exception;  Copy/extend these in app/Resources/TwigBundle/views/Exception to use the custom error page templates.
+
+### jQuery Full Calendar
+
+Add the routing configuration
+```yml
+#app/config/routing.yml
+ns_ace:
+  resource: "@NSAceBundle/Resources/config/routing.yml"
+```
+
+Include the following on the page you want to use the calendar
+
+```twig
+
+{% block page_javascripts %}
+    {{ parent() }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar-holder').fullCalendar({
+                header: {
+                    left: 'prev, next',
+                    center: 'title',
+                    right: 'month, basicWeek, basicDay,'
+                },
+                lazyFetching: true,
+                timeFormat: {
+                    // for agendaWeek and agendaDay
+                    agenda: 'h:mmt',    // 5:00 - 6:30
+
+                    // for all other views
+                    '': 'h:mmt'         // 7p
+                },
+                eventSources: [
+                    {
+                        url: '{{ path('color_admin_calendar_loader') }}',
+                        type: 'POST',
+                        // A way to add custom filters to your event listeners
+                        data: {
+                        },
+                        error: function() {
+                            //alert('There was an error while fetching Google Calendar!');
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css" />
+    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.css" />
+{% endblock %}
+
+{% block body %}
+... 
+<div id="calendar-holder"></div>
+...
+{% endblock %}
+```

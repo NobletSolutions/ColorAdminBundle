@@ -1,0 +1,3 @@
+color_admin_calendar_loader:
+  path: /_fc-load-calendar-events
+  defaults: { _controller: NSColorAdminBundle:Calendar:loadCalendarEvents }
