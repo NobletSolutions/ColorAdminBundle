@@ -167,9 +167,9 @@ Include the following on the page you want to use the calendar
 {% endblock %}
 
 {% block page_stylesheets %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css" />
+    <link rel="stylesheet" media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.css" />
     {{ parent() }}
-    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css" />
-    <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.css" />
 {% endblock %}
 
 {% block body %}
