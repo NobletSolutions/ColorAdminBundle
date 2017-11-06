@@ -11,15 +11,27 @@
     {% endblock %}
     {% block stylesheets %}
         {% block base_stylesheets %}
+            {% block google_stylesheets %}
             <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-            <link href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            <link href="{{ asset('bundles/nscoloradmin/css/animate.min.css') }}" rel="stylesheet" />
-            <link href="{{ asset('bundles/nscoloradmin/css/style.min.css') }}" rel="stylesheet" />
-            <link href="{{ asset('bundles/nscoloradmin/css/style-responsive.min.css') }}" rel="stylesheet" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" integrity="sha256-5ad0JyXou2Iz0pLxE+pMd3k/PliXbkc65CO5mavx8s8=" crossorigin="anonymous" />
+            {% endblock %}
+            {% block jquery_stylesheets %}
+                <link href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+            {% endblock %}
+            {% block bootstrap_stylesheets %}
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+            {% endblock %}
+            {% block icon_font_stylesheets %}
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            {% endblock %}
+            {% block core_ns_stylesheets %}
+                <link href="{{ asset('bundles/nscoloradmin/css/animate.min.css') }}" rel="stylesheet" />
+                <link href="{{ asset('bundles/nscoloradmin/css/style.min.css') }}" rel="stylesheet" />
+                <link href="{{ asset('bundles/nscoloradmin/css/style-responsive.min.css') }}" rel="stylesheet" />
+            {% endblock %}
+            {% block bootstrap_plugin_stylesheets %}
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" integrity="sha256-5ad0JyXou2Iz0pLxE+pMd3k/PliXbkc65CO5mavx8s8=" crossorigin="anonymous" />
+            {% endblock %}
             {% block theme_stylesheets %}
                 <link href="{{ asset('bundles/nscoloradmin/css/theme/'~theme~'.css') }}" rel="stylesheet" id="theme" />
             {% endblock %}
@@ -27,7 +39,6 @@
                 <link href="{{ asset('bundles/nscoloradmin/css/ns.css') }}" rel="stylesheet" />
             {% endblock %}
             {% block page_stylesheets %}
-
             {% endblock %}
         {% endblock %}
     {% endblock %}
@@ -38,28 +49,40 @@
         {% endif %}
     {% endblock %}
     {% block javascripts %}
-    {% block base_javascripts %}
-        <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.4.0.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.7/jquery.slimscroll.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-        <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
-        <script src="{{ asset('bundles/nscoloradmin/js/plugins/masked-input.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" integrity="sha256-urCxMaTtyuE8UK5XeVYuQbm/MhnXflqZ/B9AOkyTguo=" crossorigin="anonymous"></script>
-    {% endblock %}
-        <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
+        {% block base_javascripts %}
+            {% block jquery_scripts %}
+                <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+                <script src="//code.jquery.com/jquery-migrate-1.4.0.min.js"></script>
+                <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+            {% endblock %}
+            {% block bootstrap_scripts %}
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+            {% endblock %}
+            {% block jquery_plugin_scripts %}
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.7/jquery.slimscroll.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+            {% endblock %}
+            {% block plugin_scripts %}
+                <script src="{{ asset('bundles/nscoloradmin/js/apps.min.js') }}"></script>
+                <script src="{{ asset('bundles/nscoloradmin/js/plugins/masked-input.min.js') }}"></script>
+            {% endblock %}
+            {% block bootstrap_plugin_scripts %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" integrity="sha256-urCxMaTtyuE8UK5XeVYuQbm/MhnXflqZ/B9AOkyTguo=" crossorigin="anonymous"></script>
+            {% endblock %}
+        {% endblock %}
+        {% block core_ns_scripts %}
+            <script src="{{ asset('bundles/nscoloradmin/js/ns.js') }}"></script>
+        {% endblock %}
         {% block page_javascripts %}
         {% endblock %}
-    {% block init_javascript %}
-        <script>
-            $(document).ready(function() {
-                App.init();
-            });
-        </script>
-    {% endblock %}
+        {% block init_javascript %}
+            <script>
+                $(document).ready(function() {
+                    App.init();
+                });
+            </script>
+        {% endblock %}
     {% endblock %}
 </head>
 <body class="color-admin">
