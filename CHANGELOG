@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.3 - Full calendar support/theme
+      13/06/2018 10:26  0.3.5  Added SF4 as supported version
       03/03/2018 16:18  0.3.4  added footer
       13/02/2018 14:04  0.3.3  checkbox expansion
       09/02/2018 11:25  0.3.2  Updated KNP Integration
