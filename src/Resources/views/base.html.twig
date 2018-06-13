@@ -203,6 +203,15 @@
         {% block body %}
         {% endblock %}
     </div>
+
+    {% block footer %}
+        <div id="footer" class="footer">
+            {% block footer_content %}
+
+            {% endblock %}
+        </div>
+    {% endblock %}
+
     {% block to_top %}
         <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     {% endblock %}
