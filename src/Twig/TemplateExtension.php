@@ -79,7 +79,7 @@ class TemplateExtension extends \Twig_Extension implements \Twig_Extension_Globa
         ];
 
         $options = array_merge($default_options, $options);
-        return $twig->render('NSColorAdminBundle:Twig:begin_panel.html.twig', ['title'=>$title, 'options'=>$options, 'actions'=>$actions]);
+        return $twig->render('@NSColorAdmin/Twig/begin_panel.html.twig', ['title'=>$title, 'options'=>$options, 'actions'=>$actions]);
     }
 
     /**
@@ -88,7 +88,7 @@ class TemplateExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function endPanel(\Twig_Environment $twig)
     {
-        return $twig->render('NSColorAdminBundle:Twig:end_panel.html.twig');
+        return $twig->render('@NSColorAdmin/Twig/end_panel.html.twig');
     }
 
     /**
@@ -102,7 +102,7 @@ class TemplateExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function button(\Twig_Environment $twig, $text, $href, $class = 'btn-default')
     {
-        return $twig->render('NSColorAdminBundle:Twig:button.html.twig', ['text'=>$text, 'href'=>$href, 'class'=>$class]);
+        return $twig->render('@NSColorAdmin/Twig/button.html.twig', ['text'=>$text, 'href'=>$href, 'class'=>$class]);
     }
 
     /**
@@ -118,7 +118,7 @@ class TemplateExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function buttonDropdown(\Twig_Environment $twig, $text, $default, $items = [], $group_class = '', $default_class = 'btn-primary')
     {
-        return $twig->render('NSColorAdminBundle:Twig:button_dropdown.html.twig', ['text'=>$text, 'default'=>$default, 'items'=>$items, 'group_class'=>$group_class, 'default_class'=>$default_class]);
+        return $twig->render('@NSColorAdmin/Twig/button_dropdown.html.twig', ['text'=>$text, 'default'=>$default, 'items'=>$items, 'group_class'=>$group_class, 'default_class'=>$default_class]);
     }
 
     /**
@@ -128,7 +128,7 @@ class TemplateExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function buttonDropdownItems(\Twig_Environment $twig, $items = [])
     {
-        return $twig->render('NSColorAdminBundle:Twig:button_dropdown_items.html.twig', ['items'=>$items]);
+        return $twig->render('@NSColorAdmin/Twig/button_dropdown_items.html.twig', ['items'=>$items]);
     }
 
     public function getName()

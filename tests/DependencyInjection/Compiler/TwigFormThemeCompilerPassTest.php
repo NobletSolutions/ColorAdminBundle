@@ -62,7 +62,7 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
         }));
 
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
-        $containerBuilder->expects($this->once())->method('setParameter')->with('twig.form.resources',array_merge($resources,['NSColorAdminBundle:Form:fields.html.twig']));
+        $containerBuilder->expects($this->once())->method('setParameter')->with('twig.form.resources',array_merge($resources,['@NSColorAdmin/Form/fields.html.twig']));
 
         $compiler = new TwigFormThemeCompilerPass();
         $compiler->process($containerBuilder);

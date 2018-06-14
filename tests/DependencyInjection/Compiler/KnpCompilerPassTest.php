@@ -40,7 +40,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', 'NSColorAdminBundle:Menu:knp_menu.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -61,7 +61,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', 'NSColorAdminBundle:Menu:knp_menu.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -83,7 +83,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
         $containerBuilder->method('getParameter')->will($this->returnValueMap($map));
 
-        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_menu.renderer.twig.template', 'NSColorAdminBundle:Menu:knp_menu.html.twig');
+        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -119,7 +119,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_paginator.template.pagination', 'NSColorAdminBundle:Pagination:pagination.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_paginator.template.pagination', '@NSColorAdmin/Pagination/pagination.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -139,7 +139,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_paginator.template.pagination', 'NSColorAdminBundle:Pagination:pagination.html.twig');
+        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_paginator.template.pagination', '@NSColorAdmin/Pagination/pagination.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);

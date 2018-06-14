@@ -190,7 +190,7 @@
 
     <div id="content" class="{% block content_class %}content{% endblock %}">
         {% block breadcrumbs %}
-            {#{{ knp_menu_render('breadcrumbs', {'template': 'NSColorAdminBundle:Menu:breadcrumb_menu.html.twig'}) }}#}
+            {#{{ knp_menu_render('breadcrumbs', {'template': '@NSColorAdmin/Menu/breadcrumb_menu.html.twig'}) }}#}
         {% endblock %}
         {% block page_header %}
             <h1 class="page-header">{% block page_header_title %}{#Dashboard#}{% endblock %} <small>{% block page_header_text %}{#header small text goes here...#}{% endblock %}</small></h1>

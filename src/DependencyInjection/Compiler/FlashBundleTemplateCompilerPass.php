@@ -16,7 +16,7 @@ class FlashBundleTemplateCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if ($container->hasParameter('ns_flash.template') && $container->getParameter('ns_flash.template') == 'NSFlashBundle:Messages:index.html.twig') {
-            $container->setParameter('ns_flash.template', 'NSColorAdminBundle::flash_messages.html.twig');
+            $container->setParameter('ns_flash.template', '@NSColorAdmin/flash_messages.html.twig');
         }
     }
 }
