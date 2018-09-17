@@ -26,3 +26,31 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).on('click', '.nsAddForm', function(ev)
+{
+    var target = $(ev.currentTarget);
+
+    if (target.is('.nsAddForm')) {
+        ev.preventDefault();
+        var collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
+        var prototype_name = collection.data('prototype-name');
+        if (typeof prototype_name !== "undefined") {
+            prototype_name = new RegExp(prototype_name, 'g');
+        } else {
+            prototype_name = new RegExp('__name__', 'g');
+        }
+
+        var index = collection.data('index');
+        var newForm = collection.data('prototype').replace(prototype_name, index);
+        collection.append(newForm);
+        collection.data('index', index + 1);
+
+        var $form = collection.closest('form');
+        if ($form.length > 0 && $form[0].ContextualForm) {
+            $form[0].ContextualForm.AddConfigFromPrototype($form, index);
+        }
+
+        $(document).trigger('nsFormUpdate').trigger('nsAddForm');
+    }
+});
