@@ -1,17 +1,20 @@
 services:
-  ns_color.twig.bundle_existence:
-    class: NS\ColorAdminBundle\Twig\BundleExistence
-    arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
-    tags:
-      - { name: twig.extension }
+    _defaults:
+        public: true
 
-  ns_color_admin.template_extension:
-    class: NS\ColorAdminBundle\Twig\TemplateExtension
-    arguments: [ "%ns_color_admin.templates%" ]
-    tags:
+    ns_color.twig.bundle_existence:
+        class: NS\ColorAdminBundle\Twig\BundleExistence
+        arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
+        tags:
         - { name: twig.extension }
 
-  ns_color_admin.form.details_extension:
-    class: NS\ColorAdminBundle\Form\Extension\DetailsExtension
-    tags:
-      - { name: form.type_extension, alias: form, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+    ns_color_admin.template_extension:
+        class: NS\ColorAdminBundle\Twig\TemplateExtension
+        arguments: [ "%ns_color_admin.templates%" ]
+        tags:
+        - { name: twig.extension }
+
+    ns_color_admin.form.details_extension:
+        class: NS\ColorAdminBundle\Form\Extension\DetailsExtension
+        tags:
+        - { name: form.type_extension, alias: form, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
