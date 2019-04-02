@@ -3,6 +3,7 @@ VERSION 1  UPDATED TO COLORADMIN 4.1 STYLE
 ==========================================
 
    Version 1.0 - Updated to ColorAdmin 4.1 style
+      02/04/2019 03:17  1.0.6  More BS4 updates
       01/04/2019 16:45  1.0.5  Fixed bootstrap css integrity value
       01/04/2019 15:57  1.0.4  Updated vendor bundles"
       19/09/2018 15:31  1.0.3  Use Bootstrap 4 and newer deps
