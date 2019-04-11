@@ -1,17 +1,31 @@
 services:
-  ns_color.twig.bundle_existence:
-    class: NS\ColorAdminBundle\Twig\BundleExistence
-    arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
-    tags:
-      - { name: twig.extension }
+    NS\ColorAdminBundle\Menu\MenuBuilder:
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: sidebar } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }
 
-  ns_color_admin.template_extension:
-    class: NS\ColorAdminBundle\Twig\TemplateExtension
-    arguments: [ "%ns_color_admin.templates%" ]
-    tags:
-        - { name: twig.extension }
+    NS\ColorAdminBundle\Twig\TemplateExtension:
+        arguments: [ "%color_admin.templates%" ]
+        tags:
+            - { name: twig.extension }
 
-  ns_color_admin.form.details_extension:
-    class: NS\ColorAdminBundle\Form\Extension\DetailsExtension
-    tags:
-      - { name: form.type_extension, alias: form, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+    NS\ColorAdminBundle\Form\Extension\MaskExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+
+    NS\ColorAdminBundle\Form\Extension\IconExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+
+    NS\ColorAdminBundle\Form\Extension\OrientationExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    NS\ColorAdminBundle\Form\Extension\DetailsExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    NS\ColorAdminBundle\Form\Extension\PasswordExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\PasswordType }

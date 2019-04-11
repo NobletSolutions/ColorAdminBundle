@@ -17,13 +17,16 @@ class DetailsExtension extends AbstractTypeExtension
 {
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['note'] = isset($options['note']) ? $options['note'] : false;
-        $view->vars['wrapper_class'] = isset($options['wrapper_class']) ? $options['wrapper_class'] : false;
+        $view->vars['note'] = $options['note'];
+        $view->vars['wrapper_class'] = $options['wrapper_class'];
+        $view->vars['state'] = isset($options['state']) ? $options['state'] : false;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefined(['note', 'wrapper_class']);
+        $resolver->setDefined(['note', 'wrapper_class', 'state']);
+        $resolver->setDefaults(['note'=>false, 'wrapper_class'=>false]);
+        $resolver->setAllowedValues('state', ['valid', 'invalid']);
     }
 
     public function getExtendedType()

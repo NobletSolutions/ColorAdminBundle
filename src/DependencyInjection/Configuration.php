@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ns_color_admin');
+        $rootNode = $treeBuilder->root('color_admin');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
@@ -31,18 +31,23 @@ class Configuration implements ConfigurationInterface
                 ->addDefaultsIfNotSet()
                 ->children()
                     ->enumNode('theme')
-                        ->values(['default', 'red', 'blue', 'purple', 'orange', 'black'])
+                    ->values(['apple', 'default', 'facebook', 'material', 'transparent'])
+                    ->defaultValue('default')
+                    ->end()
+                    ->enumNode('theme_color')
+                        ->values(['aqua', 'black', 'blue', 'default', 'green', 'indigo', 'lime', 'orange', 'pink', 'purple', 'red', 'yellow'])
                         ->defaultValue('default')
                         ->end()
                     ->arrayNode('pagination')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('template')->defaultValue('@NSColorAdmin/Pagination/pagination.html.twig')->end()
+                            ->scalarNode('template')->defaultValue('@NS/ColorAdmin/Pagination/pagination.html.twig')->end()
                             ->scalarNode('wrapper_class')->defaultValue('pagination-md')->end()
                             ->booleanNode('labels')->defaultFalse()->end()
                         ->end()
                     ->end()
                     ->booleanNode('use_pace')->defaultFalse()->end()
+                    ->booleanNode('draggable_panel')->defaultFalse()->end()
                     ->arrayNode('header')
                         ->addDefaultsIfNotSet()
                         ->children()

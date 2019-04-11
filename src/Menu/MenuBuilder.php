@@ -31,12 +31,12 @@ class MenuBuilder
                 ->setAttribute('icon', 'laptop')
                 ->setAttribute('badge', '10')
                 ->setAttribute('badge-style', 'danger')
-                ->addChild('Sub Menu')
-                    ->addChild('Sub Menu 2', ['route'=>'homepage']);
+                ->addChild('ColorAdminBundle\Menu\MenuBuilder')
+                    ->addChild('to change this menu', ['route'=>'homepage']);
 
-        $menu->addChild('ns_color_admin.menu.sidebar', ['uri'=>'http://www.google.com']);
+        $menu->addChild('Menu Item', ['uri'=>'http://www.google.com']);
 
-        $item = $menu->addChild('To change')
+        $item = $menu->addChild('Menu Item 2')
             ->setAttribute('icon', 'envelope')
             ->setAttribute('label', 'NEW')
             ->setAttribute('label-style', 'warning');
@@ -46,7 +46,7 @@ class MenuBuilder
         $item->addChild('Sub Menu 2', ['uri'=>'http://www.google.com']);
         $item->addChild('Sub Menu 3', ['uri'=>'http://www.google.com']);
 
-        $menu->addChild('This menu', ['uri'=>'http://www.google.com'])
+        $menu->addChild('Menu Item 3', ['uri'=>'http://www.google.com'])
             ->setAttribute('icon', 'star')
             ->setAttribute('icon-style', 'primary');
 

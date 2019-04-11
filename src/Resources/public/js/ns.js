@@ -1,56 +1,39 @@
-$(document).ready(function() {
-    $('input.nsMasked').each(function(i, el)
+$.fn.extend({findInclusive: function(selector) { return this.find(selector).addBack(selector); }});
+
+function initForms(scope)
+{
+    scope = scope ? scope : $(document);
+
+    if(!(scope instanceof $))
+    {
+        scope = $(scope);
+    }
+
+    scope.findInclusive('.datepicker-input').datepicker({todayHighlight: true, autoclose: true});
+
+    scope.findInclusive('.select2').select2();
+
+    scope.findInclusive('.password-indicator').each(function() {
+        let $this = $(this);
+        $this.passwordStrength({targetDiv: '#'+$this.attr('id')+'_passstrength'});
+    });
+
+    scope.findInclusive('.password-indicator ~ a[href="#"]').remove();
+
+    scope.findInclusive('input[data-mask]').each(function(i, el)
     {
         $.extend($.mask.definitions, $(el).data('definitions'));
 
         $(el).mask($(el).data('mask'), {placeholder:$(el).data('placeholder')});
-        $(el).parents('div.form-group').children('label').append(' <small class="text-info">'+$(el).data('mask')+'</small>');
     });
 
-    $('.readmore').each(function()
-    {
-        $(this).css({'max-height':$(this).data('max-height')});
-    });
+    bsCustomFileInput.init();
+}
 
-    $('.readmore-expander').on('click', function () {
-        var readme = $(this).prev('.readmore');
-        if (!this.expanded) {
-            readme.css({'overflow-y': 'visible', 'max-height': 'inherit'});
-            this.expanded = true;
-            $(this).find('i').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
-        }
-        else {
-            readme.css({'overflow-y': 'hidden', 'max-height': readme.data('max-height')});
-            this.expanded = false;
-            $(this).find('i').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
-        }
-    });
-});
-
-$(document).on('click', '.nsAddForm', function(ev)
+$(document).on('shown.bs.modal, ns.form.update', function()
 {
-    var target = $(ev.currentTarget);
-
-    if (target.is('.nsAddForm')) {
-        ev.preventDefault();
-        var collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
-        var prototype_name = collection.data('prototype-name');
-        if (typeof prototype_name !== "undefined") {
-            prototype_name = new RegExp(prototype_name, 'g');
-        } else {
-            prototype_name = new RegExp('__name__', 'g');
-        }
-
-        var index = collection.data('index');
-        var newForm = collection.data('prototype').replace(prototype_name, index);
-        collection.append(newForm);
-        collection.data('index', index + 1);
-
-        var $form = collection.closest('form');
-        if ($form.length > 0 && $form[0].ContextualForm) {
-            $form[0].ContextualForm.AddConfigFromPrototype($form, index);
-        }
-
-        $(document).trigger('nsFormUpdate').trigger('nsAddForm');
-    }
+    initForms($(this));
+}).ready(function()
+{
+    initForms($(this));
 });
