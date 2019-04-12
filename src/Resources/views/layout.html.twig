@@ -318,6 +318,12 @@
                 <!-- end page_header -->
             {% endblock %}
 
+            {% block messages %}
+                {% if bundleExists('NSFlashBundle') %}
+                    {{ flash_messages() }}
+                {% endif %}
+            {% endblock %}
+
             {% block content %}
                 <!-- begin content -->
                 <p>Main page content goes here</p>

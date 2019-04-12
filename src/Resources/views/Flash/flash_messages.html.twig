@@ -1,0 +1,38 @@
+{% if app.session and app.session.flashbag %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger fade show">
+            <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+            <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning fade show">
+            <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+            <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('message') %}
+        <div class="alert alert-info fade show">
+            <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+            <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success fade show">
+            <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+            <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+        </div>
+    {% endfor %}
+{% endif %}

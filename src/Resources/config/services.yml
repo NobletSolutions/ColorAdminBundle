@@ -10,6 +10,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    NS\ColorAdminBundle\Twig\BundleExistence:
+        arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
+        tags:
+            - { name: twig.extension }
+
     NS\ColorAdminBundle\Form\Extension\MaskExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
