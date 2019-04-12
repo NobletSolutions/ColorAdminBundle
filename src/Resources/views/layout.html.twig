@@ -1,0 +1,408 @@
+{% set asset_basepath = 'bundles/coloradmin/' %}
+{% set css_basepath = asset_basepath ~ 'css/'~color_admin.theme~'/' %}
+{% set plugin_basepath = asset_basepath ~ 'plugins/' %}
+{% set js_basepath = asset_basepath ~ 'js/' %}
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    {% block page_metas %}
+        <!-- begin page_metas -->
+        <meta charset="{% block meta_charset %}utf-8{% endblock %}"/>
+        <title>{% block pagetitle %}Color Admin | Dashboard{% endblock %}</title>
+        <meta content="{% block meta_viewport %}width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no{% endblock %}"
+              name="viewport"/>
+        <meta content="{% block meta_description %}{% endblock %}" name="description"/>
+        <meta content="{% block meta_author %}{% endblock %}" name="author"/>
+        <!-- end page_metas -->
+    {% endblock %}
+    {% block base_styles %}
+        <!-- base_styles -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+        <link href="{{ asset(plugin_basepath~'jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset(plugin_basepath~'bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+        {% block fontawesome_css %}
+            <link href="{{ asset(plugin_basepath~'font-awesome/css/all.min.css') }}" rel="stylesheet"/>
+        {% endblock %}
+        <link href="{{ asset(plugin_basepath~'animate/animate.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset(css_basepath~'style.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset(css_basepath~'style-responsive.min.css') }}" rel="stylesheet"/>
+        {% block form_styles %}
+            <!-- form_styles -->
+            <link href="{{ asset(plugin_basepath~'bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}"
+                  rel="stylesheet"/>
+            <link href="{{ asset(plugin_basepath~'select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
+            <link href="{{ asset(plugin_basepath~'password-indicator/css/password-indicator.css') }}" rel="stylesheet"/>
+            <link href="{{ asset(plugin_basepath~'jquery-tag-it/css/jquery.tagit.css') }}" rel="stylesheet"/>
+            <!-- end form_styles -->
+        {% endblock %}
+        <link href="{{ asset(css_basepath~'theme/'~color_admin.theme_color~'.css') }}" rel="stylesheet" id="theme"/>
+        <link href="{{ asset(asset_basepath~'css/ns.css') }}" rel="stylesheet" id="theme"/>
+        <!-- end base_styles -->
+    {% endblock %}
+
+    {% block page_styles %}
+        <!-- begin page_styles -->
+        {#<link href="{{ asset(plugin_basepath~'jquery-jvectormap/jquery-jvectormap.css') }}" rel="stylesheet" />#}
+        {#<link href="{{ asset(plugin_basepath~'bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" />#}
+        {#<link href="{{ asset(plugin_basepath~'gritter/css/jquery.gritter.css') }}" rel="stylesheet" />#}
+        <!-- end page_styles -->
+    {% endblock %}
+
+    {% block pace_js %}
+        <!-- begin pace_js -->
+        {#<script src="{{ asset(plugin_basepath~'pace/pace.min.js') }}"></script>#}
+        <!-- end pace_js -->
+    {% endblock %}
+</head>
+<body>
+{% block page_loader %}
+    <!-- begin page_loader -->
+    {# Disabled by default because, while it looks nice, 500 errors show nothing but a loading bar #}
+    {#<div id="page-loader" class="fade show"><span class="spinner"></span></div>#}
+    <!-- end page_loader -->
+{% endblock %}
+
+<div id="page-container"
+     class="fade {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}">
+    {% block header %}
+        <!-- begin header -->
+        <div id="header"
+             class="header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}">
+            {% block navbar_header %}
+                <!-- begin navbar_header -->
+                <div class="navbar-header">
+                    <a href="{% block navbar_logo_link %}/{% endblock %}" class="navbar-brand">{% block navbar_logo %}
+                            <span class="navbar-logo"></span>{% endblock %}{% block navbar_logo_title %}
+                            <b>Color</b> Admin{% endblock %}</a>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- end navbar_header -->
+            {% endblock %}
+
+            {% block header_nav %}
+                <!-- begin header_nav -->
+                <ul class="navbar-nav navbar-right">
+                    {% block header_search %}
+                        <!-- begin header_search -->
+                        <li>
+                            <form class="navbar-form" method="{% block header_search_form_method %}GET{% endblock %}"
+                                  action="{% block header_search_form_action %}{% endblock %}">
+                                <div class="form-group">
+                                    <input type="text" class="form-control"
+                                           placeholder="{% block header_search_placeholder %}Enter keyword{% endblock %}"/>
+                                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                        <!-- end header_search -->
+                    {% endblock %}
+                    {% block header_message_menu %}
+                        <!-- begin header_message_menu -->
+                        <li class="dropdown">
+                            {% block header_message_menu_button %}
+                                <!-- begin header_message_menu_button -->
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                {% block header_message_menu_button_content %}
+                                    <!-- begin header_message_menu_button_content -->
+                                    <i class="fa fa-bell"></i>
+                                    Menu</a>
+                                    <!-- end header_message_menu_button_content-->
+                                {% endblock %}
+                                {#<a href="#" data-toggle="dropdown" class="dropdown-toggle f-s-14">#}
+                                {#<i class="fa fa-bell"></i>#}
+                                {#<span class="label">5</span>#}
+                                {#</a>#}
+                                <!-- end header_message_menu_button -->
+                            {% endblock %}
+                            {% block header_message_menu_dropdown %}
+                                <!-- begin header_message_menu_dropdown -->
+                                {#<ul class="dropdown-menu media-list dropdown-menu-right">#}
+                                {#<li class="dropdown-header">NOTIFICATIONS (5)</li>#}
+                                {#<li class="media">#}
+                                {#<a href="javascript:;">#}
+                                {#<div class="media-left">#}
+                                {#<i class="fa fa-bug media-object bg-silver-darker"></i>#}
+                                {#</div>#}
+                                {#<div class="media-body">#}
+                                {#<h6 class="media-heading">Server Error Reports <i#}
+                                {#class="fa fa-exclamation-circle text-danger"></i></h6>#}
+                                {#<div class="text-muted f-s-11">3 minutes ago</div>#}
+                                {#</div>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="media">#}
+                                {#<a href="javascript:;">#}
+                                {#<div class="media-left">#}
+                                {#<img src="../assets/img/user/user-1.jpg" class="media-object" alt=""/>#}
+                                {#<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>#}
+                                {#</div>#}
+                                {#<div class="media-body">#}
+                                {#<h6 class="media-heading">John Smith</h6>#}
+                                {#<p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>#}
+                                {#<div class="text-muted f-s-11">25 minutes ago</div>#}
+                                {#</div>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="media">#}
+                                {#<a href="javascript:;">#}
+                                {#<div class="media-left">#}
+                                {#<img src="../assets/img/user/user-2.jpg" class="media-object" alt=""/>#}
+                                {#<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>#}
+                                {#</div>#}
+                                {#<div class="media-body">#}
+                                {#<h6 class="media-heading">Olivia</h6>#}
+                                {#<p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>#}
+                                {#<div class="text-muted f-s-11">35 minutes ago</div>#}
+                                {#</div>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="media">#}
+                                {#<a href="javascript:;">#}
+                                {#<div class="media-left">#}
+                                {#<i class="fa fa-plus media-object bg-silver-darker"></i>#}
+                                {#</div>#}
+                                {#<div class="media-body">#}
+                                {#<h6 class="media-heading"> New User Registered</h6>#}
+                                {#<div class="text-muted f-s-11">1 hour ago</div>#}
+                                {#</div>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="media">#}
+                                {#<a href="javascript:;">#}
+                                {#<div class="media-left">#}
+                                {#<i class="fa fa-envelope media-object bg-silver-darker"></i>#}
+                                {#<i class="fab fa-google text-warning media-object-icon f-s-14"></i>#}
+                                {#</div>#}
+                                {#<div class="media-body">#}
+                                {#<h6 class="media-heading"> New Email From John</h6>#}
+                                {#<div class="text-muted f-s-11">2 hour ago</div>#}
+                                {#</div>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="dropdown-footer text-center">#}
+                                {#<a href="javascript:;">View more</a>#}
+                                {#</li>#}
+                                {#</ul>#}
+                                <!-- end header_message_menu_dropdown -->
+                            {% endblock %}
+                        </li>
+                        <!-- end header_message_menu -->
+                    {% endblock %}
+                    {% block header_user_menu %}
+                        <!-- begin header_user_menu -->
+                        <li class="dropdown navbar-user">
+                            {% block header_user_menu_button %}
+                                <!-- begin header_user_menu_button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ asset(asset_basepath~'img/user/user-13.jpg') }}" alt=""/>
+                                    <span class="d-none d-md-inline">{% block header_user_menu_username %}Firstname Lastname{% endblock %}</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <!-- end header_user_menu_button -->
+                            {% endblock %}
+                            {% block header_user_menu_dropdown %}
+                                <!-- begin header_user_menu_dropdown -->
+                                {#<div class="dropdown-menu dropdown-menu-right">#}
+                                {#<a href="javascript:;" class="dropdown-item">Edit Profile</a>#}
+                                {#<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span>#}
+                                {#Inbox</a>#}
+                                {#<a href="javascript:;" class="dropdown-item">Calendar</a>#}
+                                {#<a href="javascript:;" class="dropdown-item">Setting</a>#}
+                                {#<div class="dropdown-divider"></div>#}
+                                {#<a href="javascript:;" class="dropdown-item">Log Out</a>#}
+                                {#</div>#}
+                                <!-- end header_user_menu_dropdown -->
+                            {% endblock %}
+                        </li>
+                    {% endblock %}
+                </ul>
+                <!-- end header_nav -->
+            {% endblock %}
+        </div>
+        <!-- end header -->
+    {% endblock %}
+
+    {% block sidebar %}
+        <!-- begin sidebar -->
+        <div id="sidebar" class="sidebar">
+            <div data-scrollbar="true" data-height="100%">
+                {% block sidebar_user %}
+                    <!-- begin sidebar_user -->
+                    {#<ul class="nav">#}
+                    {#<li class="nav-profile">#}
+                    {#<a href="javascript:;" data-toggle="nav-profile">#}
+                    {#<div class="cover with-shadow"></div>#}
+                    {#<div class="image">#}
+                    {#<img src="../assets/img/user/user-13.jpg" alt=""/>#}
+                    {#</div>#}
+                    {#<div class="info">#}
+                    {#<b class="caret pull-right"></b>#}
+                    {#Sean Ngu#}
+                    {#<small>Front end developer</small>#}
+                    {#</div>#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                    {#<ul class="nav nav-profile">#}
+                    {#<li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>#}
+                    {#<li><a href="javascript:;"><i class="fa fa-pencil-alt"></i> Send Feedback</a></li>#}
+                    {#<li><a href="javascript:;"><i class="fa fa-question-circle"></i> Helps</a></li>#}
+                    {#</ul>#}
+                    {#</li>#}
+                    {#</ul>#}
+                    <!-- end sidebar_user -->
+                {% endblock %}
+
+                {% block sidebar_nav %}
+                    <!-- begin sidebar_nav -->
+                    <ul class="nav">
+                        <li class="nav-header">{% block sidebar_title %}Navigation{% endblock %}</li>
+                        {% block sidebar_items %}
+                            {% block sidebar_navigation_menu %}
+                                {{ knp_menu_render('sidebar', {'template': '@ColorAdmin/Menu/knp_menu.html.twig'}) }}
+                            {% endblock %}
+                            <!-- begin sidebar_items -->
+                            {#<li class="has-sub active">#}
+                            {#<a href="javascript:;">#}
+                            {#<span class="badge pull-right">10</span>#}
+                            {#<i class="fa fa-hdd"></i>#}
+                            {#<span>Email</span>#}
+                            {#</a>#}
+                            {#<ul class="sub-menu">#}
+                            {#<li class="active"><a href="email_inbox.html">Inbox</a></li>#}
+                            {#<li><a href="email_compose.html">Compose</a></li>#}
+                            {#<li><a href="email_detail.html">Detail</a></li>#}
+                            {#</ul>#}
+                            {#</li>#}
+                            <!-- end sidebar_items -->
+                        {% endblock %}
+                    </ul>
+                    <!-- end sidebar_nav -->
+                {% endblock %}
+                {% block additional_navigation %}
+                {% endblock %}
+                {% block sidebar_minify %}
+                    <!-- begin sidebar_minify -->
+                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i
+                                    class="fa fa-angle-double-left"></i></a></li>
+                    <!-- end sidebar_minify -->
+                {% endblock %}
+            </div>
+        </div>
+        <div class="sidebar-bg"></div>
+        <!-- end sidebar -->
+    {% endblock %}
+
+    {% block body %}
+        <!-- begin body -->
+        <div id="content" class="{% block content_class %}content{% endblock %}">
+            {% block breadcrumbs %}
+                <!-- begin breadcrumb -->
+                {{ knp_menu_render('breadcrumbs', {'template': '@ColorAdmin/Menu/breadcrumb_menu.html.twig'}) }}
+                <!-- end breadcrumbs -->
+            {% endblock %}
+
+            {% block page_header %}
+                <!-- begin page_header -->
+                <h1 class="page-header">{% block page_header_title %}Pagetitle{% endblock %}
+                    <small{% block page_header_subtitle %}>Subtitle{% endblock %}</small>
+                </h1>
+                <!-- end page_header -->
+            {% endblock %}
+
+            {% block messages %}
+                {% if bundleExists('NSFlashBundle') %}
+                    {{ flash_messages() }}
+                {% endif %}
+            {% endblock %}
+
+            {% block content %}
+                <!-- begin content -->
+                <p>Main page content goes here</p>
+                <!-- end content -->
+            {% endblock %}
+        </div>
+        <!-- end body -->
+    {% endblock %}
+
+    {#{{ include('@ColorAdmin/_theme_panel.html.twig') }}#}
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+                class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+<!-- end page container -->
+
+{% block base_js %}
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{{ asset(plugin_basepath~'jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {% block crossbrowser_js %}
+        <!--[if lt IE 9]>
+        <script src="{{ asset(asset_basepath~'crossbrowserjs/html5shiv.js') }}"></script>
+        <script src="{{ asset(asset_basepath~'crossbrowserjs/respond.min.js') }}"></script>
+        <script src="{{ asset(asset_basepath~'crossbrowserjs/excanvas.min.js') }}"></script>
+        <script src="{{ asset(asset_basepath~'crossbrowserjs/excanvas.min.js') }}"></script>
+        <![endif]-->
+    {% endblock %}
+    <script src="{{ asset(plugin_basepath~'slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'js-cookie/js.cookie.js') }}"></script>
+{% block form_js %}
+    <!-- form_js -->
+    <script src="{{ asset(plugin_basepath~'bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'bootstrap-show-password/bootstrap-show-password.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'password-indicator/js/password-indicator.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'jquery-tag-it/js/tag-it.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'masked-input/masked-input.min.js') }}"></script>
+    <script src="{{ asset(plugin_basepath~'bs-custom-file-input/js/bs-custom-file-input.min.js') }}"></script>
+    <!-- end form_js -->
+{% endblock %}
+    <script src="{{ asset(js_basepath~'theme/'~color_admin.theme~'.min.js') }}"></script>
+    <script src="{{ asset(js_basepath~'apps.min.js') }}"></script>
+    <script src="{{ asset(js_basepath~'ns.js') }}"></script>
+    <!-- ================== END BASE JS ================== -->
+{% endblock %}
+
+{% block page_js %}
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    {#<script src="{{ asset(plugin_basepath~'gritter/js/jquery.gritter.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'flot/jquery.flot.min.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'flot/jquery.flot.time.min.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'flot/jquery.flot.resize.min.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'flot/jquery.flot.pie.min.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'sparkline/jquery.sparkline.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'jquery-jvectormap/jquery-jvectormap.min.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'jquery-jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>#}
+    {#<script src="{{ asset(plugin_basepath~'bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>#}
+    {#<script src="{{ asset(asset_basepath~'demo/dashboard.min.js') }}"></script>#}
+    <!-- ================== END PAGE LEVEL JS ================== -->
+{% endblock %}
+
+{% block page_init %}
+    <script>
+        $(document).ready(function()
+        {
+            App.init(
+                {
+                    disableDraggablePanel: !{{ color_admin.draggable_panel ? 'true' : 'false' }}
+                }
+            );
+
+            {% block page_init_extra %}
+            {% endblock %}
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

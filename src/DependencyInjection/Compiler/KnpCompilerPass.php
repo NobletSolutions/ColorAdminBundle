@@ -15,12 +15,12 @@ class KnpCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if ($container->getParameter('ns_color_admin.use_knp_menu') && $container->hasParameter('knp_menu.renderer.twig.template') && in_array($container->getParameter('knp_menu.renderer.twig.template'),['KnpMenuBundle::menu.html.twig','@KnpMenu/menu.html.twig'])) {
-            $container->setParameter('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
+        if ($container->getParameter('color_admin.use_knp_menu') && $container->hasParameter('knp_menu.renderer.twig.template') && in_array($container->getParameter('knp_menu.renderer.twig.template'),['KnpMenuBundle::menu.html.twig','@KnpMenu/menu.html.twig'])) {
+            $container->setParameter('knp_menu.renderer.twig.template', '@ColorAdmin/Menu/knp_menu.html.twig');
         }
 
         if ($container->hasParameter('knp_paginator.template.pagination') && in_array($container->getParameter('knp_paginator.template.pagination'),['KnpPaginatorBundle:Pagination:sliding.html.twig','@KnpPaginator/Pagination/sliding.html.twig'])) {
-            $container->setParameter('knp_paginator.template.pagination', '@NSColorAdmin/Pagination/pagination.html.twig');
+            $container->setParameter('knp_paginator.template.pagination', '@ColorAdmin/Pagination/pagination.html.twig');
         }
     }
 }

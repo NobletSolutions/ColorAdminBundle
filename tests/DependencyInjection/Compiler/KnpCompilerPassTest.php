@@ -17,7 +17,7 @@ class KnpCompilerPassTest extends BaseTestCase
     public function test_dont_use_knp_menu()
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
-        $containerBuilder->expects($this->once())->method('getParameter')->with('ns_color_admin.use_knp_menu')->willReturn(false);
+        $containerBuilder->expects($this->once())->method('getParameter')->with('color_admin.use_knp_menu')->willReturn(false);
         $hasMap = [
             ['knp_menu.renderer.twig.template', false],
             ['knp_paginator.template.pagination', false],
@@ -33,14 +33,14 @@ class KnpCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
 
-        $containerBuilder->expects($this->once())->method('getParameter')->with('ns_color_admin.use_knp_menu')->willReturn(true);
+        $containerBuilder->expects($this->once())->method('getParameter')->with('color_admin.use_knp_menu')->willReturn(true);
         $hasMap = [
             ['knp_menu.renderer.twig.template', false],
             ['knp_paginator.template.pagination', false],
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@ColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -50,7 +50,7 @@ class KnpCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $map = [
-            ['ns_color_admin.use_knp_menu',true],
+            ['color_admin.use_knp_menu',true],
             ['knp_menu.renderer.twig.template','Non-default:Twig:knp_menu.html.twig']
         ];
         $containerBuilder->method('getParameter')->will($this->returnValueMap($map));
@@ -61,7 +61,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_menu.renderer.twig.template', '@ColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -78,12 +78,12 @@ class KnpCompilerPassTest extends BaseTestCase
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
 
         $map = [
-            ['ns_color_admin.use_knp_menu',true],
+            ['color_admin.use_knp_menu',true],
             ['knp_menu.renderer.twig.template','KnpMenuBundle::menu.html.twig']
         ];
         $containerBuilder->method('getParameter')->will($this->returnValueMap($map));
 
-        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_menu.renderer.twig.template', '@NSColorAdmin/Menu/knp_menu.html.twig');
+        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_menu.renderer.twig.template', '@ColorAdmin/Menu/knp_menu.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -99,7 +99,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->once())->method('getParameter')->with('ns_color_admin.use_knp_menu')->willReturn(false);
+        $containerBuilder->expects($this->once())->method('getParameter')->with('color_admin.use_knp_menu')->willReturn(false);
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -109,7 +109,7 @@ class KnpCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $map = [
-            ['ns_color_admin.use_knp_menu', false],
+            ['color_admin.use_knp_menu', false],
             ['knp_paginator.template.pagination', 'Something:Non:default.html.twig'],
         ];
         $containerBuilder->method('getParameter')->will($this->returnValueMap($map));
@@ -119,7 +119,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_paginator.template.pagination', '@NSColorAdmin/Pagination/pagination.html.twig');
+        $containerBuilder->expects($this->never())->method('setParameter')->with('knp_paginator.template.pagination', '@ColorAdmin/Pagination/pagination.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);
@@ -129,7 +129,7 @@ class KnpCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $map = [
-            ['ns_color_admin.use_knp_menu', false],
+            ['color_admin.use_knp_menu', false],
             ['knp_paginator.template.pagination', 'KnpPaginatorBundle:Pagination:sliding.html.twig'],
         ];
         $containerBuilder->method('getParameter')->will($this->returnValueMap($map));
@@ -139,7 +139,7 @@ class KnpCompilerPassTest extends BaseTestCase
         ];
 
         $containerBuilder->method('hasParameter')->willReturnMap($hasMap);
-        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_paginator.template.pagination', '@NSColorAdmin/Pagination/pagination.html.twig');
+        $containerBuilder->expects($this->once())->method('setParameter')->with('knp_paginator.template.pagination', '@ColorAdmin/Pagination/pagination.html.twig');
 
         $compilerPass = new KnpCompilerPass();
         $compilerPass->process($containerBuilder);

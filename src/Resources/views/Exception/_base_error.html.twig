@@ -1,4 +1,4 @@
-{% extends '@NSColorAdmin/base.html.twig' %}
+{% extends '@ColorAdmin/layout.html.twig' %}
 {% block header %}{% endblock %}
 {% block sidebar %}{% endblock %}
 {% block breadcrumbs %}{% endblock %}
@@ -12,7 +12,7 @@
         <div class="error-code m-b-10">{% block error_code %}404{% endblock %} {% block error_icon %}<i class="fa fa-warning"></i>{% endblock %}</div>
             <div class="error-content">
                 <div class="error-message">{% block error_title %}Page Not Found{% endblock %}</div>
-                <div class="error-desc m-b-20">
+                <div class="error-desc m-b-30">
                     {% block error_message %}
                         The page you're looking for doesn't exist. <br />
                         Please double-check the URL and try again.

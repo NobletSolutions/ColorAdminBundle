@@ -3,12 +3,14 @@
 namespace NS\ColorAdminBundle\Twig;
 
 
+use Twig\Extension\AbstractExtension;
+
 /**
  * Description of BundleExistence
  *
  * @author gnat
  */
-class BundleExistence extends \Twig_Extension
+class BundleExistence extends AbstractExtension
 {
     /**
      * @var array

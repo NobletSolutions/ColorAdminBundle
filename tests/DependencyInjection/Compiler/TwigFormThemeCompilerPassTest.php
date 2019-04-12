@@ -18,7 +18,7 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg){
-            return $arg == 'ns_color_admin.auto_form_theme';
+            return $arg == 'color_admin.auto_form_theme';
         }));
 
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(false);
@@ -38,7 +38,7 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
 
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
-            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'color_admin.auto_form_theme') { return true; }
             if($arg == 'twig.form.resources') { return $resources; }
         }));
 
@@ -57,12 +57,12 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
         ];
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
-            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'color_admin.auto_form_theme') { return true; }
             if($arg == 'twig.form.resources') { return $resources; }
         }));
 
         $containerBuilder->expects($this->once())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
-        $containerBuilder->expects($this->once())->method('setParameter')->with('twig.form.resources',array_merge($resources,['@NSColorAdmin/Form/fields.html.twig']));
+        $containerBuilder->expects($this->once())->method('setParameter')->with('twig.form.resources',array_merge($resources,['@ColorAdmin/Form/fields.html.twig']));
 
         $compiler = new TwigFormThemeCompilerPass();
         $compiler->process($containerBuilder);
@@ -72,7 +72,7 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) {
-            if($arg == 'ns_color_admin.auto_form_theme') { return false; }
+            if($arg == 'color_admin.auto_form_theme') { return false; }
         }));
 
         $containerBuilder->expects($this->never())->method('hasParameter')->with('twig.form.resources')->willReturn(true);
@@ -92,7 +92,7 @@ class TwigFormThemeCompilerPassTest extends BaseTestCase
 
         $containerBuilder = $this->createMock(ContainerBuilder::class);
         $containerBuilder->method('getParameter')->will($this->returnCallback(function($arg) use($resources) {
-            if($arg == 'ns_color_admin.auto_form_theme') { return true; }
+            if($arg == 'color_admin.auto_form_theme') { return true; }
             if($arg == 'twig.form.resources') { return $resources; }
         }));
 
