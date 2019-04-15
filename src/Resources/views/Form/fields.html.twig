@@ -201,7 +201,7 @@
     {%- endif -%}
 {%- endblock -%}
 
-{%- block searchable_select_widget -%}
+{%- block filterable_select_widget -%}
     {% set class = attr.class|default('form-control ' ~ (required ? 'required':''))|trim %}
     {% set attr = attr|merge({'class': class~' select2'}) %}
     {{ block('choice_widget_collapsed') }}
