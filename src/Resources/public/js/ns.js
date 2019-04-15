@@ -25,4 +25,34 @@ $(document).ready(function() {
             $(this).find('i').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
         }
     });
+
+    $('.ns-confirm').each(function(i, el)
+    {
+        if(el.nsFieldActive !== true)
+        {
+            var msg = 'Are you sure you wish to continue?';
+
+            if($(el).data('confirm-message'))
+            {
+                msg = $(el).data('confirm-message');
+            }
+
+            el.nsFieldActive = true;
+
+            if($(el).is('form'))
+            {
+                $(el).submit(function()
+                {
+                    return confirm(msg);
+                });
+            }
+            else
+            {
+                $(el).click(function()
+                {
+                    return confirm(msg);
+                });
+            }
+        }
+    });
 });
