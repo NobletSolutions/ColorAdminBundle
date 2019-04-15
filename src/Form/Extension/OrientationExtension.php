@@ -1,6 +1,5 @@
 <?php
 
-
 namespace NS\ColorAdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -11,20 +10,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrientationExtension extends AbstractTypeExtension
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['vertical'] = $options['vertical'];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['vertical']);
-        $resolver->setDefaults(['vertical'=>false]);
+        $resolver->setDefaults(['vertical' => false]);
         $resolver->setAllowedValues('vertical', [true, false]);
     }
 
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormType::class;
+    }
+
+    public static function getExtendedTypes(): array
+    {
+        return [FormType::class];
     }
 }

@@ -319,9 +319,7 @@
             {% endblock %}
 
             {% block messages %}
-                {% if bundleExists('NSFlashBundle') %}
-                    {{ flash_messages() }}
-                {% endif %}
+                {{ flash_messages() }}
             {% endblock %}
 
             {% block content %}

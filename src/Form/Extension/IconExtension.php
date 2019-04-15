@@ -1,8 +1,6 @@
 <?php
 
-
 namespace NS\ColorAdminBundle\Form\Extension;
-
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -12,21 +10,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class IconExtension extends AbstractTypeExtension
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['icon', 'icon_position']);
-        $resolver->setDefaults(['icon'=>false]);
+        $resolver->setDefaults(['icon' => false]);
         $resolver->setAllowedValues('icon_position', ['left', 'right']);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars['icon'] = $options['icon'];
-        $view->vars['icon_position'] = isset($options['icon_position']) ? $options['icon_position'] : false;
+        $view->vars['icon']          = $options['icon'];
+        $view->vars['icon_position'] = $options['icon_position'] ?? false;
     }
 
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return TextType::class;
+    }
+
+    public static function getExtendedTypes(): array
+    {
+        return [TextType::class];
     }
 }

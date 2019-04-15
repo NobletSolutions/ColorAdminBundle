@@ -1,8 +1,6 @@
 <?php
 
-
 namespace NS\ColorAdminBundle\Form\Extension;
-
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -12,22 +10,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MaskExtension extends AbstractTypeExtension
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars['attr']['data-mask'] = $options['mask'];
+        $view->vars['attr']['data-mask']             = $options['mask'];
         $view->vars['attr']['data-mask-placeholder'] = $options['mask_placeholder'];
         $view->vars['attr']['data-mask-definitions'] = json_encode($options['mask_definitions']);
 
-        if(!$view->vars['note'])
-        {
+        if (!$view->vars['note']) {
             $view->vars['note'] = $options['mask'];
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['mask', 'mask_placeholder', 'mask_definitions']);
-        $resolver->setDefaults(['mask'=>false, 'mask_placeholder'=>false, 'mask_definitions'=>false]);
+        $resolver->setDefaults(['mask' => false, 'mask_placeholder' => false, 'mask_definitions' => false]);
         /*
          * mask_definitions allows you to override the default definitions with your own.  For example:
          * 'defintions' => array(
@@ -44,9 +41,13 @@ class MaskExtension extends AbstractTypeExtension
          */
     }
 
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return TextType::class;
     }
 
+    public static function getExtendedTypes(): array
+    {
+        return [TextType::class];
+    }
 }

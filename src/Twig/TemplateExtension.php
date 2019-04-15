@@ -3,9 +3,11 @@
 namespace NS\ColorAdminBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class TemplateExtension extends AbstractExtension implements \Twig_Extension_GlobalsInterface
+class TemplateExtension extends AbstractExtension implements GlobalsInterface
 {
+    /** @var array */
     protected $template_config;
 
     public function __construct($template_config)
@@ -13,7 +15,7 @@ class TemplateExtension extends AbstractExtension implements \Twig_Extension_Glo
         $this->template_config = $template_config;
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'color_admin' => [

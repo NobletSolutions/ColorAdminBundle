@@ -1,4 +1,12 @@
 services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    NS\ColorAdminBundle\:
+        resource: '../../../'
+
     NS\ColorAdminBundle\Menu\MenuBuilder:
         arguments: ["@knp_menu.factory"]
         tags:
@@ -6,31 +14,4 @@ services:
             - { name: knp_menu.menu_builder, method: createSidebarMenu, alias: breadcrumbs }
 
     NS\ColorAdminBundle\Twig\TemplateExtension:
-        arguments: [ "%color_admin.templates%" ]
-        tags:
-            - { name: twig.extension }
-
-    NS\ColorAdminBundle\Twig\BundleExistence:
-        arguments: [ "@=service('service_container').getParameter('kernel.bundles')" ]
-        tags:
-            - { name: twig.extension }
-
-    NS\ColorAdminBundle\Form\Extension\MaskExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
-
-    NS\ColorAdminBundle\Form\Extension\IconExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
-
-    NS\ColorAdminBundle\Form\Extension\OrientationExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
-
-    NS\ColorAdminBundle\Form\Extension\DetailsExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
-
-    NS\ColorAdminBundle\Form\Extension\PasswordExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\PasswordType }
+      arguments: [ "%color_admin.templates%" ]
