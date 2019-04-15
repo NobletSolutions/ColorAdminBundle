@@ -25,6 +25,39 @@ $(document).ready(function() {
             $(this).find('i').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
         }
     });
+
+    $('.ns-confirm').each(function(i, el)
+    {
+        //if($(el).is(':visible')) // Why are we doing this? I can't imagine why we would want to restrict this to visible elements.
+        //{
+        if(el.nsFieldActive !== true)
+        {
+            var msg = 'Are you sure you wish to continue?';
+
+            if($(el).data('confirm-message'))
+            {
+                msg = $(el).data('confirm-message');
+            }
+
+            el.nsFieldActive = true;
+
+            if($(el).is('form'))
+            {
+                $(el).submit(function()
+                {
+                    return confirm(msg);
+                });
+            }
+            else
+            {
+                $(el).click(function()
+                {
+                    return confirm(msg);
+                });
+            }
+        }
+        //}
+    });
 });
 
 $(document).on('click', '.nsAddForm', function(ev)
