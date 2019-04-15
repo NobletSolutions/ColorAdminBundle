@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class SearchableSelectType
+ * Class FilterableSelectType
  * @package ColorAdminBundle\Form\Type
  *
  * This classes uses the select2 JS plugin.
@@ -70,7 +70,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
     }
 }
  */
-class SearchableSelectType extends AbstractType
+class FilterableSelectType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
