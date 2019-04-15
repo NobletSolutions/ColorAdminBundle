@@ -18,11 +18,11 @@
         "symfony/framework-bundle": "^2.8|^3.0|^4.0",
         "symfony/form":             "^2.8|^3.0|^4.0",
         "symfony/event-dispatcher": "^2.8|^3.0|^4.0",
-        "twig/twig":                "^1.0|^2.0"
+        "twig/twig":                "^1.0|^2.0",
+        "knplabs/knp-menu-bundle": "^2.1"
     },
     "suggest": {
-        "knplabs/knp-paginator-bundle": "^2.5",
-        "knplabs/knp-menu-bundle": "~2.1"
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "autoload": {
         "psr-4": { "NS\\ColorAdminBundle\\": "src" }
