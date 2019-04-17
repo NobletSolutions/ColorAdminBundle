@@ -5,7 +5,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     NS\ColorAdminBundle\:
-        resource: '../../../'
+        resource: '../../'
 
     NS\ColorAdminBundle\Menu\MenuBuilder:
         arguments: ["@knp_menu.factory"]
