@@ -14,8 +14,8 @@
     $.ContextualForm = function(element, globalConfig, autoinit, events, onSuccessEvent)
     {
         autoinit = typeof(autoinit) !== 'undefined' ? autoinit: true;
-        events   = typeof(events) !== 'undefined' ? events : 'nsFormUpdate shown.bs.tab shown.bs.collapse sonata.add_element ajaxComplete shown.ace.widget';
-        this.onSuccessEvent = typeof(onSuccessEvent) !== 'undefined' ? onSuccessEvent : 'contextFormUpdate';
+        events   = typeof(events) !== 'undefined' ? events : 'ns-form-update shown.bs.tab shown.bs.collapse sonata.add_element ajaxComplete shown.ace.widget';
+        this.onSuccessEvent = typeof(onSuccessEvent) !== 'undefined' ? onSuccessEvent : 'ns-context-form-update';
         this.activityMap = {}; //We need to store a mapping of what fields are currently active and "visible"; storing this info right on the field is problematic because it may or may not be an actual <input> element
         this.toBeProcessed = {};
         this.isFirstRun = true;
