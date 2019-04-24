@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.0 - Updated to ColorAdmin 4.3 and Bootstrap 4
+      24/04/2019 12:13  2.0.9  Login form changes
       23/04/2019 10:42  2.0.8  Fixed default layout
       17/04/2019 15:47  2.0.7  Additional JS plugins
       16/04/2019 20:17  2.0.6  Fixed services configuration
