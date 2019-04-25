@@ -109,7 +109,7 @@ options:
 Additional options for PasswordType and types that extend it.
 ```yaml
 options:
-    toggle: Boolean # Provide a button to allow the user to toggle between hidden and visible password. Default false.
+    toggle: Boolean # Provide a button to allow the user to toggle between hidden and visible password. Doesn't seem to play nice with autofill. Default false.
     placement: String [before|after] # Display the toggle button before or after the input.  Default 'before'.
     indicator: Boolean # Display a password strength indicator.  Default false.
     # Note: toggle and indicator cannot be used at the same time.

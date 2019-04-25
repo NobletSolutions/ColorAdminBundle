@@ -23,6 +23,9 @@
         <!-- begin login-content -->
         {% block login_content %}
             <div class="login-content">
+                {% block login_messages %}
+                    {{ flash_messages() }}
+                {% endblock %}
                 {% block login_form %}
                     <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="GET" class="margin-bottom-0">
                         <div class="form-group m-b-20">
