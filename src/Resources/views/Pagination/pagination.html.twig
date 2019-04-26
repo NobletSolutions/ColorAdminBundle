@@ -1,13 +1,13 @@
 {% if pageCount > 1 %}
-    <ul class="pagination {{ pagination.wrapper_class }}">
+    <ul class="pagination">
 
         {% if previous is defined %}
             <li class="page-item">
-                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" title="{{ 'Previous'|trans }}">«{{ pagination.labels ? ('Previous'|trans) : '' }}</a>
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" title="{{ 'Previous'|trans }}">«</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link" href="javascript:;">«{{ pagination.labels ? ('Previous'|trans) : '' }}</a>
+                <a class="page-link" href="javascript:;">«</a>
             </li>
         {% endif %}
 
@@ -58,11 +58,11 @@
 
         {% if next is defined %}
             <li class="page-item">
-                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" title="{{ 'Next'|trans }}">{{ pagination.labels ? ('Next'|trans) : '' }}»</a>
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" title="{{ 'Next'|trans }}">»</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link" href="javascript:;">{{ pagination.labels ? ('Next'|trans) : '' }}»</a>
+                <a class="page-link" href="javascript:;">»</a>
             </li>
         {% endif %}
     </ul>
