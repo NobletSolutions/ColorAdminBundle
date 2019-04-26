@@ -27,12 +27,12 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->addChild('Override Service')
+        $menu->addChild('Override parameter')
                 ->setAttribute('icon', 'laptop')
                 ->setAttribute('badge', '10')
                 ->setAttribute('badge-style', 'danger')
-                ->addChild('ColorAdminBundle\Menu\MenuBuilder')
-                    ->addChild('to change this menu', ['route'=>'homepage']);
+                ->addChild('ns.color_admin.menu_builder')
+                    ->addChild('with your menu class to change this menu', ['uri'=>'http://www.google.com']);
 
         $menu->addChild('Menu Item', ['uri'=>'http://www.google.com']);
 
