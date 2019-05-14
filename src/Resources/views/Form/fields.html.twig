@@ -125,13 +125,13 @@
 {% endblock %}
 
 {% block file_row %}
-<div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
-    {{ form_label(form) }}
-    <div class="custom-file {{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
-        {{ block('file_widget') }}
-        {{ block('custom_file_label') }}
+    <div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
+        {{ form_label(form) }}
+        <div class="custom-file {{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
+            {{ block('file_widget') }}
+            {{ block('custom_file_label') }}
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {#{% block file_row %}#}
@@ -173,8 +173,8 @@
 {%- endblock textarea_widget -%}
 
 {%- block datepicker_widget %}
-    {%- set type = type|default('text') -%}
-    <div class="input-group date datepicker-input" data-date-format="{{ date_format }}"
+    {%- set type = 'text' -%}
+    <div class="input-group date datepicker-input"
             {% if start_date %}
                 data-date-start-date="{{ start_date is same as(true) ? 'Date.default' : start_date }}"
             {% endif %}

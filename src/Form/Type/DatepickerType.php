@@ -12,7 +12,6 @@ namespace NS\ColorAdminBundle\Form\Type;
 use NS\ColorAdminBundle\Service\DateFormatConverter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,20 +35,24 @@ class DatepickerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         // For start_date, pass the date, or true to use today
-        $resolver->setDefined(['start_date', 'date_format']);
+        $resolver->setDefined(['start_date']);
         $resolver->setDefaults([
+            'widget'   => 'single_text',
+            'compound' => false,
+            'inline' => false,
             'format'   => $this->converter->getFormat(true)
         ]);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['type'] = 'test';
         $view->vars['start_date'] = isset($options['start_date']) ? $options['start_date'] : false;
-        $view->vars['date_format'] = isset($options['date_format']) ? strtolower($options['date_format']) : 'yyyy-mm-dd';
+        $view->vars['attr']['data-date_format'] = strtolower($options['format']);
     }
 
     public function getParent()
     {
-        return TextType::class;
+        return DateType::class;
     }
 }
