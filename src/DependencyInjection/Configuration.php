@@ -41,7 +41,7 @@ class Configuration implements ConfigurationInterface
                     ->arrayNode('pagination')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('template')->defaultValue('@NS/ColorAdmin/Pagination/pagination.html.twig')->end()
+                            ->scalarNode('template')->defaultValue('@ColorAdmin/Pagination/pagination.html.twig')->end()
                             ->scalarNode('wrapper_class')->defaultValue('pagination-md')->end()
                             ->booleanNode('labels')->defaultFalse()->end()
                         ->end()
