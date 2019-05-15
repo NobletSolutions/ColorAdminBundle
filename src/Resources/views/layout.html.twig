@@ -339,6 +339,9 @@
 </div>
 <!-- end page container -->
 
+{% block modal %}{% endblock %}
+{% block post_container_content %}{% endblock %}
+
 {% block base_js %}
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{{ asset(plugin_basepath~'jquery/jquery-3.3.1.min.js') }}"></script>
