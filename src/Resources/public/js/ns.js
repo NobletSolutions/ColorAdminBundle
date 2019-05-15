@@ -149,6 +149,25 @@ function initEvents()
     });
 
     $(document).on('click', 'a.ns-confirm, button.ns-confirm', nsConfirmCallback).on('submit', 'form.ns-confirm', nsConfirmCallback);
+
+    $(document).on('click', '.ns-collection-add', function(event)
+    {
+        let $button = $(event.currentTarget);
+        let $container = $($button.attr('href'));
+        let count = parseInt($container.data('child-count'));
+        console.log(count);
+
+        $container.append($container.data('prototype').replace(/__name__/g, count));
+
+        $container.data('child-count', count + 1);
+    });
+
+    $(document).on('click', '.ns-collection-remove', function(event)
+    {
+        let $button = $(event.currentTarget);
+        let $row = $($button.attr('href'));
+        $row.remove();
+    });
 }
 
 function nsAjaxUpdater($updater)

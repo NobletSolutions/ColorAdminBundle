@@ -22,20 +22,24 @@ services:
 
     NS\ColorAdminBundle\Form\Extension\MaskExtension:
         tags:
-          - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
 
     NS\ColorAdminBundle\Form\Extension\IconExtension:
         tags:
-          - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
 
     NS\ColorAdminBundle\Form\Extension\OrientationExtension:
         tags:
-          - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
     NS\ColorAdminBundle\Form\Extension\DetailsExtension:
         tags:
-          - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
     NS\ColorAdminBundle\Form\Extension\PasswordExtension:
         tags:
-          - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\PasswordType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\PasswordType }
+
+    NS\ColorAdminBundle\Form\Extension\CollectionExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }

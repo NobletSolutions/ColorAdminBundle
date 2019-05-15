@@ -115,6 +115,14 @@ options:
     # Note: toggle and indicator cannot be used at the same time.
 ```
 
+##### CollectionType
+Additional options for CollectionType and types that extend it.
+```yaml
+options:
+    add_button_label: String #label for the Add button. Default "Add"
+    add_button_icon: string #icon for the Add button. Default "plus"
+```
+
 ### Error Templates
 
 There are error templates located in views/Exception;  Copy/extend these in app/Resources/TwigBundle/views/Exception to use the custom error page templates.
