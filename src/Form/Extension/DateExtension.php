@@ -27,7 +27,7 @@ class DateExtension extends AbstractTypeExtension
             {
                 $class = &$view->children[$field]->vars['attr']['class'];
                 $fieldClass = $options[$field.'_class'];
-                $class = isset($class) ? $class . ' '.$fieldClass : 'form-control '.$fieldClass;
+                $class = isset($class) ? $class . ' '.$fieldClass : 'form-control mr-2 '.$fieldClass;
             }
         }
     }
