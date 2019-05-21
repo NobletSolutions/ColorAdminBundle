@@ -43,3 +43,7 @@ services:
     NS\ColorAdminBundle\Form\Extension\CollectionExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }
+
+    NS\ColorAdminBundle\Form\Extension\DateExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\DateType }
