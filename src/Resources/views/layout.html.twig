@@ -303,19 +303,23 @@
     {% block body %}
         <!-- begin body -->
         <div id="content" class="{% block content_class %}content{% endblock %}">
-            {% block breadcrumbs %}
-                <!-- begin breadcrumb -->
-                {{ knp_menu_render('breadcrumbs', {'template': '@ColorAdmin/Menu/breadcrumb_menu.html.twig'}) }}
-                <!-- end breadcrumbs -->
-            {% endblock %}
+            <div class="row">
+                <div class="col-12">
+                    {% block breadcrumbs %}
+                        <!-- begin breadcrumb -->
+                        {{ knp_menu_render('breadcrumbs', {'template': '@ColorAdmin/Menu/breadcrumb_menu.html.twig'}) }}
+                        <!-- end breadcrumbs -->
+                    {% endblock %}
 
-            {% block page_header %}
-                <!-- begin page_header -->
-                <h1 class="page-header">{% block page_header_title %}Pagetitle{% endblock %}
-                    <small>{% block page_header_subtitle %}Subtitle{% endblock %}</small>
-                </h1>
-                <!-- end page_header -->
-            {% endblock %}
+                    {% block page_header %}
+                        <!-- begin page_header -->
+                        <h1 class="page-header">{% block page_header_title %}Pagetitle{% endblock %}
+                            <small>{% block page_header_subtitle %}Subtitle{% endblock %}</small>
+                        </h1>
+                        <!-- end page_header -->
+                    {% endblock %}
+                </div>
+            </div>
 
             {% block messages %}
                 {{ flash_messages() }}
@@ -338,9 +342,6 @@
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
-
-{% block modal %}{% endblock %}
-{% block post_container_content %}{% endblock %}
 
 {% block base_js %}
     <!-- ================== BEGIN BASE JS ================== -->
