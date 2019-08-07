@@ -109,10 +109,10 @@
     {% if options.allow_safe_labels and item.getExtra('safe_label', false) %}
         {{ item.label|raw }}
     {% else %}
-        {{ item.label }}
+        {{ item.label|trans }}
     {% endif %}
-        {% if item.attribute('label') is not empty %}
-            <span class="label {{ item.attribute('label-style') is not empty ? 'label-'~item.attribute('label-style') : '' }} m-l-5">{{ item.attribute('label') }}</span>
-        {% endif %}
+    {% if item.attribute('label') is not empty %}
+        <span class="label {{ item.attribute('label-style') is not empty ? 'label-'~item.attribute('label-style') : '' }} m-l-5">{{ item.attribute('label')|trans }}</span>
+    {% endif %}
     </span>
 {% endblock %}
