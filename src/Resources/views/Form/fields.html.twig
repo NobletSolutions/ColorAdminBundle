@@ -193,8 +193,10 @@
 
 {%- block form_errors -%}
     {%- if errors|length > 0 -%}
+        {% set attr = attr|merge({'class': 'invalid-feedback'}) %}
+
         {%- for error in errors -%}
-            <div class="invalid-feedback">
+            <div {{ block('widget_attributes') }}>
                 {{ error.message }}
             </div>
         {%- endfor -%}
