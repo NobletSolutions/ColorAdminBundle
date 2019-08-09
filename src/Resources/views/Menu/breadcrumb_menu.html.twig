@@ -24,9 +24,9 @@
 {% block item %}
     {% if item.displayed %}
         {% if matcher.isAncestor(item) %}
-            <li class="breadcrumb-item"><a href="{{ item.uri is not empty ? item.uri : 'javascript:;' }}">{{ item.label }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ item.uri is not empty ? item.uri : 'javascript:;' }}">{{ item.label|trans }}</a></li>
         {% elseif matcher.isCurrent(item) %}
-            <li class="breadcrumb-item active">{{ item.label }}</a></li>
+            <li class="breadcrumb-item active">{{ item.label|trans }}</a></li>
         {% endif %}
         {{ block('list') }}
     {% endif %}
