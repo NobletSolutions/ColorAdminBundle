@@ -9,14 +9,16 @@
         <!-- begin brand -->
         {% block login_header %}
             <div class="login-header">
+            {% block login_brand %}
                 <div class="brand">
-                    <span class="logo"></span> {% block title %}<b>Color</b> Admin{% endblock %}
+                    {% block login_logo %}<span class="logo"></span>{% endblock %} {% block title %}<b>Color</b> Admin{% endblock %}
                     {% block subtitle %}
                         <small>responsive bootstrap 4 admin template</small>{% endblock %}
                 </div>
                 <div class="icon">
                     <i class="fa fa-lock"></i>
                 </div>
+            {% endblock %}
             </div>
         {% endblock %}
         <!-- end brand -->
