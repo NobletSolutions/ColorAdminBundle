@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.4.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var FONT_COLOR   = 'rgba(255,255,255,0.5)';
@@ -126,6 +126,32 @@ var COLOR_SILVER_TRANSPARENT_6 = 'rgba(240, 243, 244, 0.6)';
 var COLOR_SILVER_TRANSPARENT_7 = 'rgba(240, 243, 244, 0.7)';
 var COLOR_SILVER_TRANSPARENT_8 = 'rgba(240, 243, 244, 0.8)';
 var COLOR_SILVER_TRANSPARENT_9 = 'rgba(240, 243, 244, 0.9)';
+	
+var COLOR_MUTED               = '#98acb3';
+var COLOR_MUTED_LIGHTER       = '#b2c1c6';
+var COLOR_MUTED_DARKER        = '#728186';
+var COLOR_MUTED_TRANSPARENT_1 = 'rgba(152, 172, 179, 0.1)';
+var COLOR_MUTED_TRANSPARENT_2 = 'rgba(152, 172, 179, 0.2)';
+var COLOR_MUTED_TRANSPARENT_3 = 'rgba(152, 172, 179, 0.3)';
+var COLOR_MUTED_TRANSPARENT_4 = 'rgba(152, 172, 179, 0.4)';
+var COLOR_MUTED_TRANSPARENT_5 = 'rgba(152, 172, 179, 0.5)';
+var COLOR_MUTED_TRANSPARENT_6 = 'rgba(152, 172, 179, 0.6)';
+var COLOR_MUTED_TRANSPARENT_7 = 'rgba(152, 172, 179, 0.7)';
+var COLOR_MUTED_TRANSPARENT_8 = 'rgba(152, 172, 179, 0.8)';
+var COLOR_MUTED_TRANSPARENT_9 = 'rgba(152, 172, 179, 0.9)';
+
+var COLOR_DARK               = '#000000';
+var COLOR_DARK_LIGHTER       = '#404040';
+var COLOR_DARK_DARKER        = '#000000';
+var COLOR_DARK_TRANSPARENT_1 = 'rgba(0, 0, 0, 0.1)';
+var COLOR_DARK_TRANSPARENT_2 = 'rgba(0, 0, 0, 0.2)';
+var COLOR_DARK_TRANSPARENT_3 = 'rgba(0, 0, 0, 0.3)';
+var COLOR_DARK_TRANSPARENT_4 = 'rgba(0, 0, 0, 0.4)';
+var COLOR_DARK_TRANSPARENT_5 = 'rgba(0, 0, 0, 0.5)';
+var COLOR_DARK_TRANSPARENT_6 = 'rgba(0, 0, 0, 0.6)';
+var COLOR_DARK_TRANSPARENT_7 = 'rgba(0, 0, 0, 0.7)';
+var COLOR_DARK_TRANSPARENT_8 = 'rgba(0, 0, 0, 0.8)';
+var COLOR_DARK_TRANSPARENT_9 = 'rgba(0, 0, 0, 0.9)';
 
 var COLOR_BLACK               = '#333333';
 var COLOR_BLACK_LIGHTER       = '#666666';
@@ -150,3 +176,55 @@ var COLOR_WHITE_TRANSPARENT_6  = 'rgba(255, 255, 255, 0.6)';
 var COLOR_WHITE_TRANSPARENT_7  = 'rgba(255, 255, 255, 0.7)';
 var COLOR_WHITE_TRANSPARENT_8  = 'rgba(255, 255, 255, 0.8)';
 var COLOR_WHITE_TRANSPARENT_9  = 'rgba(255, 255, 255, 0.9)';
+
+var COLOR_INDIGO               = '#5600ff';
+var COLOR_INDIGO_LIGHTER       = '#8040ff';
+var COLOR_INDIGO_DARKER        = '#4100bf';
+var COLOR_INDIGO_TRANSPARENT_1 = 'rgba(86, 0, 255, 0.1)';
+var COLOR_INDIGO_TRANSPARENT_2 = 'rgba(86, 0, 255, 0.2)';
+var COLOR_INDIGO_TRANSPARENT_3 = 'rgba(86, 0, 255, 0.3)';
+var COLOR_INDIGO_TRANSPARENT_4 = 'rgba(86, 0, 255, 0.4)';
+var COLOR_INDIGO_TRANSPARENT_5 = 'rgba(86, 0, 255, 0.5)';
+var COLOR_INDIGO_TRANSPARENT_6 = 'rgba(86, 0, 255, 0.6)';
+var COLOR_INDIGO_TRANSPARENT_7 = 'rgba(86, 0, 255, 0.7)';
+var COLOR_INDIGO_TRANSPARENT_8 = 'rgba(86, 0, 255, 0.8)';
+var COLOR_INDIGO_TRANSPARENT_9 = 'rgba(86, 0, 255, 0.9)';
+
+var COLOR_PINK               = '#ff0081';
+var COLOR_PINK_LIGHTER       = '#ff40a1';
+var COLOR_PINK_DARKER        = '#bf0061';
+var COLOR_PINK_TRANSPARENT_1 = 'rgba(255, 0, 129, 0.1)';
+var COLOR_PINK_TRANSPARENT_2 = 'rgba(255, 0, 129, 0.2)';
+var COLOR_PINK_TRANSPARENT_3 = 'rgba(255, 0, 129, 0.3)';
+var COLOR_PINK_TRANSPARENT_4 = 'rgba(255, 0, 129, 0.4)';
+var COLOR_PINK_TRANSPARENT_5 = 'rgba(255, 0, 129, 0.5)';
+var COLOR_PINK_TRANSPARENT_6 = 'rgba(255, 0, 129, 0.6)';
+var COLOR_PINK_TRANSPARENT_7 = 'rgba(255, 0, 129, 0.7)';
+var COLOR_PINK_TRANSPARENT_8 = 'rgba(255, 0, 129, 0.8)';
+var COLOR_PINK_TRANSPARENT_9 = 'rgba(255, 0, 129, 0.9)';
+
+var COLOR_LIME               = '#c2e900';
+var COLOR_LIME_LIGHTER       = '#d1ef40';
+var COLOR_LIME_DARKER        = '#92af00';
+var COLOR_LIME_TRANSPARENT_1 = 'rgba(192, 233, 0, 0.1)';
+var COLOR_LIME_TRANSPARENT_2 = 'rgba(192, 233, 0, 0.2)';
+var COLOR_LIME_TRANSPARENT_3 = 'rgba(192, 233, 0, 0.3)';
+var COLOR_LIME_TRANSPARENT_4 = 'rgba(192, 233, 0, 0.4)';
+var COLOR_LIME_TRANSPARENT_5 = 'rgba(192, 233, 0, 0.5)';
+var COLOR_LIME_TRANSPARENT_6 = 'rgba(192, 233, 0, 0.6)';
+var COLOR_LIME_TRANSPARENT_7 = 'rgba(192, 233, 0, 0.7)';
+var COLOR_LIME_TRANSPARENT_8 = 'rgba(192, 233, 0, 0.8)';
+var COLOR_LIME_TRANSPARENT_9 = 'rgba(192, 233, 0, 0.9)';
+
+var COLOR_TEAL               = '#01caca';
+var COLOR_TEAL_LIGHTER       = '#41d7d7';
+var COLOR_TEAL_DARKER        = '#019898';
+var COLOR_TEAL_TRANSPARENT_1 = 'rgba(1, 202, 202, 0.1)';
+var COLOR_TEAL_TRANSPARENT_2 = 'rgba(1, 202, 202, 0.2)';
+var COLOR_TEAL_TRANSPARENT_3 = 'rgba(1, 202, 202, 0.3)';
+var COLOR_TEAL_TRANSPARENT_4 = 'rgba(1, 202, 202, 0.4)';
+var COLOR_TEAL_TRANSPARENT_5 = 'rgba(1, 202, 202, 0.5)';
+var COLOR_TEAL_TRANSPARENT_6 = 'rgba(1, 202, 202, 0.6)';
+var COLOR_TEAL_TRANSPARENT_7 = 'rgba(1, 202, 202, 0.7)';
+var COLOR_TEAL_TRANSPARENT_8 = 'rgba(1, 202, 202, 0.8)';
+var COLOR_TEAL_TRANSPARENT_9 = 'rgba(1, 202, 202, 0.9)';
