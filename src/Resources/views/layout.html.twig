@@ -289,7 +289,8 @@
                 {% endblock %}
                 {% block sidebar_minify %}
                     <!-- begin sidebar_minify -->
-                    <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+                    <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i
+                                class="fa fa-angle-double-left"></i></a>
                     <!-- end sidebar_minify -->
                 {% endblock %}
             </div>
@@ -347,19 +348,8 @@
 
 {% block base_js %}
     <!-- ================== BEGIN BASE JS ================== -->
-    <script src="{{ asset(plugin_basepath~'jquery/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset(plugin_basepath~'jquery-ui/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset(plugin_basepath~'bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    {% block crossbrowser_js %}
-        <!--[if lt IE 9]>
-        <script src="{{ asset(asset_basepath~'crossbrowserjs/html5shiv.js') }}"></script>
-        <script src="{{ asset(asset_basepath~'crossbrowserjs/respond.min.js') }}"></script>
-        <script src="{{ asset(asset_basepath~'crossbrowserjs/excanvas.min.js') }}"></script>
-        <script src="{{ asset(asset_basepath~'crossbrowserjs/excanvas.min.js') }}"></script>
-        <![endif]-->
-    {% endblock %}
-    <script src="{{ asset(plugin_basepath~'slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset(plugin_basepath~'js-cookie/js.cookie.js') }}"></script>
+    <script src="{{ asset(js_basepath~'app.min.js') }}"></script>
+    <script src="{{ asset(js_basepath~'theme/'~color_admin.theme~'.min.js') }}"></script>
 {% block form_js %}
     <!-- form_js -->
     <script src="{{ asset(plugin_basepath~'bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
@@ -372,8 +362,6 @@
     <script src="{{ asset(plugin_basepath~'bootstrap-sweetalert/sweetalert.min.js') }}"></script>
     <!-- end form_js -->
 {% endblock %}
-    <script src="{{ asset(js_basepath~'theme/'~color_admin.theme~'.min.js') }}"></script>
-    <script src="{{ asset(js_basepath~'app.min.js') }}"></script>
     <script src="{{ asset(js_basepath~'ns.js') }}"></script>
     <!-- ================== END BASE JS ================== -->
 {% endblock %}
