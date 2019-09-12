@@ -47,3 +47,7 @@ services:
     NS\ColorAdminBundle\Form\Extension\DateExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\DateType }
+
+    NS\ColorAdminBundle\Form\Extension\FileExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }

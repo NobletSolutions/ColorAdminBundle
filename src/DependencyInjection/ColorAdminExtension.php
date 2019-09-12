@@ -2,11 +2,14 @@
 
 namespace NS\ColorAdminBundle\DependencyInjection;
 
+use NS\ColorAdminBundle\Form\Extension\VichFileExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -56,7 +59,20 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
         $container->setParameter('color_admin.use_knp_menu', $config['use_knp_menu']);
         $container->setParameter('color_admin.auto_form_theme', $config['auto_form_theme']);
 
+        $this->addFormExtensions($container);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    private function addFormExtensions(ContainerBuilder $container)
+    {
+        if(class_exists(VichFileType::class))
+        {
+            $container->register('NS\ColorAdminBundle\Form\Extension\VichFileExtension')
+                ->setClass(VichFileExtension::class)
+                ->setPublic(false)
+                ->setTags(['form.type_extension'=>['extended_types'=>VichFileType::class, VichImageType::class]]);
+        }
     }
 }
