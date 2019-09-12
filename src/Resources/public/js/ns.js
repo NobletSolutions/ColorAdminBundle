@@ -144,7 +144,7 @@ function initEvents()
                 $form[0].ContextualForm.AddConfigFromPrototype($form, index);
             }
 
-            $(document).trigger('ns-form-update').trigger('ns-add-form');
+            $(document).trigger('ns.form.update').trigger('ns-add-form');
         }
     });
 
@@ -160,6 +160,8 @@ function initEvents()
         $container.append($container.data('prototype').replace(/__name__/g, count));
 
         $container.data('child-count', count + 1);
+
+        $container.trigger('ns.form.update');
     });
 
     $(document).on('click', '.ns-collection-remove', function(event)

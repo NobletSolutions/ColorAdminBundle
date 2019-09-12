@@ -115,12 +115,14 @@
 {% endblock %}
 
 {% block file_widget %}
+    {%- set type = 'file' -%}
+    {%-  set value = value.file is defined ? value.file : value -%}
     {% set attr = attr|merge({'class': attr.class|default()~' custom-file-input form-control'}) %}
     {{ block('form_widget_very_simple') }}
 {% endblock %}
 
 {% block custom_file_label %}
-    {% set label_attr = label_attr|merge({'class': label_attr.class|default()~' custom-file-label'}) %}
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default()~' custom-file-label', 'for':id}) %}
     {{ block('form_label') }}
 {% endblock %}
 
@@ -133,6 +135,42 @@
         </div>
     </div>
 {% endblock %}
+
+{%- block vich_file_row -%}
+    {%- set force_error = true -%}
+    {{- block('file_row') -}}
+{%- endblock -%}
+
+{%- block vich_file_widget -%}
+    <div class="vich-file">
+        {{- block('file_widget') -}}
+
+        {%- if download_uri -%}
+            <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+        {%- endif -%}
+    </div>
+{%- endblock -%}
+
+{%- block vich_image_row -%}
+    {%- set force_error = true -%}
+    {{- block('file_row') -}}
+{%- endblock -%}
+
+{%- block vich_image_widget -%}
+    <div class="vich-image">
+        {{- block('file_widget') -}}
+        {%- if form.delete is defined -%}
+            {{- form_row(form.delete) -}}
+        {%- endif -%}
+
+        {%- if image_uri -%}
+            <a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>
+        {%- endif -%}
+        {%- if download_uri -%}
+            <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+        {%- endif -%}
+    </div>
+{%- endblock -%}
 
 {#{% block file_row %}#}
 {#    <div class="form-group {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">#}
