@@ -151,6 +151,7 @@
     {%- endif -%}
 
     {%- if download_uri -%}
+        {% set download_label = not download_label ? download_uri : download_label %}
         <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
     {%- endif -%}
     {#    </div>#}
