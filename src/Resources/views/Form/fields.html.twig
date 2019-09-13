@@ -116,7 +116,6 @@
 
 {% block file_widget %}
     {%- set type = 'file' -%}
-    {%-  set value = value.file is defined ? value.file : value -%}
     {% set attr = attr|merge({'class': attr.class|default()~' custom-file-input form-control'}) %}
     {{ block('form_widget_very_simple') }}
 {% endblock %}
@@ -128,10 +127,11 @@
 {% endblock %}
 
 {% block file_row %}
+    {% set widget = widget ? widget : block('file_widget') %}
     <div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
         {{ form_label(form) }}
         <div class="custom-file {{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
-            {{ block('file_widget') }}
+            {{ widget|raw }}
             {{ block('custom_file_label') }}
         </div>
     </div>
@@ -139,38 +139,43 @@
 
 {%- block vich_file_row -%}
     {%- set force_error = true -%}
+    {% set widget = block('vich_file_widget') %}
     {{- block('file_row') -}}
 {%- endblock -%}
 
 {%- block vich_file_widget -%}
-    <div class="vich-file">
-        {{- block('file_widget') -}}
+    {#    <div class="vich-file">#}
+    {{- form_widget(form.file) -}}
+    {%- if form.delete is defined -%}
+        {{- form_row(form.delete) -}}
+    {%- endif -%}
 
-        {%- if download_uri -%}
-            <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
-        {%- endif -%}
-    </div>
+    {%- if download_uri -%}
+        <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+    {%- endif -%}
+    {#    </div>#}
 {%- endblock -%}
 
 {%- block vich_image_row -%}
     {%- set force_error = true -%}
+    {% set widget = block('vich_image_widget') %}
     {{- block('file_row') -}}
 {%- endblock -%}
 
 {%- block vich_image_widget -%}
-    <div class="vich-image">
-        {{- block('file_widget') -}}
-        {%- if form.delete is defined -%}
-            {{- form_row(form.delete) -}}
-        {%- endif -%}
+    {#    <div class="vich-image">#}
+    {{- form_widget(form.file) -}}
+    {%- if form.delete is defined -%}
+        {{- form_row(form.delete) -}}
+    {%- endif -%}
 
-        {%- if image_uri -%}
-            <a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>
-        {%- endif -%}
-        {%- if download_uri -%}
-            <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
-        {%- endif -%}
-    </div>
+    {%- if image_uri -%}
+        <a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>
+    {%- endif -%}
+    {%- if download_uri -%}
+        <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+    {%- endif -%}
+    {#    </div>#}
 {%- endblock -%}
 
 {#{% block file_row %}#}

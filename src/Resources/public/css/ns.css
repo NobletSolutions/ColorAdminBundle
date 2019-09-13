@@ -16,3 +16,7 @@ label.required:after {
     left: 10px;
     right: 10px;
 }
+
+.custom-file, .custom-file-input {
+    height: auto;
+}
