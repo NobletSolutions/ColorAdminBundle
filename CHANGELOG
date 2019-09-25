@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.1 - Updated to Color Admin 4.4
+      25/09/2019 15:48  2.1.11  Fixed some app init issues
       13/09/2019 16:08  2.1.10  More file tweaks
       13/09/2019 15:37  2.1.9  More tweaks to file upload field
       13/09/2019 10:34  2.1.8  Missed file in last commit
