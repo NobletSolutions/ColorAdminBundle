@@ -1,0 +1,72 @@
+{% extends '@ColorAdmin/layout.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block header_nav %}{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block body %}
+    <!-- begin login -->
+    <div class="login login-with-news-feed">
+        <div class="news-feed">
+            <div class="news-image"
+                 style="background-image:url({% block login_welcome_background %}{% endblock %});"></div>
+            <div class="news-caption">
+                <h4 class="caption-title">{% block login_welcome %}Welcome{% endblock %}</h4>
+                {% block login_welcome_content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="right-content">
+            <!-- begin brand -->
+            {% block login_header %}
+                <div class="login-header">
+                    {% block login_brand %}
+                        <div class="brand">
+                            {% block login_logo %}<span class="logo"></span>{% endblock %} {% block title %}
+                                <b>Color</b> Admin{% endblock %}
+                            {% block subtitle %}
+                                <small>responsive bootstrap 4 admin template</small>{% endblock %}
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- end brand -->
+            <!-- begin login-content -->
+            {% block login_content %}
+            <div class="login-content">
+                {% block login_messages %}
+                    {{ flash_messages() }}
+                {% endblock %}
+                {% block login_form %}
+                    <form action="{% block check_url %}{{ url('login_check') }}{% endblock %}" method="POST"
+                          class="margin-bottom-0">
+                        <div class="form-group m-b-20">
+                            <input type="text" class="form-control form-control-lg inverse-mode"
+                                   placeholder="Email Address" required/>
+                        </div>
+                        <div class="form-group m-b-20">
+                            <input type="password" class="form-control form-control-lg inverse-mode"
+                                   placeholder="Password" required/>
+                        </div>
+                        {% block remember_me %}
+                            <div class="checkbox checkbox-css m-b-20">
+                                <input type="checkbox" id="remember_checkbox"/>
+                                <label for="remember_checkbox">
+                                    Remember Me
+                                </label>
+                            </div>
+                        {% endblock %}
+                        <div class="login-buttons">
+                            <button type="submit" class="btn btn-success btn-block btn-lg">Sign in</button>
+                        </div>
+                    </form>
+                {% endblock %}
+                {% endblock %}
+                <!-- end login-content -->
+            </div>
+        </div>
+    </div>
+    <!-- end login -->
+{% endblock %}
