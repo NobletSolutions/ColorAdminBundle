@@ -18,7 +18,7 @@ class TelephoneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefined(['type', 'icon']);
-        $resolver->setDefaults(['type'=>'tel', 'icon'=>'phone']);
+        $resolver->setDefaults(['type'=>'tel', 'icon'=>'phone', 'mask'=>'(999) 999-9999']);
     }
 
     public function getParent()
