@@ -135,7 +135,7 @@ function initEvents()
             }
 
             var index = $collection.data('index');
-            var newForm = $collection.data('prototype').replace(prototype_name, index);
+            var newForm = $($collection.data('prototype').replace(prototype_name, index));
             $collection.append(newForm);
             $collection.data('index', index + 1);
 
@@ -155,11 +155,16 @@ function initEvents()
         let $button = $(event.currentTarget);
         let $container = $($button.attr('href'));
         let count = parseInt($container.data('child-count'));
-        console.log(count);
 
-        $container.append($container.data('prototype').replace(/__name__/g, count));
+        let $newContent = $($container.data('prototype').replace(/__name__/g, count));
+
+        $newContent.hide();
+
+        $container.append($newContent);
 
         $container.data('child-count', count + 1);
+
+        $newContent.fadeIn();
 
         $container.trigger('ns.form.update');
     });
