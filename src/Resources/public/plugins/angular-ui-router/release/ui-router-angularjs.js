@@ -1,7 +1,7 @@
 /**
  * State-based routing for AngularJS 1.x
  * This bundle requires the ui-router-core.js bundle from the @uirouter/core package.
- * @version v1.0.22
+ * @version v1.0.24
  * @link https://ui-router.github.io
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -9,7 +9,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('angular'), require('@uirouter/core')) :
     typeof define === 'function' && define.amd ? define(['exports', 'angular', '@uirouter/core'], factory) :
     (global = global || self, factory(global['@uirouter/angularjs'] = {}, global.angular, global['@uirouter/core']));
-}(this, function (exports, ng_from_import, core) { 'use strict';
+}(this, (function (exports, ng_from_import, core) { 'use strict';
 
     /** @publicapi @module ng1 */ /** */
     /** @hidden */ var ng_from_global = angular;
@@ -866,68 +866,6 @@
     };
 
     /**
-     * The current (or pending) State Parameters
-     *
-     * An injectable global **Service Object** which holds the state parameters for the latest **SUCCESSFUL** transition.
-     *
-     * The values are not updated until *after* a `Transition` successfully completes.
-     *
-     * **Also:** an injectable **Per-Transition Object** object which holds the pending state parameters for the pending `Transition` currently running.
-     *
-     * ### Deprecation warning:
-     *
-     * The value injected for `$stateParams` is different depending on where it is injected.
-     *
-     * - When injected into an angular service, the object injected is the global **Service Object** with the parameter values for the latest successful `Transition`.
-     * - When injected into transition hooks, resolves, or view controllers, the object is the **Per-Transition Object** with the parameter values for the running `Transition`.
-     *
-     * Because of these confusing details, this service is deprecated.
-     *
-     * ### Instead of using the global `$stateParams` service object,
-     * inject [[$uiRouterGlobals]] and use [[UIRouterGlobals.params]]
-     *
-     * ```js
-     * MyService.$inject = ['$uiRouterGlobals'];
-     * function MyService($uiRouterGlobals) {
-     *   return {
-     *     paramValues: function () {
-     *       return $uiRouterGlobals.params;
-     *     }
-     *   }
-     * }
-     * ```
-     *
-     * ### Instead of using the per-transition `$stateParams` object,
-     * inject the current `Transition` (as [[$transition$]]) and use [[Transition.params]]
-     *
-     * ```js
-     * MyController.$inject = ['$transition$'];
-     * function MyController($transition$) {
-     *   var username = $transition$.params().username;
-     *   // .. do something with username
-     * }
-     * ```
-     *
-     * ---
-     *
-     * This object can be injected into other services.
-     *
-     * #### Deprecated Example:
-     * ```js
-     * SomeService.$inject = ['$http', '$stateParams'];
-     * function SomeService($http, $stateParams) {
-     *   return {
-     *     getUser: function() {
-     *       return $http.get('/api/users/' + $stateParams.username);
-     *     }
-     *   }
-     * };
-     * angular.service('SomeService', SomeService);
-     * ```
-     * @deprecated
-     */
-
-    /**
      * # Angular 1 Directives
      *
      * These are the directives included in UI-Router for Angular 1.
@@ -1765,7 +1703,7 @@
                 transclude: 'element',
                 compile: function (tElement, tAttrs, $transclude) {
                     return function (scope, $element, attrs) {
-                        var onloadExp = attrs['onload'] || '', autoScrollExp = attrs['autoscroll'], renderer = getRenderer(attrs, scope), inherited = $element.inheritedData('$uiView') || rootData, name = $interpolate(attrs['uiView'] || attrs['name'] || '')(scope) || '$default';
+                        var onloadExp = attrs['onload'] || '', autoScrollExp = attrs['autoscroll'], renderer = getRenderer(), inherited = $element.inheritedData('$uiView') || rootData, name = $interpolate(attrs['uiView'] || attrs['name'] || '')(scope) || '$default';
                         var previousEl, currentEl, currentScope, viewConfig, unregister;
                         var activeUIView = {
                             $type: 'ng1',
@@ -1952,7 +1890,7 @@
     /** @hidden TODO: move these callbacks to $view and/or `/hooks/components.ts` or something */
     function registerControllerCallbacks($q, $transitions, controllerInstance, $scope, cfg) {
         // Call $onInit() ASAP
-        if (core.isFunction(controllerInstance.$onInit) && !(cfg.viewDecl.component && hasComponentImpl)) {
+        if (core.isFunction(controllerInstance.$onInit) && !((cfg.viewDecl.component || cfg.viewDecl.componentProvider) && hasComponentImpl)) {
             controllerInstance.$onInit();
         }
         var viewState = core.tail(cfg.path).state.self;
@@ -2044,18 +1982,25 @@
 
     var index = 'ui.router';
 
-    Object.keys(core).forEach(function (key) { exports[key] = core[key]; });
+    Object.keys(core).forEach(function (k) {
+        if (k !== 'default') Object.defineProperty(exports, k, {
+            enumerable: true,
+            get: function () {
+                return core[k];
+            }
+        });
+    });
     exports.core = core;
-    exports.default = index;
-    exports.watchDigests = watchDigests;
-    exports.getLocals = getLocals;
-    exports.getNg1ViewConfigFactory = getNg1ViewConfigFactory;
-    exports.ng1ViewsBuilder = ng1ViewsBuilder;
     exports.Ng1ViewConfig = Ng1ViewConfig;
     exports.StateProvider = StateProvider;
     exports.UrlRouterProvider = UrlRouterProvider;
+    exports.default = index;
+    exports.getLocals = getLocals;
+    exports.getNg1ViewConfigFactory = getNg1ViewConfigFactory;
+    exports.ng1ViewsBuilder = ng1ViewsBuilder;
+    exports.watchDigests = watchDigests;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=ui-router-angularjs.js.map

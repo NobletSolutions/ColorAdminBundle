@@ -1,26 +1,26 @@
 {
-  "_from": "blueimp-gallery@^2.34.1",
-  "_id": "blueimp-gallery@2.34.1",
+  "_from": "blueimp-gallery@^2.36.0",
+  "_id": "blueimp-gallery@2.36.0",
   "_inBundle": false,
-  "_integrity": "sha512-Ezdf8AA55WY31lBHGVrDI4c58U0wLuxQnU0+PK950tnPve+f5r2MVoHrArdq1GPdnTqF95w1mU4pfVcIv+69fg==",
+  "_integrity": "sha512-bicE9gIFXWjX0LButGDLhCRA0+XRBEjAtswnJSt2nHVPUx4Gd8WufNFl65P28YCevooO51KaTFGcbE2oeb8DbQ==",
   "_location": "/blueimp-gallery",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "blueimp-gallery@^2.34.1",
+    "raw": "blueimp-gallery@^2.36.0",
     "name": "blueimp-gallery",
     "escapedName": "blueimp-gallery",
-    "rawSpec": "^2.34.1",
+    "rawSpec": "^2.36.0",
     "saveSpec": null,
-    "fetchSpec": "^2.34.1"
+    "fetchSpec": "^2.36.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/blueimp-gallery/-/blueimp-gallery-2.34.1.tgz",
-  "_shasum": "344cced1329f7a4b155c892504a108cdb32071b0",
-  "_spec": "blueimp-gallery@^2.34.1",
+  "_resolved": "https://registry.npmjs.org/blueimp-gallery/-/blueimp-gallery-2.36.0.tgz",
+  "_shasum": "1775d6f480a5f18da5392519bc132fe3ada2a038",
+  "_spec": "blueimp-gallery@^2.36.0",
   "_where": "/Users/ngunguoksiong/color-admin/admin/src",
   "author": {
     "name": "Sebastian Tschan",
@@ -120,5 +120,5 @@
     ]
   },
   "title": "blueimp Gallery",
-  "version": "2.34.1"
+  "version": "2.36.0"
 }

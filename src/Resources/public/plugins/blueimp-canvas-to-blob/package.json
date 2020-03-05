@@ -1,26 +1,26 @@
 {
-  "_from": "blueimp-canvas-to-blob@3.5.0",
-  "_id": "blueimp-canvas-to-blob@3.5.0",
+  "_from": "blueimp-canvas-to-blob@3",
+  "_id": "blueimp-canvas-to-blob@3.17.0",
   "_inBundle": false,
-  "_integrity": "sha1-VnmsMvaig1gh8MOtZhcZ/4WpI2s=",
+  "_integrity": "sha512-LcuVZZtKtE4yUrLb0IQA7ndMm19gooDTrzvjjkvmQ1MhkFlSzTw+8Ftp+/ckfGeP2UDQvDsPyy8mIT69itAqbg==",
   "_location": "/blueimp-canvas-to-blob",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "blueimp-canvas-to-blob@3.5.0",
+    "raw": "blueimp-canvas-to-blob@3",
     "name": "blueimp-canvas-to-blob",
     "escapedName": "blueimp-canvas-to-blob",
-    "rawSpec": "3.5.0",
+    "rawSpec": "3",
     "saveSpec": null,
-    "fetchSpec": "3.5.0"
+    "fetchSpec": "3"
   },
   "_requiredBy": [
     "/blueimp-file-upload"
   ],
-  "_resolved": "https://registry.npmjs.org/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.5.0.tgz",
-  "_shasum": "5679ac32f6a2835821f0c3ad661719ff85a9236b",
-  "_spec": "blueimp-canvas-to-blob@3.5.0",
+  "_resolved": "https://registry.npmjs.org/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.17.0.tgz",
+  "_shasum": "d796e72aa1fd37f9471e0396e64d323956564a23",
+  "_spec": "blueimp-canvas-to-blob@3",
   "_where": "/Users/ngunguoksiong/color-admin/admin/src/node_modules/blueimp-file-upload",
   "author": {
     "name": "Sebastian Tschan",
@@ -33,11 +33,32 @@
   "deprecated": false,
   "description": "Canvas to Blob is a polyfill for the standard JavaScript canvas.toBlob method. It can be used to create Blob objects from an HTML canvas element.",
   "devDependencies": {
-    "mocha-phantomjs-core": "1.3.1",
-    "phantomjs-prebuilt": "2.1.13",
-    "standard": "8.3.0",
-    "uglify-js": "2.7.3"
+    "eslint": "6",
+    "eslint-config-blueimp": "1",
+    "eslint-config-prettier": "6",
+    "eslint-plugin-jsdoc": "15",
+    "eslint-plugin-prettier": "3",
+    "prettier": "1",
+    "uglify-js": "3"
   },
+  "eslintConfig": {
+    "extends": [
+      "blueimp",
+      "plugin:jsdoc/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "env": {
+      "browser": true
+    }
+  },
+  "eslintIgnore": [
+    "js/*.min.js",
+    "test/vendor"
+  ],
+  "files": [
+    "js/*.js",
+    "js/*.js.map"
+  ],
   "homepage": "https://github.com/blueimp/JavaScript-Canvas-to-Blob",
   "keywords": [
     "javascript",
@@ -49,19 +70,25 @@
   "license": "MIT",
   "main": "./js/canvas-to-blob.js",
   "name": "blueimp-canvas-to-blob",
+  "prettier": {
+    "proseWrap": "always",
+    "semi": false,
+    "singleQuote": true
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/blueimp/JavaScript-Canvas-to-Blob.git"
   },
   "scripts": {
-    "build": "cd js && uglifyjs canvas-to-blob.js -c -m -o canvas-to-blob.min.js --source-map canvas-to-blob.min.js.map",
-    "lint": "standard js/*.js test/*.js",
+    "build": "cd js && uglifyjs canvas-to-blob.js -c -m -o canvas-to-blob.min.js --source-map url=canvas-to-blob.min.js.map",
+    "lint": "eslint .",
+    "posttest": "docker-compose down -v",
     "postversion": "git push --tags origin master master:gh-pages && npm publish",
     "preversion": "npm test",
     "test": "npm run lint && npm run unit",
-    "unit": "phantomjs node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
+    "unit": "docker-compose run --rm mocha",
     "version": "npm run build && git add -A js"
   },
   "title": "JavaScript Canvas to Blob",
-  "version": "3.5.0"
+  "version": "3.17.0"
 }

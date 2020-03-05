@@ -9,9 +9,11 @@
  * https://opensource.org/licenses/MIT
  */
 
-/* global define */
+/* global define, module, require */
 
-;(function (factory) {
+/* eslint-disable no-console */
+
+;(function(factory) {
   'use strict'
   if (typeof define === 'function' && define.amd) {
     // Register as an anonymous AMD module:
@@ -22,48 +24,42 @@
     // Browser globals:
     factory(window.loadImage)
   }
-}(function (loadImage) {
+})(function(loadImage) {
   'use strict'
 
-  loadImage.ExifMap = function () {
+  loadImage.ExifMap = function() {
     return this
   }
 
   loadImage.ExifMap.prototype.map = {
-    'Orientation': 0x0112
+    Orientation: 0x0112
   }
 
-  loadImage.ExifMap.prototype.get = function (id) {
+  loadImage.ExifMap.prototype.get = function(id) {
     return this[id] || this[this.map[id]]
   }
 
-  loadImage.getExifThumbnail = function (dataView, offset, length) {
-    var hexData,
-      i,
-      b
+  loadImage.getExifThumbnail = function(dataView, offset, length) {
     if (!length || offset + length > dataView.byteLength) {
       console.log('Invalid Exif data: Invalid thumbnail data.')
       return
     }
-    hexData = []
-    for (i = 0; i < length; i += 1) {
-      b = dataView.getUint8(offset + i)
-      hexData.push((b < 16 ? '0' : '') + b.toString(16))
-    }
-    return 'data:image/jpeg,%' + hexData.join('%')
+    return loadImage.createObjectURL(
+      new Blob([dataView.buffer.slice(offset, offset + length)])
+    )
   }
 
   loadImage.exifTagTypes = {
     // byte, 8-bit unsigned int:
     1: {
-      getValue: function (dataView, dataOffset) {
+      getValue: function(dataView, dataOffset) {
         return dataView.getUint8(dataOffset)
       },
       size: 1
     },
     // ascii, 8-bit byte:
     2: {
-      getValue: function (dataView, dataOffset) {
+      getValue: function(dataView, dataOffset) {
         return String.fromCharCode(dataView.getUint8(dataOffset))
       },
       size: 1,
@@ -71,38 +67,42 @@
     },
     // short, 16 bit int:
     3: {
-      getValue: function (dataView, dataOffset, littleEndian) {
+      getValue: function(dataView, dataOffset, littleEndian) {
         return dataView.getUint16(dataOffset, littleEndian)
       },
       size: 2
     },
     // long, 32 bit int:
     4: {
-      getValue: function (dataView, dataOffset, littleEndian) {
+      getValue: function(dataView, dataOffset, littleEndian) {
         return dataView.getUint32(dataOffset, littleEndian)
       },
       size: 4
     },
     // rational = two long values, first is numerator, second is denominator:
     5: {
-      getValue: function (dataView, dataOffset, littleEndian) {
-        return dataView.getUint32(dataOffset, littleEndian) /
-        dataView.getUint32(dataOffset + 4, littleEndian)
+      getValue: function(dataView, dataOffset, littleEndian) {
+        return (
+          dataView.getUint32(dataOffset, littleEndian) /
+          dataView.getUint32(dataOffset + 4, littleEndian)
+        )
       },
       size: 8
     },
     // slong, 32 bit signed int:
     9: {
-      getValue: function (dataView, dataOffset, littleEndian) {
+      getValue: function(dataView, dataOffset, littleEndian) {
         return dataView.getInt32(dataOffset, littleEndian)
       },
       size: 4
     },
     // srational, two slongs, first is numerator, second is denominator:
     10: {
-      getValue: function (dataView, dataOffset, littleEndian) {
-        return dataView.getInt32(dataOffset, littleEndian) /
-        dataView.getInt32(dataOffset + 4, littleEndian)
+      getValue: function(dataView, dataOffset, littleEndian) {
+        return (
+          dataView.getInt32(dataOffset, littleEndian) /
+          dataView.getInt32(dataOffset + 4, littleEndian)
+        )
       },
       size: 8
     }
@@ -110,7 +110,14 @@
   // undefined, 8-bit byte, value depending on field:
   loadImage.exifTagTypes[7] = loadImage.exifTagTypes[1]
 
-  loadImage.getExifValue = function (dataView, tiffOffset, offset, type, length, littleEndian) {
+  loadImage.getExifValue = function(
+    dataView,
+    tiffOffset,
+    offset,
+    type,
+    length,
+    littleEndian
+  ) {
     var tagType = loadImage.exifTagTypes[type]
     var tagSize
     var dataOffset
@@ -125,9 +132,10 @@
     tagSize = tagType.size * length
     // Determine if the value is contained in the dataOffset bytes,
     // or if the value at the dataOffset is a pointer to the actual data:
-    dataOffset = tagSize > 4
-      ? tiffOffset + dataView.getUint32(offset + 8, littleEndian)
-      : (offset + 8)
+    dataOffset =
+      tagSize > 4
+        ? tiffOffset + dataView.getUint32(offset + 8, littleEndian)
+        : offset + 8
     if (dataOffset + tagSize > dataView.byteLength) {
       console.log('Invalid Exif data: Invalid data offset.')
       return
@@ -137,7 +145,11 @@
     }
     values = []
     for (i = 0; i < length; i += 1) {
-      values[i] = tagType.getValue(dataView, dataOffset + i * tagType.size, littleEndian)
+      values[i] = tagType.getValue(
+        dataView,
+        dataOffset + i * tagType.size,
+        littleEndian
+      )
     }
     if (tagType.ascii) {
       str = ''
@@ -155,7 +167,13 @@
     return values
   }
 
-  loadImage.parseExifTag = function (dataView, tiffOffset, offset, littleEndian, data) {
+  loadImage.parseExifTag = function(
+    dataView,
+    tiffOffset,
+    offset,
+    littleEndian,
+    data
+  ) {
     var tag = dataView.getUint16(offset, littleEndian)
     data.exif[tag] = loadImage.getExifValue(
       dataView,
@@ -167,10 +185,14 @@
     )
   }
 
-  loadImage.parseExifTags = function (dataView, tiffOffset, dirOffset, littleEndian, data) {
-    var tagsNumber,
-      dirEndOffset,
-      i
+  loadImage.parseExifTags = function(
+    dataView,
+    tiffOffset,
+    dirOffset,
+    littleEndian,
+    data
+  ) {
+    var tagsNumber, dirEndOffset, i
     if (dirOffset + 6 > dataView.byteLength) {
       console.log('Invalid Exif data: Invalid directory offset.')
       return
@@ -194,7 +216,7 @@
     return dataView.getUint32(dirEndOffset, littleEndian)
   }
 
-  loadImage.parseExifData = function (dataView, offset, length, data, options) {
+  loadImage.parseExifData = function(dataView, offset, length, data, options) {
     if (options.disableExif) {
       return
     }
@@ -221,7 +243,7 @@
       case 0x4949:
         littleEndian = true
         break
-      case 0x4D4D:
+      case 0x4d4d:
         littleEndian = false
         break
       default:
@@ -229,7 +251,7 @@
         return
     }
     // Check for the TIFF tag marker (0x002A):
-    if (dataView.getUint16(tiffOffset + 2, littleEndian) !== 0x002A) {
+    if (dataView.getUint16(tiffOffset + 2, littleEndian) !== 0x002a) {
       console.log('Invalid Exif data: Missing TIFF marker.')
       return
     }
@@ -247,7 +269,7 @@
       data
     )
     if (dirOffset && !options.disableExifThumbnail) {
-      thumbnailData = {exif: {}}
+      thumbnailData = { exif: {} }
       dirOffset = loadImage.parseExifTags(
         dataView,
         tiffOffset,
@@ -297,4 +319,4 @@
   // * disableExifThumbnail: Disables parsing of the Exif Thumbnail.
   // * disableExifSub: Disables parsing of the Exif Sub IFD.
   // * disableExifGps: Disables parsing of the Exif GPS Info IFD.
-}))
+})
