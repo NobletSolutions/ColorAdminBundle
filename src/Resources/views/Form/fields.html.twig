@@ -19,9 +19,9 @@
         {%- endif -%}
         <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
         {%- if translation_domain is same as(false) -%}
-            {{- label -}}
+            {{- label|raw -}}
         {%- else -%}
-            {{- label|trans({}, translation_domain) -}}
+            {{- label|trans({}, translation_domain)|raw -}}
         {%- endif -%}
         </{{ element|default('label') }}>
     {%- endif -%}
