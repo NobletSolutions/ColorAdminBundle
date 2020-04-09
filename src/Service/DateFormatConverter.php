@@ -33,15 +33,15 @@ class DateFormatConverter
         $pattern = $formatter->getPattern();
 
         if ($longyear && strpos($pattern, 'yyyy') === false) {
-            $pattern = str_replace('yy', 'yyyy', $pattern);
+            $pattern = preg_replace("/y{1,}/", 'yyyy', $pattern);
         }
 
         if (strpos($pattern, 'MM') === false) {
-            $pattern = str_replace('M', 'MM', $pattern);
+            $pattern = preg_replace("/M{1,}/", 'MM', $pattern);
         }
 
         if (strpos($pattern, 'dd') === false) {
-            $pattern = str_replace('d', 'dd', $pattern);
+            $pattern = preg_replace("/d{1,}/", 'dd', $pattern);
         }
 
         return trim(str_replace(' ', '', $pattern), './-');

@@ -14,7 +14,7 @@ function initForms(scope)
         scope = $(scope);
     }
 
-    scope.findInclusive('.datepicker-input').datepicker({todayHighlight: true, autoclose: true});
+    // scope.findInclusive('.datepicker-input').datepicker({todayHighlight: true, autoclose: true});
 
     scope.findInclusive('.select2').select2();
 

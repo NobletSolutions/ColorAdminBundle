@@ -225,7 +225,7 @@
                 data-date-start-date="{{ start_date is same as(true) ? 'Date.default' : start_date }}"
             {% endif %}
     >
-        {%- set attr = {'class':'form-control'} %}
+        {%- set attr = attr|merge({'class':'form-control'}) %}
         {{ block('form_widget_simple') }}
         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
     </div>
