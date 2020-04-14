@@ -53,8 +53,8 @@ class DatepickerType extends AbstractType
         $view->vars['start_date'] = isset($options['start_date']) ? $options['start_date'] : false;
         $view->vars['attr']['data-date-format'] = strtolower($options['format']);
         $view->vars['attr']['data-provide'] = 'datepicker';
-        $view->vars['attr']['data-today-highlight'] = $options['today_highlight'];
-        $view->vars['attr']['data-autoclose'] = $options['autoclose'];
+        $view->vars['attr']['data-date-today-highlight'] = $options['today_highlight'];
+        $view->vars['attr']['data-date-autoclose'] = $options['autoclose'];
     }
 
     public function getParent()
