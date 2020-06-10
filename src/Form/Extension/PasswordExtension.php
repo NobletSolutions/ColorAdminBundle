@@ -27,6 +27,10 @@ class PasswordExtension extends AbstractTypeExtension
         $resolver->setDefaults(['placement' => 'before']);
     }
 
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
     public function getExtendedType(): string
     {
         return PasswordType::class;

@@ -40,8 +40,17 @@ class DateExtension extends AbstractTypeExtension
         $resolver->setDefaults(['year_class'=>'col-3', 'month_class'=>'col-3', 'day_class'=>'col-3']);
     }
 
-    public function getExtendedType()
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
+    public function getExtendedType(): string
     {
         return DateType::class;
+    }
+
+    public static function getExtendedTypes(): iterable
+    {
+        return [DateType::class];
     }
 }

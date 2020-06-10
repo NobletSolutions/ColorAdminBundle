@@ -24,6 +24,10 @@ class DetailsExtension extends AbstractTypeExtension
         $resolver->setAllowedValues('state', ['valid', 'invalid']);
     }
 
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
     public function getExtendedType(): string
     {
         return FormType::class;
