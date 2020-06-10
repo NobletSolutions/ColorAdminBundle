@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.3 - Adding SF5 support
+      10/06/2020 12:20  2.3.2  Fixed composer typo
       10/06/2020 12:15  2.3.1  Bump knp version
       10/06/2020 12:06  2.3.0  initial release
 
