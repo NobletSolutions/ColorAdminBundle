@@ -28,7 +28,7 @@ function initForms(scope)
 
     scope.findInclusive('input[data-mask]').each(function(i, el)
     {
-        $.extend($.mask.definitions, $(el).data('definitions'));
+        $.extend($.mask.definitions, $(el).data('mark-definitions'));
 
         $(el).mask($(el).data('mask'), {placeholder: $(el).data('placeholder')});
     });
