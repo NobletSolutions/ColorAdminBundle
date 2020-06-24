@@ -7,6 +7,7 @@ namespace NS\ColorAdminBundle\Form\Type;
 use NS\ColorAdminBundle\Form\Transformer\TimeTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -43,13 +44,15 @@ class TimepickerType extends AbstractType
         $resolver->setDefault('disableMousewheel', false);
         $resolver->setDefault('modalBackdrop', false);
         $resolver->setDefault('disableFocus', false);
+        $resolver->setDefault('html5', false);
+        $resolver->setDefault('widget', 'single_text');
         $resolver->setDefault('icons', ['up' => 'fa fa-chevron-up', 'down' => 'fa fa-chevron-down']);
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->addModelTransformer(new TimeTransformer($options['showMeridian'], $options['showSeconds']));
-    }
+//    public function buildForm(FormBuilderInterface $builder, array $options)
+//    {
+//        $builder->addModelTransformer(new TimeTransformer($options['showMeridian'], $options['showSeconds']));
+//    }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -73,6 +76,6 @@ class TimepickerType extends AbstractType
 
     public function getParent()
     {
-        return TextType::class;
+        return TimeType::class;
     }
 }

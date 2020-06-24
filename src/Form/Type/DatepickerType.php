@@ -43,7 +43,8 @@ class DatepickerType extends AbstractType
             'inline' => false,
             'format'   => $this->converter->getFormat(true),
             'today_highlight' => true,
-            'autoclose' => true
+            'autoclose' => true,
+            'html5' => false
         ]);
     }
 

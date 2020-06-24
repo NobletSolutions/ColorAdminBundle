@@ -23,6 +23,10 @@ class IconExtension extends AbstractTypeExtension
         $view->vars['icon_position'] = $options['icon_position'] ?? false;
     }
 
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
     public function getExtendedType(): string
     {
         return TextType::class;

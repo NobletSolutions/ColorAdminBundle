@@ -24,8 +24,17 @@ class CollectionExtension extends AbstractTypeExtension
         $view->vars['add_button_icon'] = $options['add_button_icon'];
     }
 
-    public function getExtendedType()
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
+    public function getExtendedType(): string
     {
         return CollectionType::class;
+    }
+
+    public static function getExtendedTypes(): iterable
+    {
+        return [CollectionType::class];
     }
 }

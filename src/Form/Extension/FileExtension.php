@@ -23,6 +23,10 @@ class FileExtension extends AbstractTypeExtension
         $resolver->setDefault('picker_label', 'Choose...');
     }
 
+    /**
+     * @return string
+     * Included for BC with SF3
+     */
     public function getExtendedType(): string
     {
         return FileType::class;

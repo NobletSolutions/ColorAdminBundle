@@ -17,8 +17,22 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('color_admin');
-        $rootNode = $treeBuilder->getRootNode();
+        /**
+         * Instantiating a new TreeBuilder without a constructor arg is deprecated in SF4 and removed in SF5
+         */
+        if(method_exists(TreeBuilder::class, '__construct'))
+        {
+            $treeBuilder = new TreeBuilder('color_admin');
+            $rootNode = $treeBuilder->getRootNode();
+        }
+        /**
+         * Included for backward-compatibility with SF3
+         */
+        else
+        {
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('color_admin');
+        }
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -3,45 +3,49 @@
 {% set plugin_basepath = asset_basepath ~ 'plugins/' %}
 {% set js_basepath = asset_basepath ~ 'js/' %}
 <!DOCTYPE html>
-<!--[if IE 8]>
-<html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
 <head>
     {% block page_metas %}
         <!-- begin page_metas -->
-        <meta charset="{% block meta_charset %}utf-8{% endblock %}"/>
+        <meta charset="{% block meta_charset %}utf-8{% endblock %}" />
         <title>{% block pagetitle %}Color Admin | Dashboard{% endblock %}</title>
         <meta content="{% block meta_viewport %}width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no{% endblock %}"
-              name="viewport"/>
-        <meta content="{% block meta_description %}{% endblock %}" name="description"/>
-        <meta content="{% block meta_author %}{% endblock %}" name="author"/>
+              name="viewport"
+        />
+        <meta content="{% block meta_description %}{% endblock %}" name="description" />
+        <meta content="{% block meta_author %}{% endblock %}" name="author" />
         <!-- end page_metas -->
     {% endblock %}
     {% block base_styles %}
         <!-- base_styles -->
         {% block fonts %}
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
         {% endblock %}
-        <link href="{{ asset(plugin_basepath~'jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/>
-        <link href="{{ asset(plugin_basepath~'animate/animate.min.css') }}" rel="stylesheet"/>
-        <link href="{{ asset(css_basepath~'app.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset(plugin_basepath~'jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset(plugin_basepath~'animate/animate.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset(css_basepath~'app.min.css') }}" rel="stylesheet" />
         {% block fontawesome_css %}
-            <link href="{{ asset(plugin_basepath~'font-awesome/css/all.min.css') }}" rel="stylesheet"/>
+            <link href="//cdn.tndg.ca/fontawesome/css/all.css" rel="stylesheet" />
         {% endblock %}
         {% block form_styles %}
             <!-- form_styles -->
             <link href="{{ asset(plugin_basepath~'bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}"
-                  rel="stylesheet"/>
-            <link href="{{ asset(plugin_basepath~'select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
-            <link href="{{ asset(plugin_basepath~'password-indicator/css/password-indicator.css') }}" rel="stylesheet"/>
-            <link href="{{ asset(plugin_basepath~'jquery-tag-it/css/jquery.tagit.css') }}" rel="stylesheet"/>
-            <link href="{{ asset(plugin_basepath~'bootstrap-timepicker/css/bootstrap-timepicker.css') }}" rel="stylesheet"/>
+                  rel="stylesheet"
+            />
+            <link href="{{ asset(plugin_basepath~'select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+            <link href="{{ asset(plugin_basepath~'password-indicator/css/password-indicator.css') }}"
+                  rel="stylesheet"
+            />
+            <link href="{{ asset(plugin_basepath~'jquery-tag-it/css/jquery.tagit.css') }}" rel="stylesheet" />
+            <link href="{{ asset(plugin_basepath~'bootstrap-timepicker/css/bootstrap-timepicker.css') }}"
+                  rel="stylesheet"
+            />
             <!-- end form_styles -->
         {% endblock %}
-        <link href="{{ asset(css_basepath~'theme/'~color_admin.theme_color~'.min.css') }}" rel="stylesheet" id="theme"/>
-        <link href="{{ asset(asset_basepath~'css/ns.css') }}" rel="stylesheet" id="theme"/>
+        <link href="{{ asset(css_basepath~'theme/'~color_admin.theme_color~'.min.css') }}" rel="stylesheet"
+              id="theme"
+        />
+        <link href="{{ asset(asset_basepath~'css/ns.css') }}" rel="stylesheet" id="theme" />
         <!-- end base_styles -->
     {% endblock %}
 
@@ -68,11 +72,13 @@
 {% endblock %}
 
 <div id="page-container"
-     class="fade {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}">
+     class="fade {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}"
+>
     {% block header %}
         <!-- begin header -->
         <div id="header"
-             class="header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}">
+             class="header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}"
+        >
             {% block navbar_header %}
                 <!-- begin navbar_header -->
                 <div class="navbar-header">
@@ -95,10 +101,12 @@
                         <!-- begin header_search -->
                         <li>
                             <form class="navbar-form" method="{% block header_search_form_method %}GET{% endblock %}"
-                                  action="{% block header_search_form_action %}{% endblock %}">
+                                  action="{% block header_search_form_action %}{% endblock %}"
+                            >
                                 <div class="form-group">
                                     <input type="text" class="form-control"
-                                           placeholder="{% block header_search_placeholder %}Enter keyword{% endblock %}"/>
+                                           placeholder="{% block header_search_placeholder %}Enter keyword{% endblock %}"
+                                    />
                                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                                 </div>
                             </form>
@@ -295,7 +303,8 @@
                         <li>
                             <!-- begin sidebar_minify -->
                             <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i
-                                        class="fa fa-angle-double-left"></i></a>
+                                        class="fa fa-angle-double-left"
+                                ></i></a>
                             <!-- end sidebar_minify -->
                         </li>
                     </ul>
@@ -344,7 +353,8 @@
 
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
-                class="fa fa-angle-up"></i></a>
+                class="fa fa-angle-up"
+        ></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
@@ -391,8 +401,7 @@
 
 {% block page_init %}
     <script>
-        $(document).ready(function()
-        {
+        $(document).ready(function() {
             App.init(
                 {
                     disableDraggablePanel: !{{ color_admin.draggable_panel ? 'true' : 'false' }}
