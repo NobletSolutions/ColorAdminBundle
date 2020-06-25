@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.4 - Updates and BC for SF5
+      25/06/2020 14:44  2.4.1  Fixed interface issue
       24/06/2020 10:21  2.4.0  initial release
 
    Version 2.3 - Adding SF5 support
