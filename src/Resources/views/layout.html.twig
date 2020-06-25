@@ -8,7 +8,7 @@
     {% block page_metas %}
         <!-- begin page_metas -->
         <meta charset="{% block meta_charset %}utf-8{% endblock %}" />
-        <title>{% block pagetitle %}Color Admin | Dashboard{% endblock %}</title>
+        <title>{% block pagetitle %}{#Color Admin | Dashboard#}{% endblock %}</title>
         <meta content="{% block meta_viewport %}width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no{% endblock %}"
               name="viewport"
         />
@@ -42,9 +42,9 @@
             />
             <!-- end form_styles -->
         {% endblock %}
-        <link href="{{ asset(css_basepath~'theme/'~color_admin.theme_color~'.min.css') }}" rel="stylesheet"
-              id="theme"
-        />
+        {% if color_admin.theme_color != 'default' %}
+            <link href="{{ asset(css_basepath~'theme/'~color_admin.theme_color~'.min.css') }}" rel="stylesheet" id="theme" />
+        {% endif %}
         <link href="{{ asset(asset_basepath~'css/ns.css') }}" rel="stylesheet" id="theme" />
         <!-- end base_styles -->
     {% endblock %}
@@ -70,21 +70,30 @@
     {#<div id="page-loader" class="fade show"><span class="spinner"></span></div>#}
     <!-- end page_loader -->
 {% endblock %}
+{% block page_container_class %}
+    fade {% block page_container_additional_class %}{% endblock %} {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}
+{% endblock %}
 
-<div id="page-container"
-     class="fade {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}"
->
+{% block page_header_class %}
+    header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}
+{% endblock %}
+
+
+<div id="page-container" class="{{ block('page_container_class') }}">
     {% block header %}
         <!-- begin header -->
-        <div id="header"
-             class="header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}"
-        >
+        <div id="header" class="{{ block('page_header_class') }}">
             {% block navbar_header %}
                 <!-- begin navbar_header -->
                 <div class="navbar-header">
-                    <a href="{% block navbar_logo_link %}/{% endblock %}" class="navbar-brand">{% block navbar_logo %}
-                            <span class="navbar-logo"></span>{% endblock %}{% block navbar_logo_title %}
-                            <b>Color</b> Admin{% endblock %}</a>
+                    <a href="{% block navbar_logo_link %}/{% endblock %}" class="navbar-brand">
+                        {% block navbar_logo %}
+                            {#<span class="navbar-logo"></span>#}
+                        {% endblock %}
+                        {% block navbar_logo_title %}
+                            {#<b>Color</b> Admin#}
+                        {% endblock %}</a>
+
                     <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -99,18 +108,14 @@
                 <ul class="navbar-nav navbar-right">
                     {% block header_search %}
                         <!-- begin header_search -->
-                        <li>
-                            <form class="navbar-form" method="{% block header_search_form_method %}GET{% endblock %}"
-                                  action="{% block header_search_form_action %}{% endblock %}"
-                            >
-                                <div class="form-group">
-                                    <input type="text" class="form-control"
-                                           placeholder="{% block header_search_placeholder %}Enter keyword{% endblock %}"
-                                    />
-                                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
-                        </li>
+                        {#                        <li>#}
+                        {#                            <form class="navbar-form" method="{% block header_search_form_method %}GET{% endblock %}" action="{% block header_search_form_action %}{% endblock %}">#}
+                        {#                                <div class="form-group">#}
+                        {#                                    <input type="text" class="form-control" placeholder="{% block header_search_placeholder %}Enter keyword{% endblock %}" />#}
+                        {#                                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>#}
+                        {#                                </div>#}
+                        {#                            </form>#}
+                        {#                        </li>#}
                         <!-- end header_search -->
                     {% endblock %}
                     {% block header_message_menu %}
@@ -119,12 +124,12 @@
                             {% block header_message_menu_button %}
                                 <!-- begin header_message_menu_button -->
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                {% block header_message_menu_button_content %}
-                                    <!-- begin header_message_menu_button_content -->
-                                    <i class="fa fa-bell"></i>
-                                    Menu</a>
-                                    <!-- end header_message_menu_button_content-->
-                                {% endblock %}
+                                    {% block header_message_menu_button_layout %}
+                                        <!-- begin header_message_menu_button_content -->
+                                        {#<i class="fa fa-bell"></i>Menu#}
+                                        <!-- end header_message_menu_button_content-->
+                                    {% endblock %}
+                                </a>
                                 {#<a href="#" data-toggle="dropdown" class="dropdown-toggle f-s-14">#}
                                 {#<i class="fa fa-bell"></i>#}
                                 {#<span class="label">5</span>#}
@@ -211,9 +216,11 @@
                             {% block header_user_menu_button %}
                                 <!-- begin header_user_menu_button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-user fa-2x"></i>
-                                    <span class="d-none d-md-inline">{% block header_user_menu_username %}Firstname Lastname{% endblock %}</span>
-                                    <b class="caret"></b>
+                                    {#<i class="fa fa-user fa-2x"></i>
+                                    <span class="d-none d-md-inline">#}
+                                    {% block header_user_menu_username %}{#Firstname Lastname#}{% endblock %}
+                                    {#</span>
+                                    <b class="caret"></b>#}
                                 </a>
                                 <!-- end header_user_menu_button -->
                             {% endblock %}
@@ -328,8 +335,8 @@
 
                     {% block page_header %}
                         <!-- begin page_header -->
-                        <h1 class="page-header">{% block page_header_title %}Pagetitle{% endblock %}
-                            <small>{% block page_header_subtitle %}Subtitle{% endblock %}</small>
+                        <h1 class="page-header">{% block page_header_title %}{#Pagetitle#}{% endblock %}
+                            <small>{% block page_header_subtitle %}{#Subtitle#}{% endblock %}</small>
                         </h1>
                         <!-- end page_header -->
                     {% endblock %}
