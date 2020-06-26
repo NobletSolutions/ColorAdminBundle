@@ -70,19 +70,11 @@
     {#<div id="page-loader" class="fade show"><span class="spinner"></span></div>#}
     <!-- end page_loader -->
 {% endblock %}
-{% block page_container_class %}
-    fade {% block page_container_additional_class %}{% endblock %} {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}
-{% endblock %}
 
-{% block page_header_class %}
-    header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}
-{% endblock %}
-
-
-<div id="page-container" class="{{ block('page_container_class') }}">
+<div id="page-container" class="{% block page_container_class %}fade {% block page_container_additional_class %}{% endblock %} {{ not color_admin.use_pace ? 'in' : '' }} {{ color_admin.fixed_sidebar ? 'page-sidebar-fixed' : '' }} {{ color_admin.fixed_header ? 'page-header-fixed' : '' }} {{ color_admin.gradient_sidebar ? 'gradient-enabled' : '' }}{% endblock %}">
     {% block header %}
         <!-- begin header -->
-        <div id="header" class="{{ block('page_header_class') }}">
+        <div id="header" class="{% block page_header_class %}header {{ color_admin.inverse_header ? 'navbar-inverse':'navbar-default' }} {{ color_admin.fixed_header ? 'navbar-fixed-top' : '' }}{% endblock %}">
             {% block navbar_header %}
                 <!-- begin navbar_header -->
                 <div class="navbar-header">

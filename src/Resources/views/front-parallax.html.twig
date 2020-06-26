@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Color Admin | One Page Parallax Front End Theme{% endblock %}</title>
+    {% block page_metas %}
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        {#        <meta content="" name="description" />#}
+        {#        <meta content="" name="author" />#}
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% block base_stylesheets %}
+            <!-- ================== BEGIN BASE CSS STYLE ================== -->
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <link href="{{ asset('bundles/coloradmin/css/parallax/app.min.css') }}" rel="stylesheet" />
+            <!-- ================== END BASE CSS STYLE ================== -->
+            {% block theme_stylesheets %}
+                {% if color_admin.theme_color != 'default' %}
+                    <link href="{{ asset('bundles/coloradmin/css/parallax/theme/'~color_admin.theme_color~'.css') }}" rel="stylesheet" id="theme" />
+                {% endif %}
+            {% endblock %}
+            {% block ns_stylesheets %}
+                <link href="{{ asset('bundles/coloradmin/css/ns.css') }}" rel="stylesheet" />
+            {% endblock %}
+            {% block page_stylesheets %}
+            {% endblock %}
+        {% endblock %}
+    {% endblock %}
+</head>
+
+<body data-spy="scroll" data-target="#header-navbar" data-offset="51">
+<!-- begin #page-container -->
+<div id="page-container" class="{% block page_container_class %}fade show{% endblock %}">
+    <!-- begin #header -->
+    <div id="header" class="{% block page_header_class %}header navbar navbar-transparent navbar-fixed-top navbar-sm navbar-expand-lg{% endblock %}">
+        <!-- begin container -->
+        <div class="container">
+            <!-- begin navbar-header -->
+            {% block navbar_header %}
+                {#                <div class="navbar-header">#}
+                {#                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">#}
+                {#                    <span class="icon-bar"></span>#}
+                {#                    <span class="icon-bar"></span>#}
+                {#                    <span class="icon-bar"></span>#}
+                {#                </button>#}
+                {% block navbar_brand %}
+                    {#                <a href="index.html" class="navbar-brand">#}
+                    {#                    <span class="brand-logo"></span>#}
+                    {#                    <span class="brand-text">#}
+                    {#                        <span class="text-theme">Color</span> Admin#}
+                    {#                    </span>#}
+                    {#                </a>#}
+                {% endblock %}
+                {#                </div>#}
+            {% endblock %}
+            <!-- end navbar-header -->
+            <!-- begin navbar-collapse -->
+            {% block navbar %}
+                {#
+                <div class="collapse navbar-collapse" id="header-navbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item dropdown">
+							<a class="nav-link active" href="#home" data-click="scroll-to-target" data-scroll-target="#home">HOME <b class="caret"></b></a>
+							<div class="dropdown-menu dropdown-menu-left animated fadeInDown">
+								<a class="dropdown-item" href="index.html">Page with Transparent Header</a>
+								<a class="dropdown-item" href="index_inverse_header.html">Page with Inverse Header</a>
+								<a class="dropdown-item" href="index_default_header.html">Page with White Header</a>
+								<a class="dropdown-item" href="extra_element.html">Extra Element</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#about" data-click="scroll-to-target">ABOUT</a></li>
+						<li class="nav-item"><a class="nav-link" href="#team" data-click="scroll-to-target">TEAM</a></li>
+						<li class="nav-item"><a class="nav-link" href="#service" data-click="scroll-to-target">SERVICES</a></li>
+						<li class="nav-item"><a class="nav-link" href="#work" data-click="scroll-to-target">WORK</a></li>
+						<li class="nav-item"><a class="nav-link" href="#client" data-click="scroll-to-target">CLIENT</a></li>
+						<li class="nav-item"><a class="nav-link" href="#pricing" data-click="scroll-to-target">PRICING</a></li>
+						<li class="nav-item"><a class="nav-link" href="#contact" data-click="scroll-to-target">CONTACT</a></li>
+					</ul>
+				</div>
+                #}
+            {% endblock %}
+            <!-- end navbar-collapse -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end #header -->
+
+    {% block content %}
+        {# https://seantheme.com/color-admin/frontend/one-page-parallax/index.html for sample content /#}
+    {% endblock %}
+
+    <!-- begin #footer -->
+    {% block footer %}
+        {#        <div id="footer" class="footer">#}
+        {#            <div class="container">#}
+        {#                <div class="footer-brand">#}
+        {#                    <div class="footer-brand-logo"></div>#}
+        {#                    Color Admin#}
+        {#                </div>#}
+        {#                <p>#}
+        {#                    &copy; Copyright Color Admin 2014 <br />#}
+        {#                    An admin & front end theme with serious impact. Created by <a href="#">SeanTheme</a>#}
+        {#                </p>#}
+        {#                <p class="social-list">#}
+        {#                    <a href="#"><i class="fa fa-facebook fa-fw"></i></a>#}
+        {#                    <a href="#"><i class="fa fa-instagram fa-fw"></i></a>#}
+        {#                    <a href="#"><i class="fa fa-twitter fa-fw"></i></a>#}
+        {#                    <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>#}
+        {#                    <a href="#"><i class="fa fa-dribbble fa-fw"></i></a>#}
+        {#                </p>#}
+        {#            </div>#}
+        {#        </div>#}
+    {% endblock %}
+    <!-- end #footer -->
+    {% block modal_messages %}
+        {# this assumes we have installed ns_flash #}
+        {% if app.session and app.session.flashbag and app.session.flashbag.peekAll|length > 0 %}
+            <div class="modal modal-message fade" id="modal-message-flash">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"></div>
+                        <div class="modal-body">
+                            {% for flashMessage in app.session.flashbag.get('error') %}
+                                <div class="alert alert-danger m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('warning') %}
+                                <div class="alert alert-warning m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('message') %}
+                                <div class="alert alert-info m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                            {% for flashMessage in app.session.flashbag.get('success') %}
+                                <div class="alert alert-success m-b-15">
+                                    {{ flashMessage.header ? ('<h4>'~flashMessage.header|trans~'</h4>')|raw }}
+                                    <strong>{{ flashMessage.title|trans }}</strong> {{ flashMessage.message|trans }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#modal-message-flash').modal();
+                });
+            </script>
+        {% endif %}
+    {% endblock %}
+</div>
+<!-- end #page-container -->
+
+<!-- ================== BEGIN BASE JS ================== -->
+{% block javascripts %}
+{% block base_javascripts %}
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{{ asset('bundles/coloradmin/js/parallax/app.min.js') }}"></script>
+    <!-- ================== END BASE JS ================== -->
+{% endblock %}
+    <script src="{{ asset('bundles/coloradmin/js/ns.js') }}"></script>
+
+    {% block page_javascripts %}
+    {% endblock %}
+{% endblock %}
+<!-- ================== END BASE JS ================== -->
+</body>
+</html>
