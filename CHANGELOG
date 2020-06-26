@@ -2,6 +2,9 @@
 VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
+   Version 2.5 - Added Parallax layout
+      26/06/2020 16:17  2.5.0  initial release
+
    Version 2.4 - Updates and BC for SF5
       25/06/2020 16:35  2.4.2  Adjusted default template block content
       25/06/2020 14:44  2.4.1  Fixed interface issue
