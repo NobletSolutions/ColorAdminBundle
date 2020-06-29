@@ -73,15 +73,18 @@
     <div {{ block('widget_container_attributes') }}>
         {%- for child in form %}
             <div class="form-check">
-                {{ form_widget(child) }}
-                {{ form_label(child, null, {'label_attr':{'class':'form-check-label'}}) }}
+                <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css'}}">
+                    {{ form_widget(child) }}
+                </div>
             </div>
         {% endfor -%}
     </div>
 {%- endblock choice_widget_expanded -%}
 
 {% block form_row %}
-    <div id="{{ id }}_row" class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
+    <div id="{{ id }}_row"
+         class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}"
+    >
         {{ form_label(form) }}
         <div class="{{ wrapper_class|default(vertical ? '' : 'col-md-9') }} field-wrapper">
             {{ form_widget(form) }}
@@ -92,8 +95,15 @@
 {% endblock %}
 
 {% block checkbox_widget %}
-    {% set attr = attr|merge({'class': attr.class|default('form-check-input')|trim}) %}
+    {% set attr = attr|merge({'class': errors|length > 0 ? 'has-error has-feedback is-invalid' ~ (attr.class|default('form-check-input')|trim)}) %}
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ form_label(form, null, {'label_attr':{'class':'form-check-label'}}) }}
+{% endblock %}
+
+{% block radio_widget %}
+    {% set attr = attr|merge({'class': errors|length > 0 ? 'has-error has-feedback is-invalid' ~ (attr.class|default('form-radio-input')|trim)}) %}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ form_label(form, null, {'label_attr':{'class':'form-check-label'}}) }}
 {% endblock %}
 
 {#{% block checkbox_label %}#}
@@ -106,7 +116,24 @@
         {{ form_label(form) }}
         <div class="{{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
             <div class="form-check">
-                {{ form_widget(form) }}
+                <div class="checkbox checkbox-css">
+                    {{ form_widget(form) }}
+                </div>
+            </div>
+            {{ note ? ('<p>'~note~'</p>')|raw : '' }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block radio_row %}
+    <div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
+        {{ form_label(form) }}
+        <div class="{{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
+            <div class="form-check">
+                <div class="radio radio-css">
+                    {{ form_widget(form) }}
+                </div>
             </div>
             {{ note ? ('<p>'~note~'</p>')|raw : '' }}
             {{ form_errors(form) }}
@@ -277,5 +304,7 @@
     {% endif %}
     {# Delete button: <button type="button" class="ns-collection-remove btn btn-danger" href="#{{ id }}_row">Delete</button> #}
     {{- block('form_widget') -}}
-    <button type="button" href="#{{ id }}"class="btn btn-primary ns-collection-add"><i class="fa fa-{{ add_button_icon }}"></i> {{ add_button_label }}</button>
+    <button type="button" href="#{{ id }}" class="btn btn-primary ns-collection-add"><i
+                class="fa fa-{{ add_button_icon }}"
+        ></i> {{ add_button_label }}</button>
 {%- endblock -%}
