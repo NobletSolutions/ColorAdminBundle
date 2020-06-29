@@ -73,7 +73,7 @@
     <div {{ block('widget_container_attributes') }}>
         {%- for child in form %}
             <div class="form-check">
-                <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css'}}">
+                <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css' }}">
                     {{ form_widget(child) }}
                 </div>
             </div>
@@ -97,19 +97,14 @@
 {% block checkbox_widget %}
     {% set attr = attr|merge({'class': errors|length > 0 ? 'has-error has-feedback is-invalid' ~ (attr.class|default('form-check-input')|trim)}) %}
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-    {{ form_label(form, null, {'label_attr':{'class':'form-check-label'}}) }}
+    {{ form_label(form, empty_label or form.parent.vars.empty_label ? "&#xfeff;" : null, {'label_attr':{'class':'form-check-label'}}) }}
 {% endblock %}
 
 {% block radio_widget %}
     {% set attr = attr|merge({'class': errors|length > 0 ? 'has-error has-feedback is-invalid' ~ (attr.class|default('form-radio-input')|trim)}) %}
     <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-    {{ form_label(form, null, {'label_attr':{'class':'form-check-label'}}) }}
+    {{ form_label(form, empty_label or form.parent.vars.empty_label ? "&#xfeff;" : null, {'label_attr':{'class':'form-check-label'}}) }}
 {% endblock %}
-
-{#{% block checkbox_label %}#}
-    {#{{ dump(form) }}#}
-    {#{{ form_label(form, {'label-attr':{'class':'form-check-label'}}) }}#}
-{#{% endblock %}#}
 
 {% block checkbox_row %}
     <div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">

@@ -15,13 +15,15 @@ class DetailsExtension extends AbstractTypeExtension
         $view->vars['note']          = $options['note'];
         $view->vars['wrapper_class'] = $options['wrapper_class'];
         $view->vars['state']         = $options['state'] ?? false;
+        $view->vars['empty_label']      = $options['empty_label'] ?? false;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefined(['note', 'wrapper_class', 'state']);
-        $resolver->setDefaults(['note' => false, 'wrapper_class' => false]);
+        $resolver->setDefined(['note', 'wrapper_class', 'state', 'empty_label']);
+        $resolver->setDefaults(['note' => false, 'wrapper_class' => false, 'empty_label' => false]);
         $resolver->setAllowedValues('state', ['valid', 'invalid']);
+        $resolver->setAllowedValues('empty_label', [true, false]);
     }
 
     /**
