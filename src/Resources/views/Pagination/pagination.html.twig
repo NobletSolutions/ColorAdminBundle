@@ -3,7 +3,7 @@
 
         {% if previous is defined %}
             <li class="page-item">
-                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" title="{{ 'Previous'|trans }}">«</a>
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" title="{{ 'color_admin.paginator.previous'|trans }}">«</a>
             </li>
         {% else %}
             <li class="page-item disabled">
@@ -58,7 +58,7 @@
 
         {% if next is defined %}
             <li class="page-item">
-                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" title="{{ 'Next'|trans }}">»</a>
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" title="{{ 'color_admin.paginator.next'|trans }}">»</a>
             </li>
         {% else %}
             <li class="page-item disabled">

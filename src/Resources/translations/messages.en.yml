@@ -1,0 +1,4 @@
+color_admin:
+    paginator:
+        next: Next
+        previous: Previous
