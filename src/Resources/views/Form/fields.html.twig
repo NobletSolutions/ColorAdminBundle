@@ -149,7 +149,7 @@
 {% endblock %}
 
 {% block file_row %}
-    {% set widget = widget ? widget : block('file_widget') %}
+    {% set widget = widget is defined ? widget : block('file_widget') %}
     <div class="form-group {{ vertical ? '' : 'row' }} m-b-15 {{ errors|length > 0 ? 'has-error has-feedback is-invalid' }} {{ required ? 'required' : '' }} {{ state == 'valid' ? 'is-valid' : state == 'invalid' ? 'is-invalid' : '' }}">
         {{ form_label(form) }}
         <div class="custom-file {{ wrapper_class|default(vertical ? '' : 'col-md-9') }}">
