@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.5 - Added Parallax layout
+      20/10/2020 14:35  2.5.4  Add missing translations
       20/10/2020 09:45  2.5.3  Fixed Twig issues
       30/06/2020 16:32  2.5.2  Debundled parallax deps
       29/06/2020 11:29  2.5.1  Form template tweaks
