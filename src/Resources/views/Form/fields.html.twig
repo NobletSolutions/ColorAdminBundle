@@ -265,7 +265,7 @@
 
         {%- for error in errors -%}
             <div {{ block('widget_attributes') }}>
-                {{ error.message }}
+                {{ error.message|trans }}
             </div>
         {%- endfor -%}
     {%- endif -%}
