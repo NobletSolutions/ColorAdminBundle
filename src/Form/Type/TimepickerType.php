@@ -1,8 +1,6 @@
 <?php
 
-
 namespace NS\ColorAdminBundle\Form\Type;
-
 
 use NS\ColorAdminBundle\Form\Transformer\TimeTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -17,7 +15,7 @@ class TimepickerType extends AbstractType
 {
     protected static $fields = ['template', 'maxHours', 'snapToStep', 'minuteStep', 'showSeconds', 'secondStep', 'showMeridian', 'showInputs', 'disableFocus', 'disableMousewheel', 'modalBackdrop', 'appendWidgetTo', 'explicitMode'];
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(TimepickerType::$fields);
         $resolver->setDefined('icons');
@@ -49,12 +47,7 @@ class TimepickerType extends AbstractType
         $resolver->setDefault('icons', ['up' => 'fa fa-chevron-up', 'down' => 'fa fa-chevron-down']);
     }
 
-//    public function buildForm(FormBuilderInterface $builder, array $options)
-//    {
-//        $builder->addModelTransformer(new TimeTransformer($options['showMeridian'], $options['showSeconds']));
-//    }
-
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-template'] = (string) $options['template'];
         $view->vars['attr']['data-max-hours'] = (string) $options['maxHours'];
@@ -74,7 +67,7 @@ class TimepickerType extends AbstractType
         $view->vars['attr']['data-provide'] = 'timepicker';
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return TimeType::class;
     }

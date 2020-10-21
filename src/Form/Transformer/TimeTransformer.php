@@ -6,21 +6,17 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class TimeTransformer implements DataTransformerInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $format;
 
     public function __construct(bool $meridian, bool $seconds)
     {
         $this->format = "H:i%s";
-        if($meridian)
-        {
+        if ($meridian) {
             $this->format = "h:i%s A";
         }
 
-        if($seconds)
-        {
+        if ($seconds) {
             $this->format = sprintf($this->format, ":s");
         }
 
@@ -29,6 +25,7 @@ class TimeTransformer implements DataTransformerInterface
 
     /**
      * @param \DateTime|null $value
+     *
      * @return string|null
      */
     public function transform($value)
@@ -38,10 +35,11 @@ class TimeTransformer implements DataTransformerInterface
 
     /**
      * @param string|null $value
+     *
      * @return string|null
      */
     public function reverseTransform($value)
     {
-        return $value ? \DateTime::createFromFormat('Ymd'.$this->format, date('Ymd').$value) : null;
+        return $value ? \DateTime::createFromFormat('Ymd' . $this->format, date('Ymd') . $value) : null;
     }
 }

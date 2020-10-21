@@ -5,19 +5,9 @@ namespace NS\ColorAdminBundle\Service;
 use \IntlDateFormatter;
 use Locale;
 
-/**
- * Description of DateFormatConverter
- *
- * @author mark
- */
 class DateFormatConverter
 {
-    /**
-     *
-     * @param boolean $longyear
-     * @return string
-     */
-    public function getFormat($longyear = false)
+    public function getFormat(?bool $longYear = false): string
     {
         $formatter = new IntlDateFormatter(
             Locale::getDefault(),
@@ -32,7 +22,7 @@ class DateFormatConverter
 
         $pattern = $formatter->getPattern();
 
-        if ($longyear && strpos($pattern, 'yyyy') === false) {
+        if ($longYear && strpos($pattern, 'yyyy') === false) {
             $pattern = preg_replace("/y{1,}/", 'yyyy', $pattern);
         }
 
@@ -47,12 +37,7 @@ class DateFormatConverter
         return trim(str_replace(' ', '', $pattern), './-');
     }
 
-    /**
-     *
-     * @param string $pattern
-     * @return string
-     */
-    public function fromFormat($pattern)
+    public function fromFormat(string $pattern): string
     {
         if (strpos($pattern, 'yyyy') !== false) {
             $pattern = str_replace('yyyy', 'Y', $pattern);

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mark
- * Date: 22/03/19
- * Time: 3:17 PM
- */
 
 namespace NS\ColorAdminBundle\Form\Type;
-
 
 use NS\ColorAdminBundle\Service\DateFormatConverter;
 use Symfony\Component\Form\AbstractType;
@@ -18,21 +11,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DatepickerType extends AbstractType
 {
-    /**
-     * @var DateFormatConverter
-     */
+    /** @var DateFormatConverter */
     protected $converter;
 
-    /**
-     *
-     * @param DateFormatConverter $converter
-     */
     public function __construct(DateFormatConverter $converter = null)
     {
         $this->converter = ($converter) ?:new DateFormatConverter();
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         // For start_date, pass the date, or true to use today
         $resolver->setDefined(['start_date', 'today_highlight', 'autoclose']);

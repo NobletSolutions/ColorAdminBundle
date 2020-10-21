@@ -10,20 +10,12 @@ class MenuBuilder
     /** @var FactoryInterface */
     protected $factory;
 
-    /**
-     * MenuBuilder constructor.
-     * @param FactoryInterface $factory
-     */
     public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
     }
 
-    /**
-     * @param array $options
-     * @return ItemInterface
-     */
-    public function createSidebarMenu(array $options)
+    public function createSidebarMenu(array $options): ItemInterface
     {
         $menu = $this->factory->createItem('root');
 
