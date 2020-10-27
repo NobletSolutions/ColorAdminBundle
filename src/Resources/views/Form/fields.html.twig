@@ -44,8 +44,8 @@
     {% set attr = attr|merge({'class': class}) %}
 
     {% if icon is defined and icon %}
+        {% set icon_position = icon_position is defined ? icon_position : false %}
         <div class="input-group">
-
             {% if not icon_position or icon_position == 'left' %}
                 <div class="input-group-prepend">
                 <span class="input-group-text">
