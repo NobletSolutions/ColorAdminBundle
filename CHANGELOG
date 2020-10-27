@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.5 - Added Parallax layout
+      27/10/2020 15:29  2.5.9  Added grouping for expanded choice fields
       27/10/2020 12:02  2.5.8  Improved IconExtension position handling
       27/10/2020 11:21  2.5.7  Improved IconExtensions logic when adding icons
       21/10/2020 16:57  2.5.6  Added i18n for form errors
