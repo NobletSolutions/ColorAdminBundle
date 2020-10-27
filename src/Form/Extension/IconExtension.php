@@ -12,15 +12,17 @@ class IconExtension extends AbstractTypeExtension
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefined(['icon', 'icon_position']);
+        $resolver->setDefined(['icon_position']);
         $resolver->setDefaults(['icon' => false]);
         $resolver->setAllowedValues('icon_position', ['left', 'right']);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars['icon']          = $options['icon'];
-        $view->vars['icon_position'] = $options['icon_position'] ?? false;
+        if ($options['icon'] !== false) {
+            $view->vars['icon']          = $options['icon'];
+            $view->vars['icon_position'] = $options['icon_position'] ?? false;
+        }
     }
 
     /**
