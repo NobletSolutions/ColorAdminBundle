@@ -71,7 +71,7 @@
 
 {%- block choice_widget_expanded -%}
     <div {{ block('widget_container_attributes') }}>
-        {% if form.vars.choices|length == form.children|length %}
+        {% if form.vars.choices|length != form.children|length %}
             {% for name, choices in form.vars.choices %}
                 <div class="form-group">
                     <strong>{{ name|trans }}</strong>
