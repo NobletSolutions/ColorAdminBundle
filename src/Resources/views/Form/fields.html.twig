@@ -71,13 +71,28 @@
 
 {%- block choice_widget_expanded -%}
     <div {{ block('widget_container_attributes') }}>
-        {%- for child in form %}
-            <div class="form-check">
-                <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css' }}">
-                    {{ form_widget(child) }}
+        {% if form.vars.choices|length == form.children|length %}
+            {% for name, choices in form.vars.choices %}
+                <div class="form-group">
+                    <strong>{{ name|trans }}</strong>
+                    <div class="form-check">
+                        {% for key,choice in choices %}
+                            <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css' }}">
+                                {{ form_widget(form[key]) }}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        {% endfor -%}
+            {% endfor %}
+        {% else %}
+            {%- for child in form %}
+                <div class="form-check">
+                    <div class="{{ form.vars.multiple ? 'checkbox checkbox-css' : 'radio radio-css' }}">
+                        {{ form_widget(child) }}
+                    </div>
+                </div>
+            {% endfor -%}
+        {% endif %}
     </div>
 {%- endblock choice_widget_expanded -%}
 
