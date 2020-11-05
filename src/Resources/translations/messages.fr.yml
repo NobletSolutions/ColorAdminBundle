@@ -1,0 +1,30 @@
+admin:
+    action:
+        back: "Retour"
+        edit: "Modifier"
+        delete: "Supprimer"
+        save: "Sauvegarder"
+        view: "Afficher"
+        create: "Créer"
+        logout: "Se déconnecter"
+        dashboard: "Tableau de bord"
+    header:
+        manage_entity: "Gestion %entity%s"
+        edit: "Modifier"
+        edit_entity: "Modification %entity%"
+        create_entity: "Créer un/une %entity%"
+        create: "Création"
+        list: "Liste"
+    confirm:
+        delete: 'Êtes-vous sûr de vouloir supprimer ceci ?'
+        save: 'Vous êtes sûr/sûre de vouloir sauvegarder vos modifications ?'
+        unsaved: 'Tout changement non sauvegardé sera perdu.'
+    flash:
+        changes:
+            saved: "Vos modifications ont été enregistrées."
+            error: "Une erreur s'est produite lors de la sauvegarde de vos modifications"
+        error:
+            no_record: "Aucun élément d'information n'a été fourni."
+    auth:
+        page:
+            denied: "Vous n'êtes pas autorisé à accéder à cette page."
