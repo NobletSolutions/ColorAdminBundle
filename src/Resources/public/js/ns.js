@@ -125,7 +125,7 @@ function initEvents()
         var target = $(event.currentTarget);
 
         if (target.is('.ns-add-form')) {
-            ev.preventDefault();
+            event.preventDefault();
             var $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
             var prototype_name = collection.data('prototype-name');
             if (typeof prototype_name !== "undefined") {
