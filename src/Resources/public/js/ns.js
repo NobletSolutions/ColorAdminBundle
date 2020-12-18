@@ -127,7 +127,7 @@ function initEvents()
         if (target.is('.ns-add-form')) {
             event.preventDefault();
             let $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
-            let prototype_name = collection.data('prototype-name');
+            let prototype_name = $collection.data('prototype-name');
             if (typeof prototype_name !== "undefined") {
                 prototype_name = new RegExp(prototype_name, 'g');
             } else {
