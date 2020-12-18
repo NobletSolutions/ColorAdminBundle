@@ -84,8 +84,8 @@ function initEvents()
                 contentType: false,
                 success: (responsedata, textStatus, jqXHR) =>
                 {
-                    var $update = $($form.data('update'));
-                    var $tgt = $(document);
+                    let $update = $($form.data('update'));
+                    let $tgt = $(document);
 
                     if($update.length)//update is optional
                     {
@@ -122,24 +122,24 @@ function initEvents()
 
     $(document).on('click', '.ns-add-form', function(event)
     {
-        var target = $(event.currentTarget);
+        let target = $(event.currentTarget);
 
         if (target.is('.ns-add-form')) {
             event.preventDefault();
-            var $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
-            var prototype_name = collection.data('prototype-name');
+            let $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
+            let prototype_name = collection.data('prototype-name');
             if (typeof prototype_name !== "undefined") {
                 prototype_name = new RegExp(prototype_name, 'g');
             } else {
                 prototype_name = new RegExp('__name__', 'g');
             }
 
-            var index = $collection.data('index');
-            var newForm = $($collection.data('prototype').replace(prototype_name, index));
+            let index = $collection.data('index');
+            let newForm = $($collection.data('prototype').replace(prototype_name, index));
             $collection.append(newForm);
             $collection.data('index', index + 1);
 
-            var $form = collection.closest('form');
+            let $form = collection.closest('form');
             if ($form.length > 0 && $form[0].ContextualForm) {
                 $form[0].ContextualForm.AddConfigFromPrototype($form, index);
             }
@@ -184,7 +184,7 @@ function nsAjaxUpdater($updater)
     $.ajax($updater.attr('href'), {
         success: (responsedata, status, jqxhr) =>
         {
-            var $update = $($updater.data('update'));
+            let $update = $($updater.data('update'));
             $update.trigger('ns.ajax.complete');
             $update.html(responsedata);
         }
