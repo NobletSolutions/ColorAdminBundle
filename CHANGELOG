@@ -3,6 +3,7 @@ VERSION 2  UPDATED TO COLORADMIN 4.3 AND BOOTSTRAP 4
 ====================================================
 
    Version 2.5 - Added Parallax layout
+      22/12/2020 12:17  2.5.16  Added support for multiple form submit buttons with confirmation"
       21/12/2020 23:11  2.5.15  Fix page js block name
       18/12/2020 19:14  2.5.14  Fixed JS typo
       18/12/2020 19:11  2.5.13  Fixed minor JS dynamic form bug
