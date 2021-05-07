@@ -106,7 +106,7 @@ function initEvents() {
         if (target.is('.ns-add-form')) {
             event.preventDefault();
             var $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
-            var prototype_name = collection.data('prototype-name');
+            var prototype_name = $collection.data('prototype-name');
             if (typeof prototype_name !== "undefined") {
                 prototype_name = new RegExp(prototype_name, 'g');
             } else {
@@ -118,7 +118,7 @@ function initEvents() {
             $collection.append(newForm);
             $collection.data('index', index + 1);
 
-            var $form = collection.closest('form');
+            var $form = $collection.closest('form');
             if ($form.length > 0 && $form[0].ContextualForm) {
                 $form[0].ContextualForm.AddConfigFromPrototype($form, index);
             }
