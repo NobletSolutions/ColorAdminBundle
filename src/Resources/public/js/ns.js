@@ -1,16 +1,13 @@
 $.fn.extend({
-                findInclusive: function(selector)
-                               {
-                                   return this.find(selector).addBack(selector);
-                               }
-            });
+    findInclusive: function (selector) {
+        return this.find(selector).addBack(selector);
+    }
+});
 
-function initForms(scope)
-{
+function initForms(scope) {
     scope = scope ? scope : $(document);
 
-    if(!(scope instanceof $))
-    {
+    if (!(scope instanceof $)) {
         scope = $(scope);
     }
 
@@ -18,114 +15,96 @@ function initForms(scope)
 
     scope.findInclusive('.select2').select2();
 
-    scope.findInclusive('.password-indicator').each(function()
-                                                    {
-                                                        let $this = $(this);
-                                                        $this.passwordStrength({targetDiv: '#' + $this.attr('id') + '_passstrength'});
-                                                    });
+    scope.findInclusive('.password-indicator').each(function () {
+        let $this = $(this);
+        $this.passwordStrength({targetDiv: '#' + $this.attr('id') + '_passstrength'});
+    });
 
     scope.findInclusive('.password-indicator ~ a[href="#"]').remove();
 
-    scope.findInclusive('input[data-mask]').each(function(i, el)
-                                                 {
-                                                     $.extend($.mask.definitions, $(el).data('mask-definitions'));
+    scope.findInclusive('input[data-mask]').each(function (i, el) {
+        $.extend($.mask.definitions, $(el).data('mask-definitions'));
 
-                                                     $(el).mask($(el).data('mask'), {placeholder: $(el).data('placeholder')});
-                                                 });
+        $(el).mask($(el).data('mask'), {placeholder: $(el).data('placeholder')});
+    });
 
     bsCustomFileInput.init();
 }
 
-function initEvents()
-{
-    $(document).on('click', '.ns-ajax-updater', function(event)
-    {
+function initEvents() {
+    $(document).on('click', '.ns-ajax-updater', function (event) {
         event.preventDefault();
         let $updater = $(this);
 
-        $updater.click(function(event)
-                       {
-                           if($updater.data('confirm'))
-                           {
-                               nsConfirm($updater.data('confirm-message'),
-                                         $updater.data('confirm-title'),
-                                         $updater.data('confirm-type'),
-                                         $updater.data('confirm-button-text')
-                               ).then(() =>
-                                      {
-                                          nsAjaxUpdater($updater);
-                                      });
-                           }
-                           else
-                           {
-                               nsAjaxUpdater($updater);
-                           }
-                       });
+        $updater.click(function (event) {
+            if ($updater.data('confirm')) {
+                nsConfirm($updater.data('confirm-message'),
+                    $updater.data('confirm-title'),
+                    $updater.data('confirm-type'),
+                    $updater.data('confirm-button-text')
+                ).then(() => {
+                    nsAjaxUpdater($updater);
+                });
+            } else {
+                nsAjaxUpdater($updater);
+            }
+        });
     });
 
-    $(document).on('submit', 'form.ns-ajax-form', function(event)
-    {
+    $(document).on('submit', 'form.ns-ajax-form', function (event) {
         let $form = $(this);
-        $form.submit(function (event)
-                     {
-                         event.preventDefault();
+        $form.submit(function (event) {
+            event.preventDefault();
 
-                         let success  = $form.data('success');
-                         let error    = $form.data('error');
-                         let complete = $form.data('complete');
-                         let formData = new FormData($form[0]);
+            let success = $form.data('success');
+            let error = $form.data('error');
+            let complete = $form.data('complete');
+            let formData = new FormData($form[0]);
 
-                         $form.trigger('ns.ajax.form-send');
+            $form.trigger('ns.ajax.form-send');
 
-                         $.ajax($form.attr('action'), {
-                             method: $form.attr('method'),
-                             data: formData,
-                             processData: false,
-                             contentType: false,
-                             success: (responsedata, textStatus, jqXHR) =>
-                                     {
-                                         var $update = $($form.data('update'));
-                                         var $tgt = $(document);
+            $.ajax($form.attr('action'), {
+                method: $form.attr('method'),
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (responsedata, textStatus, jqXHR) => {
+                    var $update = $($form.data('update'));
+                    var $tgt = $(document);
 
-                                         if($update.length)//update is optional
-                                         {
-                                             $tgt = $update;
-                                             $update.html(responsedata);
-                                         }
+                    if ($update.length)//update is optional
+                    {
+                        $tgt = $update;
+                        $update.html(responsedata);
+                    }
 
-                                         if(success)
-                                         {
-                                             success($form, responsedata, textStatus, jqXHR);
-                                         }
+                    if (success) {
+                        success($form, responsedata, textStatus, jqXHR);
+                    }
 
-                                         $tgt.trigger('ns:AjaxFormComplete');
-                                     },
-                             error: (jqXHR, textStatus, errorThrown) =>
-                                     {
-                                         if(error)
-                                         {
-                                             error($form, jqXHR, textStatus, errorThrown);
-                                         }
-                                     },
-                             complete: (jqXHR, textStatus) =>
-                                     {
-                                         if(complete)
-                                         {
-                                             complete($form, jqXHR, textStatus);
-                                         }
-                                     }
-                         });
+                    $tgt.trigger('ns:AjaxFormComplete');
+                },
+                error: (jqXHR, textStatus, errorThrown) => {
+                    if (error) {
+                        error($form, jqXHR, textStatus, errorThrown);
+                    }
+                },
+                complete: (jqXHR, textStatus) => {
+                    if (complete) {
+                        complete($form, jqXHR, textStatus);
+                    }
+                }
+            });
 
-                         return false;
-                     });
+            return false;
+        });
     });
 
-    $(document).on('click', '.ns-add-form', function(event)
-    {
+    $(document).on('click', '.ns-add-form', function (event) {
         var target = $(event.currentTarget);
 
         if (target.is('.ns-add-form')) {
-            ev.preventDefault();
+            event.preventDefault();
             var $collection = $('[data-collection=' + target.data('collectionholder') + ']').first();
             var prototype_name = collection.data('prototype-name');
             if (typeof prototype_name !== "undefined") {
@@ -150,8 +129,7 @@ function initEvents()
 
     $(document).on('click', 'a.ns-confirm, button.ns-confirm', nsConfirmCallback).on('submit', 'form.ns-confirm', nsConfirmCallback);
 
-    $(document).on('click', '.ns-collection-add', function(event)
-    {
+    $(document).on('click', '.ns-collection-add', function (event) {
         let $button = $(event.currentTarget);
         let $container = $($button.attr('href'));
         let count = parseInt($container.data('child-count'));
@@ -169,118 +147,97 @@ function initEvents()
         $container.trigger('ns.form.update');
     });
 
-    $(document).on('click', '.ns-collection-remove', function(event)
-    {
+    $(document).on('click', '.ns-collection-remove', function (event) {
         let $button = $(event.currentTarget);
         let $row = $($button.attr('href'));
         $row.remove();
     });
 }
 
-function nsAjaxUpdater($updater)
-{
+function nsAjaxUpdater($updater) {
     $updater.trigger('ns.ajax.send');
 
     $.ajax($updater.attr('href'), {
-        success: (responsedata, status, jqxhr) =>
-                 {
-                     var $update = $($updater.data('update'));
-                     $update.trigger('ns.ajax.complete');
-                     $update.html(responsedata);
-                 }
+        success: (responsedata, status, jqxhr) => {
+            var $update = $($updater.data('update'));
+            $update.trigger('ns.ajax.complete');
+            $update.html(responsedata);
+        }
     });
 
     return false;
 }
 
-function nsConfirmCallback(event)
-{
+function nsConfirmCallback(event) {
     event.preventDefault();
 
     let $this = $(this);
 
     nsConfirm($this.data('confirm-message'),
-              $this.data('confirm-title'),
-              $this.data('confirm-type'),
-              $this.data('confirm-button-text')
-    ).then(() =>
-           {
-               if(this.nodeName === 'FORM')
-               {
-                   this.submit();
-               }
-               else if(this.nodeName === 'BUTTON' && this.type === "submit")
-               {
-                   let $form = $this.closest('form');
+        $this.data('confirm-title'),
+        $this.data('confirm-type'),
+        $this.data('confirm-button-text')
+    ).then(() => {
+        if (this.nodeName === 'FORM') {
+            this.submit();
+        } else if (this.nodeName === 'BUTTON' && this.type === "submit") {
+            let $form = $this.closest('form');
 
-                   if(this.value && this.name)
-                   {
-                       $form.append('<input type="hidden" name="'+this.name+'" value="'+this.value+'" />');
-                   }
+            if (this.value && this.name) {
+                $form.append('<input type="hidden" name="' + this.name + '" value="' + this.value + '" />');
+            }
 
-                   $form.submit();
-               }
-               else if(this.nodeName === 'A' && this.href)
-               {
-                   if(this.target)
-                   {
-                       window.open(this.href, this.target);
-                   }
-                   else
-                   {
-                       window.location.href = this.href;
-                   }
-               }
-           });
+            $form.submit();
+        } else if (this.nodeName === 'A' && this.href) {
+            if (this.target) {
+                window.open(this.href, this.target);
+            } else {
+                window.location.href = this.href;
+            }
+        }
+    });
 }
 
-function nsConfirm(msg, title, type, buttonText)
-{
-    return new Promise((resolve, reject) =>
-                       {
-                           msg = msg ? msg : 'Are you sure you want to continue?';
+function nsConfirm(msg, title, type, buttonText) {
+    return new Promise((resolve, reject) => {
+        msg = msg ? msg : 'Are you sure you want to continue?';
 
-                           if(typeof swal !== 'undefined')
-                           {
-                               type = type ? type : 'info';
+        if (typeof swal !== 'undefined') {
+            type = type ? type : 'info';
 
-                               buttonText = buttonText ? buttonText : 'OK';
+            buttonText = buttonText ? buttonText : 'OK';
 
-                               swal({
-                                        title: title,
-                                        text: msg,
-                                        type: type,
-                                        icon: type !== 'danger' ? type : 'error', //the icon for danger is actually 'error'
-                                        buttons: {
-                                            cancel: {
-                                                text: 'Cancel',
-                                                className: 'btn btn-default',
-                                                visible: true,
-                                                value: false,
-                                                closeModal: true
-                                            },
-                                            confirm: {
-                                                text: buttonText,
-                                                value: true,
-                                                visible: true,
-                                                className: 'btn btn-' + type,
-                                                closeModal: true
-                                            }
-                                        }
-                                    }).then(confirmed => confirmed ? resolve() : reject());
-                           }
-                           else
-                           {
-                               return confirm(msg) ? resolve() : reject();
-                           }
-                       });
+            swal({
+                title: title,
+                text: msg,
+                type: type,
+                icon: type !== 'danger' ? type : 'error', //the icon for danger is actually 'error'
+                buttons: {
+                    cancel: {
+                        text: 'Cancel',
+                        className: 'btn btn-default',
+                        visible: true,
+                        value: false,
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: buttonText,
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-' + type,
+                        closeModal: true
+                    }
+                }
+            }).then(confirmed => confirmed ? resolve() : reject());
+        } else {
+            return confirm(msg) ? resolve() : reject();
+        }
+    });
 }
 
-$(document).on('shown.bs.modal, ns.form.update', function()
-{
+$(document).on('shown.bs.modal, ns.form.update', function () {
     initForms($(this));
-}).ready(function()
-         {
-             initForms($(this));
-             initEvents();
-         });
+}).ready(function () {
+    initForms($(this));
+    initEvents();
+});
