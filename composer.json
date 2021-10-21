@@ -33,6 +33,7 @@
         "psr-4": { "Tests\\NS\\ColorAdminBundle\\": "tests" }
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0|^7.0"
+        "phpunit/phpunit": "^6.0|^7.0",
+        "liip/rmt": "^1.6"
     }
 }
