@@ -14,12 +14,7 @@
     $.ContextualForm = function(element, globalConfig, autoinit, events, onSuccessEvent)
     {
         autoinit = typeof(autoinit) !== 'undefined' ? autoinit: true;
-        events   = typeof(events) !== 'undefined' ? events : 'ns-form-update shown.bs.tab shown.bs.collapse sonata.add_element ajaxComplete shown.ace.widget';
-        this.onSuccessEvent = typeof(onSuccessEvent) !== 'undefined' ? onSuccessEvent : 'ns-context-form-update';
-        this.activityMap = {}; //We need to store a mapping of what fields are currently active and "visible"; storing this info right on the field is problematic because it may or may not be an actual <input> element
-        this.toBeProcessed = {};
-        this.isFirstRun = true;
-        this.collectionref = 1;
+        events   = typeof(events) !== 'undefined' ? events : 'nsFormUpdate shown.bs.tab shown.bs.collapse sonata.add_element ajaxComplete shown.ace.widget';
 
         var defaultConfig = {
             'event': 'input',
@@ -58,6 +53,14 @@
          */
         Init: function()
         {
+            this.onSuccessEvent = typeof(onSuccessEvent) !== 'undefined' ? onSuccessEvent : 'contextFormUpdate';
+            this.activityMap = {}; //We need to store a mapping of what fields are currently active and "visible"; storing this info right on the field is problematic because it may or may not be an actual <input> element
+            this.toBeProcessed = {};
+            this.isFirstRun = true;
+            this.collectionref = 1;
+            this.allTargets = $(); //Straight list of every child element for rapid access
+            this.elementList = [];
+
             var cform   = this; //#JustJavascriptScopeThings
             cform.isFirstRun = true;
             cform.forms = cform.element.find('form[data-context-config]').addBack('form[data-context-config]'); //Find any forms that have a config
@@ -72,7 +75,15 @@
                 this.prototypeConfig = $.extend(true, {}, prototypes);
                 this.ContextualForm = cform; // Give the form element a reference back to this ContextualForm object
             });
-            this.AddListeners();
+
+            cform.AddListeners();
+            $('.ctxtc').hide();//Hide everything by default and then selectively show what we need
+
+            $.each(cform.elementList, function(key, el)
+            {
+                cform.Go(el.field, el.conf);
+            });
+
             cform.isFirstRun = false;
         },
 
@@ -122,7 +133,11 @@
 
                 //Grab each element from the config and add the event listeners for it
                 $.each(config, function(index, value){
-                    cform.ProcessFormConfig($form, index, value); //'this' refers to the current config item, because loop
+                    data = cform.ProcessFormConfig($form, index, value); //'this' refers to the current config item, because loop
+
+                    if (data && data.length === 2) {
+                        cform.elementList.push({'field':data[0], 'conf':data[1]});
+                    }
                 });
             });
         },
@@ -137,11 +152,11 @@
         ProcessFormConfig: function($form, field, config)
         {
             var cform = this;
-            //Get the actual form element
-            var $field = $form.find('[name="'+field+'"], [name="'+field+'[]"]');//Checkboxes will append a [] to the name
+            //Get the actual form field element
+            var $field = $($form[0].querySelectorAll('[name="'+field+'"]'));
+            $field = $field.add($($form[0].querySelectorAll('[name="'+field+'[]"]')));
 
             if ($field.length === 0) {
-                console.debug("FIELD name is undefined");
                 return;
             }
 
@@ -177,6 +192,8 @@
                         {
                             $sel.data('visibleParents', []);
                             targets.push($sel);
+                            cform.allTargets = cform.allTargets.add($sel);
+                            $sel.addClass('ctxtc');
                         }
                     });
                 } else {
@@ -185,6 +202,8 @@
                     {
                         $sel.data('visibleParents', []);
                         targets = [$sel];
+                        cform.allTargets = cform.allTargets.add($sel);
+                        $sel.addClass('ctxtc');
                     }
                 }
 
@@ -202,13 +221,11 @@
                 conf.values = arr;
 
                 conf.display = targets;
-
             });
 
             this.AddListener($field, config);
 
-            //Run once on init to account for pre-filled values
-            this.Go($field, config, false);
+            return [$field, config];
         },
 
         /**
@@ -251,7 +268,10 @@
             }
             else
             {
-                return this.FindWrapper($form, $form.find('[name="'+dis+'"], [name="'+dis+'[]"]')); //Otherwise, find the field by name.
+                var $els = $($form[0].querySelector('[name="'+dis+'"]'));
+                $els = $els.add($($form[0].querySelector('[name="'+dis+'[]"]')));
+
+                return this.FindWrapper($form, $els); //Otherwise, find the field by name.
             }
 
         },
@@ -492,22 +512,31 @@
                 {
                     var dId = $disField.data('fieldId');
 
-                    $disField.hide();//Reset everything
+                    if($disField.is(':visible')) //Every time an event is triggered for a field, we hide it, and then determine if it should still be shown.
+                    {
+                        $disField.hide();
+                    }
+
                     cform.activityMap[dId] = false;
 
                     // delete $disField.data('visibleParents')[id];
-                    $disField.data('visibleParents').splice(id, 1);
+                    let visibleParents = $disField.data('visibleParents');
+                    if (visibleParents) {
+                        visibleParents.splice(id, 1);
+                    }
 
                     //If the parent field value matches the value in the config, display the child fields
-                    if((cform.activityMap[id] || $disField.data('visibleParents').length) && cform.MatchFieldValue($field, conf.values))
+                    if((cform.activityMap[id] || visibleParents.length) && cform.MatchFieldValue($field, conf.values))
                     {
                         show.push($disField);
                         if(cform.activityMap[id])
                         {
                             cform.activityMap[dId] = true;//If we get here, this field is supposed to be visible, so update the activity map
                             var vparents = $disField.data('visibleParents');
-                            vparents[id] = true;
-                            $disField.data('visibleParents', vparents);
+                            if (vparents) {
+                                vparents[id] = true;
+                                $disField.data('visibleParents', vparents);
+                            }
                         }
                     }
 

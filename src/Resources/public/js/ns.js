@@ -114,8 +114,23 @@ function initEvents() {
             }
 
             var index = $collection.data('index');
-            var newForm = $($collection.data('prototype').replace(prototype_name, index));
-            $collection.append(newForm);
+            var prototype = $collection.data('prototype');
+            if (!prototype) {
+                console.debug('No prototype defined on element data-collection=' + target.data('collectionholder') + ']');
+                return;
+            }
+
+            var newForm = $(prototype.replace(prototype_name, index));
+            if ($collection.data('insert-position') === 'prepend') {
+                $collection.prepend(newForm);
+            } else {
+                $collection.append(newForm);
+            }
+
+            if ($collection.data('scroll-to-view')) {
+                newForm[0].scrollIntoView();
+            }
+
             $collection.data('index', index + 1);
 
             var $form = $collection.closest('form');
@@ -151,6 +166,92 @@ function initEvents() {
         let $button = $(event.currentTarget);
         let $row = $($button.attr('href'));
         $row.remove();
+    });
+
+    $('.nsSelect2').each(function (i, el) {
+        if (el.nsFieldActive !== true) {
+            el.nsFieldActive = true;
+
+            const $this = $(this);
+
+            let url    = $this.data('url');
+            let config = {debug: true};
+            if (url) {
+                let method = $this.data('method');
+                config.ajax = {
+                    url:            url,
+                    delay:          $this.data('ajax-delay') ?? 250,
+                    method:         method ? method.toUpperCase() : 'GET',
+                    processResults: (data) => {
+                        const append = $this.data('append');
+
+                        if (append && Array.isArray(append)) {
+                            append.forEach(el => {
+                                if (typeof el === 'string') {
+                                    data.results.push({raw: el})
+                                } else {
+                                    data.results.push({id: el.id, text: el.text});
+                                }
+                            })
+                        }
+
+                        return {results: data.results};
+                    }
+                };
+                const templateResult = $this.data('nstemplateresult');
+                config.templateResult = typeof window[templateResult] === 'function' ? window[templateResult] : state => {
+                    if (state.raw) {
+                        return state.raw;
+                    }
+
+                    return state.text;
+                }
+            }
+
+            let modal = $(el).closest('.modal');
+
+            //Select2 has issues if it's within a modal
+            if (modal.length) {
+                config.dropdownParent = modal;
+            }
+
+            let initCallback = $this.data('init-callback');
+
+            if (window[initCallback]) {
+                window[initCallback](this, config);
+            }
+
+            if (!$this.data('escape-all-markup')) {
+                config.escapeMarkup = function (markup) {
+                    return markup;
+                };
+            }
+
+            let lang = $this.data('language-config');
+
+            if (lang) {
+                const langConfig = {};
+                for (const key in lang) {
+                    langConfig[key] = function (params) {
+                        return $('<textarea />').html(lang[key]).val(); //Workaround to unescape html entities
+                    }
+                }
+
+                config.language = langConfig;
+            }
+            $this.on('select2:open', function(ev) {
+                const tags = $this.data('tags');
+                const $container = $('.select2-container');
+
+                if (tags) {
+                    $container.addClass('tagged');
+                } else {
+                    $container.removeClass('tagged');
+                }
+            });
+
+            $this.select2(config);
+        }
     });
 }
 
