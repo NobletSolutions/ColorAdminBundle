@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contextual Form Test</title>
+    <script
+            src="///code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="ContextualForm.jquery.js"></script>
+    <script type="text/javascript">
+        var contextConfig = {
+            "field1": [
+                {
+                    "display":[
+                        "field2",
+                        "notAField"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "field2": [
+                {
+                    "display":[
+                        "field3",
+                        "field4"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "field4": [
+                {
+                    "display":[
+                        "field5"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "select1": [
+                {
+                    "display":[
+                        "select2"
+                    ],
+                    'values':[2]
+                },
+                {
+                    "display":[
+                        "select3"
+                    ],
+                    'values':[3, 4]
+                },
+                {
+                    "display":[
+                        "select4"
+                    ],
+                    'values':[4]
+                }
+            ],
+            "prefilled1": [
+                {
+                    "display": "prefilled2",
+                    'values':[true]
+                }
+            ],
+            "prefilled2": [
+                {
+                    "display":[
+                        "prefilled3"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "prefilled3": [
+                {
+                    "display":[
+                        "prefilled4"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "booleanCheckTrue": [
+                {
+                    "display":[
+                        "#booleanTrue"
+                    ],
+                    'values':[true]
+                }
+            ],
+            "booleanCheckFalse": [
+                {
+                    "display":[
+                        "#booleanFalse"
+                    ],
+                    'values':[false]
+                }
+            ],
+            "expanded": [
+                {
+                    "display":[
+                        "#expanded_a"
+                    ],
+                    'values':["A"]
+                },
+                {
+                    "display":[
+                        "#expanded_b"
+                    ],
+                    'values':["B"]
+                },{
+                    "display":[
+                        "#expanded_c"
+                    ],
+                    'values':["C"]
+                },
+            ]
+
+        };
+
+        window.context_config = JSON.stringify(contextConfig);
+    </script>
+</head>
+<body>
+<form id="form1">
+    <div class="form-group">
+        <input type="checkbox" value="true" id="field1" name="field1" /> Field 1 (Show field 2)
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="field2" name="field2" /> Field 2 (Show fields 3 and 4);
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="field3" name="field3" /> Field 3;
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="field4" name="field4" checked /> Field 4 (Show field 5);
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="field5" name="field5" /> Field 5;
+    </div>
+    <div class="form-group">
+        Select 1
+        <select id="select1" name="select1">
+            <option></option>
+            <option value="2">Show Select 2</option>
+            <option value="3">Show Select 3</option>
+            <option value="4">Show Select 3 and 4</option>
+        </select>
+    </div>
+    <div class="form-group">
+        Select 2
+        <select id="select2" name="select2">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        Select 3
+        <select id="select3" name="select3">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        Select 4
+        <select id="select4" name="select4">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="prefilled1" name="prefilled1" checked /> Prefilled Field 1 (Show field 2)
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="prefilled2" name="prefilled2" checked /> Prefilled Field 2 (Show field 3);
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="prefilled3" name="prefilled3" /> Field 3 (Show field 4)
+    </div>
+    <div class="form-group">
+        <input type="file" value="true" id="prefilled4" name="prefilled4" /> Field 4
+    </div>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="booleanCheckTrue" name="booleanCheckTrue" /> Boolean True
+    </div>
+    <p id="booleanTrue">Boolean True</p>
+    <div class="form-group">
+        <input type="checkbox" value="true" id="booleanCheckFalse" name="booleanCheckFalse" /> Boolean False
+    </div>
+    <p id="booleanFalse">Boolean False</p>
+    <div class="form-group">
+        <input type="checkbox" value="A" id="expanded_check_a" name="expanded[]" /> Expanded A
+    </div>
+    <p id="expanded_a">Expanded A</p>
+    <div class="form-group">
+        <input type="checkbox" value="B" id="expanded_check_b" name="expanded[]" /> Expanded B
+    </div>
+    <p id="expanded_b">Expanded B</p>
+    <div class="form-group">
+        <input type="checkbox" value="C" id="expanded_check_c" name="expanded[]" /> Expanded C
+    </div>
+    <p id="expanded_c">Expanded C</p>
+</form>
+<h3>Multi-level</h3>
+<form id="form2" data-context-config='{"form[deeper][field2][l2Field1]":[{"display":["form[deeper][field2][l2Field2]"],"values":["c2"]}],"form[deeper][field1]":[{"display":["form[deeper][field2]","form[deeper][field2][l2Field1]","form[deeper][field2][l2Field3]","form[deeper][field2][l2Field3][id]","form[deeper][field2][l2Field3][name]"],"values":["one"]}]}'>
+    <div class="form-group">
+        <label for="deeper_field1">Field 1 </label>
+        <select id="deeper_field1" name="form[deeper][field1]">
+            <option value="two">Two</option>
+            <option value="one">One</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="deeper_field2">level 1 field 2 - lower field 1 </label>
+        <select id="deeper_field2" name="form[deeper][field2][l2Field1]">
+            <option>Placeholder...</option>
+            <option value="c1">c1</option>
+            <option value="c2">c2</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="deeper_field3">level 1 field 2 - lower field 2 </label>
+        <input type="text" id="deeper_field3" name="form[deeper][field2][l2Field2]" />
+    </div>
+
+    <div class="form-group">
+        <label>level3 field - id</label>
+        <input name="form[deeper][field2][l2Field3][id]" />
+    </div>
+    <div class="form-group">
+        <label>level3 field - name</label>
+        <input name="form[deeper][field2][l2Field3][name]" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    $('#form1').attr('data-context-config', window.context_config);
+
+    new $.ContextualForm();
+</script>
+
+</body>
+</html>
