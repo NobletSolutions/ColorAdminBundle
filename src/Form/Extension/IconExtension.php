@@ -3,7 +3,7 @@
 namespace NS\ColorAdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,11 +31,11 @@ class IconExtension extends AbstractTypeExtension
      */
     public function getExtendedType(): string
     {
-        return TextType::class;
+        return FormType::class;
     }
 
     public static function getExtendedTypes(): array
     {
-        return [TextType::class];
+        return [FormType::class];
     }
 }

@@ -26,7 +26,7 @@ services:
 
     NS\ColorAdminBundle\Form\Extension\IconExtension:
         tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
     NS\ColorAdminBundle\Form\Extension\OrientationExtension:
         tags:
