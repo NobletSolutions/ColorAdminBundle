@@ -314,7 +314,9 @@
     {% endif %}
     {# Delete button: <button type="button" class="ns-collection-remove btn btn-danger" href="#{{ id }}_row">Delete</button> #}
     {{- block('form_widget') -}}
-    <button type="button" href="#{{ id }}" class="btn btn-primary ns-collection-add"><i
-                class="fa fa-{{ add_button_icon }}"
-        ></i> {{ add_button_label }}</button>
+    {% if add_button %}
+        <button type="button" href="#{{ id }}" class="btn btn-primary ns-collection-add">
+            <i class="fa fa-{{ add_button_icon }}"></i> {{ add_button_label }}
+        </button>
+    {% endif %}
 {%- endblock -%}
