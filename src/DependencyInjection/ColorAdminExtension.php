@@ -18,7 +18,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
  */
 class ColorAdminExtension extends Extension implements PrependExtensionInterface
 {
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $bundles = $container->getParameter('kernel.bundles');
 
@@ -50,7 +50,7 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -65,7 +65,7 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
         $loader->load('services.yml');
     }
 
-    private function addFormExtensions(ContainerBuilder $container)
+    private function addFormExtensions(ContainerBuilder $container): void
     {
         if(class_exists(VichFileType::class))
         {
