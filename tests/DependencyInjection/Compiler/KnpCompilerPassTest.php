@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\NS\ColorAdminBundle\DependencyInjection\Compiler;
+namespace NS\ColorAdminBundle\Tests\DependencyInjection\Compiler;
 
 use NS\ColorAdminBundle\DependencyInjection\Compiler\KnpCompilerPass;
 use PHPUnit\Framework\TestCase;

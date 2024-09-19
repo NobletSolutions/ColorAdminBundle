@@ -5,10 +5,11 @@ namespace NS\ColorAdminBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormTypeExtensionInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class HiddenParentChildExtension extends AbstractTypeExtension
+class HiddenParentChildExtension extends AbstractTypeExtension implements FormTypeExtensionInterface
 {
     private array $config = [];
 
@@ -106,11 +107,6 @@ class HiddenParentChildExtension extends AbstractTypeExtension
         // We should investigate namespacing the form configs?
         $this->config     = [];
         $this->prototypes = [];
-    }
-
-    public function getExtendedType(): string
-    {
-        return FormType::class;
     }
 
     public static function getExtendedTypes(): iterable

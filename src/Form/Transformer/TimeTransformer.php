@@ -6,8 +6,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class TimeTransformer implements DataTransformerInterface
 {
-    /** @var string */
-    protected $format;
+    protected string $format;
 
     public function __construct(bool $meridian, bool $seconds)
     {
@@ -25,20 +24,16 @@ class TimeTransformer implements DataTransformerInterface
 
     /**
      * @param \DateTime|null $value
-     *
-     * @return string|null
      */
-    public function transform($value)
+    public function transform($value): mixed
     {
         return $value ? $value->format($this->format) : null;
     }
 
     /**
      * @param string|null $value
-     *
-     * @return string|null
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): mixed
     {
         return $value ? \DateTime::createFromFormat('Ymd' . $this->format, date('Ymd') . $value) : null;
     }

@@ -22,12 +22,11 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
     {
         $bundles = $container->getParameter('kernel.bundles');
 
-        if(isset($bundles['KnpPaginatorBundle']))
-        {
+        if (isset($bundles['KnpPaginatorBundle'])) {
             $curr_configs = $container->getExtensionConfig($this->getAlias());
-            $curr_config = $this->processConfiguration(new Configuration(), $curr_configs);
+            $curr_config  = $this->processConfiguration(new Configuration(), $curr_configs);
 
-            $config = ['template'=> ['pagination'=>$curr_config['templates']['pagination']['template']]];
+            $config = ['template' => ['pagination' => $curr_config['templates']['pagination']['template']]];
 
             $container->prependExtensionConfig('knp_paginator', $config);
         }
@@ -39,11 +38,11 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
                     'filters' => [
                         'thumbnail' => [
                             'size' => [150, 150],
-                            'mode' => 'inset'
-                        ]
-                    ]
+                            'mode' => 'inset',
+                        ],
+                    ],
                 ],
-            ]
+            ],
         ]);
     }
 
@@ -53,7 +52,7 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $config        = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('color_admin.templates', $config['templates']);
         $container->setParameter('color_admin.use_knp_menu', $config['use_knp_menu']);
@@ -67,12 +66,11 @@ class ColorAdminExtension extends Extension implements PrependExtensionInterface
 
     private function addFormExtensions(ContainerBuilder $container): void
     {
-        if(class_exists(VichFileType::class))
-        {
-            $container->register('NS\ColorAdminBundle\Form\Extension\VichFileExtension')
+        if (class_exists(VichFileType::class)) {
+            $container->register(VichFileExtension::class)
                 ->setClass(VichFileExtension::class)
                 ->setPublic(false)
-                ->setTags(['form.type_extension'=>['extended_types'=>VichFileType::class, VichImageType::class]]);
+                ->setTags(['form.type_extension' => ['extended_types' => VichFileType::class, VichImageType::class]]);
         }
     }
 }

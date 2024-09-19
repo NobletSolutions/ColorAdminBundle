@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 22/12/16
- * Time: 11:50 AM
- */
 
-namespace Tests\NS\ColorAdminBundle\DependencyInjection\Compiler;
+namespace NS\ColorAdminBundle\Tests\DependencyInjection\Compiler;
 
 use NS\ColorAdminBundle\DependencyInjection\Compiler\TwigFormThemeCompilerPass;
 use PHPUnit\Framework\TestCase;

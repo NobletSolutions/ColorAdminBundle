@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mark
- * Date: 26/03/19
- * Time: 10:41 AM
- */
 
 namespace NS\ColorAdminBundle\Form\Type;
 
@@ -72,7 +66,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FilterableSelectType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['allow_new_value', 'data_url', 'data_type', 'minimum_input_length', 'maximum_input_length', 'maximum_selection_length']);
         $resolver->setAllowedValues('expanded', [false]);
@@ -80,7 +74,7 @@ class FilterableSelectType extends AbstractType
         $resolver->setDefaults(['expanded' => false, 'allow_new_value'=>false, 'data_url'=>false, 'data_type'=>'json', 'minimum_input_length' => 0, 'maximum_input_length' => 0, 'maximum_selection_length' => 0]);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-tags'] = $options['allow_new_value'];
         $view->vars['attr']['data-minimum-input-length'] = $options['minimum_input_length'];
@@ -94,7 +88,7 @@ class FilterableSelectType extends AbstractType
         }
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }

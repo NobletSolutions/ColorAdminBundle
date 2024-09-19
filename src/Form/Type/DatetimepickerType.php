@@ -17,16 +17,15 @@ class DatetimepickerType extends AbstractType
             ->add('time', TimepickerType::class, $options['timepicker_options'])
             ->setDataMapper(new DatetimeMapper());
 
-        if($options['timepicker_options']['showMeridian'])
-        {
+        if ($options['timepicker_options']['showMeridian']) {
             $builder->get('time')->resetViewTransformers()
-                    ->addViewTransformer(new DateTimeToStringTransformer(null, null, 'g:i A'));
+                ->addViewTransformer(new DateTimeToStringTransformer(null, null, 'g:i A'));
         }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['datepicker_options', 'timepicker_options']);
-        $resolver->setDefaults(['datepicker_options'=>[], 'timepicker_options'=>[], 'compound'=>true]);
+        $resolver->setDefaults(['datepicker_options' => [], 'timepicker_options' => [], 'compound' => true]);
     }
 }

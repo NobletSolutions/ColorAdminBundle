@@ -15,3 +15,4 @@
 !var/SymfonyRequirements.php
 /vendor/
 /composer.lock
+/.phpunit.result.cache

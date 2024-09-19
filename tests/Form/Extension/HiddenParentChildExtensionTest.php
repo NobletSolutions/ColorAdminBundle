@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tests\NS\ColorAdminBundle\Form\Extension;
+namespace NS\ColorAdminBundle\Tests\Form\Extension;
 
 use NS\ColorAdminBundle\Form\Extension\HiddenParentChildExtension;
 use NS\ColorAdminBundle\Tests\Form\Fixtures\DeeperHiddenPrototypeConfigType;
@@ -140,9 +140,8 @@ class HiddenParentChildExtensionTest extends TypeTestCase
         $this->assertEquals($expected, $view->vars['attr']['data-context-config']);
     }
 
-    protected function getExtensions(): array
+    protected function getTypeExtensions(): array
     {
-        $hiddenParent = new HiddenParentChildExtension();
-        return [new PreloadedExtension([], [$hiddenParent->getExtendedType() => [$hiddenParent]])];
+         return [new HiddenParentChildExtension()];
     }
 }

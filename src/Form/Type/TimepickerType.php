@@ -13,11 +13,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TimepickerType extends AbstractType
 {
-    protected static $fields = ['template', 'maxHours', 'snapToStep', 'minuteStep', 'showSeconds', 'secondStep', 'showMeridian', 'showInputs', 'disableFocus', 'disableMousewheel', 'modalBackdrop', 'appendWidgetTo', 'explicitMode'];
+    protected static array $fields = ['template', 'maxHours', 'snapToStep', 'minuteStep', 'showSeconds', 'secondStep', 'showMeridian', 'showInputs', 'disableFocus', 'disableMousewheel', 'modalBackdrop', 'appendWidgetTo', 'explicitMode'];
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefined(TimepickerType::$fields);
+        $resolver->setDefined(self::$fields);
         $resolver->setDefined('icons');
         $resolver->setAllowedValues('template', ['dropdown', 'modal', false]);
         $resolver->setAllowedValues('maxHours', range(1, 24));

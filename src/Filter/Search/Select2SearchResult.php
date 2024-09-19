@@ -6,8 +6,7 @@ use InvalidArgumentException;
 
 class Select2SearchResult implements Select2SearchResultInterface
 {
-    /** @var string|int */
-    protected $id;
+    protected string|int $id;
     protected string $text;
     protected ?array $extra = null;
 
@@ -28,8 +27,7 @@ class Select2SearchResult implements Select2SearchResultInterface
         }
     }
 
-    /** @return string|int */
-    public function getId()
+    public function getId(): string|int
     {
         return $this->id;
     }

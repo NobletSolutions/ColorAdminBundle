@@ -14,10 +14,6 @@ class AddFormCollectionExtension extends AbstractTypeExtension
     {
         return [CollectionType::class];
     }
-    public function getExtendedType(): string
-    {
-        return CollectionType::class;
-    }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {

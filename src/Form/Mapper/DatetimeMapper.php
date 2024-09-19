@@ -11,7 +11,7 @@ class DatetimeMapper implements DataMapperInterface
      * @param DateTime|null $viewData
      * @param iterable      $forms
      */
-    public function mapDataToForms($viewData, $forms)
+    public function mapDataToForms($viewData, $forms): void
     {
         if ($viewData !== null) {
             $forms = iterator_to_array($forms);
@@ -20,7 +20,7 @@ class DatetimeMapper implements DataMapperInterface
         }
     }
 
-    public function mapFormsToData($forms, &$viewData)
+    public function mapFormsToData($forms, &$viewData): void
     {
         $forms    = iterator_to_array($forms);
         $viewData = DateTime::createFromFormat('Y-m-d H:i:s', $forms['date']->getData()->format('Y-m-d') . ' ' . $forms['time']->getData()->format('H:i:s'));

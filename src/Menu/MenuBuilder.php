@@ -7,8 +7,7 @@ use Knp\Menu\ItemInterface;
 
 class MenuBuilder
 {
-    /** @var FactoryInterface */
-    protected $factory;
+    protected FactoryInterface $factory;
 
     public function __construct(FactoryInterface $factory)
     {

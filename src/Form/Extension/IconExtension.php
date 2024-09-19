@@ -25,15 +25,6 @@ class IconExtension extends AbstractTypeExtension
         }
     }
 
-    /**
-     * @return string
-     * Included for BC with SF3
-     */
-    public function getExtendedType(): string
-    {
-        return FormType::class;
-    }
-
     public static function getExtendedTypes(): array
     {
         return [FormType::class];

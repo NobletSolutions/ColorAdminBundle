@@ -11,7 +11,7 @@ class DeeperHiddenPrototypeConfigType extends AbstractType
     /**
      * @inheritDoc
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('something',CollectionType::class,[
             'entry_type' => UsingHiddenConfigType::class,

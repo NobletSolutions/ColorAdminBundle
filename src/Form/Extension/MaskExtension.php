@@ -41,15 +41,6 @@ class MaskExtension extends AbstractTypeExtension
          */
     }
 
-    /**
-     * @return string
-     * Included for BC with SF3
-     */
-    public function getExtendedType(): string
-    {
-        return TextType::class;
-    }
-
     public static function getExtendedTypes(): array
     {
         return [TextType::class];

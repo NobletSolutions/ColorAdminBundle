@@ -8,10 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class DoubleCollectionDeeperPrototypeType extends AbstractType
 {
-    /**
-     * @inheritDoc
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('somethingOne',CollectionType::class,[

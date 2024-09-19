@@ -11,12 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DatepickerType extends AbstractType
 {
-    /** @var DateFormatConverter */
-    protected $converter;
+    /** @var */
+    protected DateFormatConverter $converter;
 
     public function __construct(DateFormatConverter $converter = null)
     {
-        $this->converter = ($converter) ?:new DateFormatConverter();
+        $this->converter = ($converter) ?: new DateFormatConverter();
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -25,27 +25,27 @@ class DatepickerType extends AbstractType
         $resolver->setDefined(['start_date', 'today_highlight', 'autoclose']);
         $format = $this->converter->getFormat(true);
         $resolver->setDefaults([
-            'widget'   => 'single_text',
-            'compound' => false,
-            'inline' => false,
-            'format'   => $this->converter->getFormat(true),
+            'widget'          => 'single_text',
+            'compound'        => false,
+            'inline'          => false,
+            'format'          => $this->converter->getFormat(true),
             'today_highlight' => true,
-            'autoclose' => true,
-            'html5' => false
+            'autoclose'       => true,
+            'html5'           => false,
         ]);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars['type'] = 'test';
-        $view->vars['start_date'] = isset($options['start_date']) ? $options['start_date'] : false;
-        $view->vars['attr']['data-date-format'] = strtolower($options['format']);
-        $view->vars['attr']['data-provide'] = 'datepicker';
+        $view->vars['type']                              = 'test';
+        $view->vars['start_date']                        = $options['start_date'] ?? false;
+        $view->vars['attr']['data-date-format']          = strtolower($options['format']);
+        $view->vars['attr']['data-provide']              = 'datepicker';
         $view->vars['attr']['data-date-today-highlight'] = $options['today_highlight'];
-        $view->vars['attr']['data-date-autoclose'] = $options['autoclose'];
+        $view->vars['attr']['data-date-autoclose']       = $options['autoclose'];
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return DateType::class;
     }

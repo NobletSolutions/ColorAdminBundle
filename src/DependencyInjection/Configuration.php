@@ -5,34 +5,12 @@ namespace NS\ColorAdminBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
- */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        /**
-         * Instantiating a new TreeBuilder without a constructor arg is deprecated in SF4 and removed in SF5
-         */
-        if(method_exists(TreeBuilder::class, '__construct'))
-        {
-            $treeBuilder = new TreeBuilder('color_admin');
-            $rootNode = $treeBuilder->getRootNode();
-        }
-        /**
-         * Included for backward-compatibility with SF3
-         */
-        else
-        {
-            $treeBuilder = new TreeBuilder();
-            $rootNode = $treeBuilder->root('color_admin');
-        }
+        $treeBuilder = new TreeBuilder('color_admin');
+        $rootNode = $treeBuilder->getRootNode();
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

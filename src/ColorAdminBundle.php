@@ -12,7 +12,6 @@ class ColorAdminBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
-        parent::build($container);
         $container->addCompilerPass(new TwigFormThemeCompilerPass());
         $container->addCompilerPass(new KnpCompilerPass());
         $container->addCompilerPass(new FlashBundleTemplateCompilerPass());
