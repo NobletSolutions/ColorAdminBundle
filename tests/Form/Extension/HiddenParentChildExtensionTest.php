@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
@@ -105,9 +104,6 @@ class HiddenParentChildExtensionTest extends TypeTestCase
         $this->assertEquals('{"form[deeper][something][__name__][text]":[{"display":"#form_deeper_something___name___text_something","values":"value"}],"form[deeper][something][__name__][number]":[{"display":["form[deeper][something][__name__][textarea]"],"values":[1]}]}',$view->vars['attr']['data-context-prototypes']);
     }
 
-    /**
-     * @group multipleDeep
-     */
     public function testMultipleDeepConfigs(): void
     {
         $builder = $this->factory->createBuilder();
