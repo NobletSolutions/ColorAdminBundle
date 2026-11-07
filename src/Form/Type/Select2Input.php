@@ -7,14 +7,13 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 trait Select2Input
 {
     protected RouterInterface $router;
 
-    /**
-     * @required
-     */
+    #[Required]
     public function setRouter(RouterInterface $router): void
     {
         $this->router = $router;
