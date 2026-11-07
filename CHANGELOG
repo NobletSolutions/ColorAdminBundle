@@ -3,6 +3,7 @@ VERSION 3  SUPPORT SF 6 OR 7
 ============================
 
    Version 3.1 - Allow Flash 4.x
+      06/11/2026 23:14  3.1.2  Fixed deprecated PHP parameter
       06/11/2026 23:02  3.1.1  Switch to attribute from annotation
       06/11/2026 22:55  3.1.0  initial release
 
